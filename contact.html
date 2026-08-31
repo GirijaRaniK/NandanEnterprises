@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contact Us | YOUR BRAND</title>
+
+    <meta
+      name="description"
+      content="Contact YOUR BRAND for customized products, bulk orders, school supplies, promotional products and custom printing."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style1.css" />
+
+    <style>
+      /* =========================================================
+         CONTACT PAGE
+      ========================================================= */
+
+      .contact-hero {
+        padding: 75px 0 70px;
+
+        background:
+          radial-gradient(
+            circle at 85% 20%,
+            rgba(201, 162, 39, 0.13),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #f3f6fa 0%, #ffffff 60%, #fcf8ec 100%);
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .contact-hero-content {
+        max-width: 760px;
+
+        margin: auto;
+
+        text-align: center;
+      }
+
+      .contact-hero h1 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: clamp(42px, 5vw, 62px);
+
+        line-height: 1.1;
+
+        margin-bottom: 18px;
+      }
+
+      .contact-hero h1 span {
+        color: var(--accent-dark);
+      }
+
+      .contact-hero p {
+        max-width: 650px;
+
+        margin: auto;
+
+        color: var(--text);
+
+        font-size: 16px;
+
+        line-height: 1.7;
+      }
+
+      /* =========================================================
+         BREADCRUMB
+      ========================================================= */
+
+      .breadcrumb-area {
+        padding: 18px 0;
+
+        background: white;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .breadcrumb {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 12px;
+
+        color: var(--muted);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+
+        font-weight: 600;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-dark);
+      }
+
+      .breadcrumb i {
+        font-size: 10px;
+
+        color: var(--accent-dark);
+      }
+
+      /* =========================================================
+         CONTACT SECTION
+      ========================================================= */
+
+      .contact-section {
+        padding: 75px 0 100px;
+
+        background: var(--light);
+      }
+
+      .contact-layout {
+        display: grid;
+
+        grid-template-columns: 0.9fr 1.1fr;
+
+        gap: 30px;
+
+        align-items: start;
+      }
+
+      /* =========================================================
+         CONTACT INFORMATION
+      ========================================================= */
+
+      .contact-info-card {
+        background: var(--primary);
+
+        color: white;
+
+        border-radius: 22px;
+
+        padding: 38px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        box-shadow: var(--shadow);
+      }
+
+      .contact-info-card::before {
+        content: "";
+
+        position: absolute;
+
+        width: 260px;
+
+        height: 260px;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(201, 162, 39, 0.25);
+
+        right: -110px;
+
+        top: -100px;
+      }
+
+      .contact-info-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+
+        height: 180px;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        left: -90px;
+
+        bottom: -90px;
+      }
+
+      .contact-info-card .section-label {
+        color: #e5c96a;
+      }
+
+      .contact-info-card h2 {
+        font-family: "Playfair Display", serif;
+
+        font-size: 34px;
+
+        line-height: 1.2;
+
+        margin: 12px 0 15px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .contact-info-card > p {
+        color: #d7dfe8;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+
+        margin-bottom: 30px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .contact-detail {
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        margin-bottom: 23px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .contact-detail-icon {
+        width: 42px;
+
+        height: 42px;
+
+        flex-shrink: 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 10px;
+
+        background: rgba(255, 255, 255, 0.1);
+
+        color: #e5c96a;
+
+        font-size: 18px;
+      }
+
+      .contact-detail h4 {
+        font-size: 12px;
+
+        margin-bottom: 4px;
+
+        color: white;
+      }
+
+      .contact-detail a,
+      .contact-detail span {
+        color: #d7dfe8;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+      }
+
+      .contact-detail a:hover {
+        color: white;
+      }
+
+      /* =========================================================
+         SOCIAL
+      ========================================================= */
+
+      .contact-social {
+        margin-top: 30px;
+
+        padding-top: 25px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .contact-social h4 {
+        font-size: 12px;
+
+        margin-bottom: 12px;
+      }
+
+      .contact-social-links {
+        display: flex;
+
+        gap: 9px;
+      }
+
+      .contact-social-links a {
+        width: 36px;
+
+        height: 36px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 9px;
+
+        background: rgba(255, 255, 255, 0.1);
+
+        color: white;
+
+        transition: 0.3s;
+      }
+
+      .contact-social-links a:hover {
+        background: var(--accent);
+
+        color: var(--primary-dark);
+
+        transform: translateY(-3px);
+      }
+
+      /* =========================================================
+         CONTACT FORM
+      ========================================================= */
+
+      .contact-form-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 22px;
+
+        padding: 38px;
+
+        box-shadow: var(--shadow-sm);
+      }
+
+      .contact-form-card h2 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: 32px;
+
+        margin-bottom: 8px;
+      }
+
+      .contact-form-card > p {
+        color: var(--muted);
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin-bottom: 28px;
+      }
+
+      .contact-form {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 18px;
+      }
+
+      .form-group {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 7px;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        color: var(--primary);
+
+        font-size: 12px;
+
+        font-weight: 700;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+
+        border: 1px solid var(--border);
+
+        border-radius: 9px;
+
+        padding: 12px 13px;
+
+        font-family: inherit;
+
+        font-size: 13px;
+
+        color: var(--text);
+
+        background: white;
+
+        outline: none;
+
+        transition: 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+
+        box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
+      }
+
+      .form-group textarea {
+        min-height: 130px;
+
+        resize: vertical;
+      }
+
+      .form-submit {
+        grid-column: 1 / -1;
+
+        display: flex;
+
+        justify-content: flex-start;
+
+        margin-top: 5px;
+      }
+
+      .submit-button {
+        border: none;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        background: var(--primary);
+
+        color: white;
+
+        padding: 13px 23px;
+
+        border-radius: 10px;
+
+        font-family: inherit;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .submit-button:hover {
+        background: var(--primary-dark);
+
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+         WHATSAPP BOX
+      ========================================================= */
+
+      .whatsapp-contact-box {
+        margin-top: 30px;
+
+        padding: 25px;
+
+        background: #f4faf6;
+
+        border: 1px solid #d9eadf;
+
+        border-radius: 16px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+      }
+
+      .whatsapp-contact-content {
+        display: flex;
+
+        align-items: center;
+
+        gap: 14px;
+      }
+
+      .whatsapp-contact-icon {
+        width: 46px;
+
+        height: 46px;
+
+        border-radius: 50%;
+
+        background: #25d366;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 22px;
+
+        flex-shrink: 0;
+      }
+
+      .whatsapp-contact-content h3 {
+        color: var(--primary);
+
+        font-size: 15px;
+
+        margin-bottom: 4px;
+      }
+
+      .whatsapp-contact-content p {
+        color: var(--muted);
+
+        font-size: 11px;
+      }
+
+      .whatsapp-contact-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        padding: 10px 16px;
+
+        border-radius: 9px;
+
+        background: #25d366;
+
+        color: white;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+
+        transition: 0.3s;
+      }
+
+      .whatsapp-contact-button:hover {
+        background: #1eae55;
+
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+         MAP
+      ========================================================= */
+
+      .map-section {
+        padding: 0 0 100px;
+
+        background: var(--light);
+      }
+
+      .map-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 22px;
+
+        overflow: hidden;
+
+        box-shadow: var(--shadow-sm);
+      }
+
+      .map-heading {
+        padding: 25px 30px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+      }
+
+      .map-heading h2 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: 27px;
+      }
+
+      .map-heading p {
+        color: var(--muted);
+
+        font-size: 12px;
+
+        margin-top: 4px;
+      }
+
+      .map-placeholder {
+        min-height: 330px;
+
+        background:
+          linear-gradient(rgba(11, 31, 58, 0.08), rgba(11, 31, 58, 0.08)),
+          #e9eef2;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        padding: 30px;
+      }
+
+      .map-placeholder i {
+        font-size: 55px;
+
+        color: var(--accent);
+
+        margin-bottom: 12px;
+      }
+
+      .map-placeholder h3 {
+        color: var(--primary);
+
+        font-family: "Playfair Display", serif;
+
+        font-size: 25px;
+      }
+
+      .map-placeholder p {
+        color: var(--muted);
+
+        font-size: 12px;
+
+        margin-top: 7px;
+      }
+
+      .map-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        margin-top: 18px;
+
+        background: var(--primary);
+
+        color: white;
+
+        padding: 11px 17px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        transition: 0.3s;
+      }
+
+      .map-button:hover {
+        background: var(--primary-dark);
+
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+         RESPONSIVE
+      ========================================================= */
+
+      @media (max-width: 900px) {
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .contact-hero {
+          padding: 55px 0;
+        }
+
+        .contact-hero h1 {
+          font-size: 40px;
+        }
+
+        .contact-hero p {
+          font-size: 14px;
+        }
+
+        .contact-section {
+          padding: 55px 0 70px;
+        }
+
+        .contact-info-card,
+        .contact-form-card {
+          padding: 27px 22px;
+        }
+
+        .contact-info-card h2,
+        .contact-form-card h2 {
+          font-size: 28px;
+        }
+
+        .contact-form {
+          grid-template-columns: 1fr;
+        }
+
+        .form-group.full,
+        .form-submit {
+          grid-column: auto;
+        }
+
+        .whatsapp-contact-box {
+          align-items: flex-start;
+
+          flex-direction: column;
+        }
+
+        .whatsapp-contact-button {
+          width: 100%;
+
+          justify-content: center;
+        }
+
+        .map-section {
+          padding-bottom: 70px;
+        }
+
+        .map-heading {
+          align-items: flex-start;
+
+          flex-direction: column;
+
+          padding: 22px;
+        }
+
+        .map-placeholder {
+          min-height: 280px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+         TOP BAR
+    ========================================================= -->
+
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <a href="tel:+919876543210">
+            <i class="bi bi-telephone"></i>
+            +91 98765 43210
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index1.html" class="logo">
+          <img src="images/logo.jpeg" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index1.html">Home</a>
+
+          <a href="products.html">Products</a>
+
+          <a href="custom-printing.html">Custom Printing</a>
+
+          <a href="bulk-orders.html">Bulk Orders</a>
+
+          <a href="about.html">About Us</a>
+
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919177670168"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Open Menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         MOBILE MENU
+    ========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index1.html">Home</a>
+
+      <a href="products.html">Products</a>
+
+      <a href="custom-printing.html">Custom Printing</a>
+
+      <a href="bulk-orders.html">Bulk Orders</a>
+
+      <a href="about.html">About Us</a>
+
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- =========================================================
+         BREADCRUMB
+    ========================================================= -->
+
+    <div class="breadcrumb-area">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index1.html">Home</a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <span>Contact Us</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="contact-hero">
+      <div class="container">
+        <div class="contact-hero-content">
+          <span class="section-label">GET IN TOUCH</span>
+
+          <h1>
+            Let's
+            <span>Work Together</span>
+          </h1>
+
+          <p>
+            Have a question, customization requirement or bulk order? Contact us
+            and our team will be happy to discuss your requirement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACT SECTION
+    ========================================================= -->
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-layout">
+          <!-- ===================================================
+               CONTACT INFORMATION
+          =================================================== -->
+
+          <div class="contact-info-card">
+            <span class="section-label">CONTACT INFORMATION</span>
+
+            <h2>We'd Love to Hear From You</h2>
+
+            <p>
+              Whether you need customized products, school supplies, promotional
+              items or bulk orders, feel free to contact us.
+            </p>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i class="bi bi-whatsapp"></i>
+              </div>
+
+              <div>
+                <h4>WhatsApp / Phone</h4>
+
+                <a href="https://wa.me/919876543210" target="_blank">
+                  +91 98765 43210
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i class="bi bi-envelope"></i>
+              </div>
+
+              <div>
+                <h4>Email</h4>
+
+                <a href="mailto:sales@yourdomain.com"> sales@yourdomain.com </a>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i class="bi bi-geo-alt"></i>
+              </div>
+
+              <div>
+                <h4>Address</h4>
+
+                <span>
+                  Your City, Your State,<br />
+                  India
+                </span>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-detail-icon">
+                <i class="bi bi-clock"></i>
+              </div>
+
+              <div>
+                <h4>Business Hours</h4>
+
+                <span>
+                  Monday – Saturday<br />
+                  9:00 AM – 6:00 PM
+                </span>
+              </div>
+            </div>
+
+            <div class="contact-social">
+              <h4>Follow Us</h4>
+
+              <div class="contact-social-links">
+                <a href="#" aria-label="Facebook">
+                  <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                  <i class="bi bi-instagram"></i>
+                </a>
+
+                <a
+                  href="https://wa.me/919177670168"
+                  target="_blank"
+                  aria-label="WhatsApp"
+                >
+                  <i class="bi bi-whatsapp"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===================================================
+               CONTACT FORM
+          =================================================== -->
+
+          <div class="contact-form-card">
+            <h2>Send Us an Enquiry</h2>
+
+            <p>
+              Fill in the details below and tell us what you are looking for. We
+              will get back to you as soon as possible.
+            </p>
+
+            <form
+              class="contact-form"
+              id="contactForm"
+              onsubmit="sendWhatsApp(event)"
+            >
+              <div class="form-group">
+                <label for="name">Your Name *</label>
+
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter phone number"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email address"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="requirement">Requirement *</label>
+
+                <select id="requirement" name="requirement" required>
+                  <option value="">Select requirement</option>
+
+                  <option value="Jute Bags">Jute Bags</option>
+
+                  <option value="Water Bottles">Water Bottles</option>
+
+                  <option value="Pens">Pens</option>
+
+                  <option value="Stationery">Stationery</option>
+
+                  <option value="Books">Books</option>
+
+                  <option value="ID Cards">ID Cards</option>
+
+                  <option value="T-Shirts">T-Shirts</option>
+
+                  <option value="Kids Learning Materials">
+                    Kids Learning Materials
+                  </option>
+
+                  <option value="Custom Printing">Custom Printing</option>
+
+                  <option value="Bulk Order">Bulk Order</option>
+
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="message">Message *</label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about your requirement, quantity, customization, etc."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-submit">
+                <button type="submit" class="submit-button">
+                  <i class="bi bi-whatsapp"></i>
+
+                  Send Enquiry on WhatsApp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             WHATSAPP BOX
+        ===================================================== -->
+
+        <div class="whatsapp-contact-box">
+          <div class="whatsapp-contact-content">
+            <div class="whatsapp-contact-icon">
+              <i class="bi bi-whatsapp"></i>
+            </div>
+
+            <div>
+              <h3>Need a Quick Response?</h3>
+
+              <p>Contact us directly on WhatsApp for faster assistance.</p>
+            </div>
+          </div>
+
+          <a
+            href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+            target="_blank"
+            class="whatsapp-contact-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         LOCATION / MAP
+    ========================================================= -->
+
+    <section class="map-section">
+      <div class="container">
+        <div class="map-card">
+          <div class="map-heading">
+            <div>
+              <h2>Find Us</h2>
+
+              <p>
+                Visit us or contact us for product and bulk order enquiries.
+              </p>
+            </div>
+          </div>
+
+          <div class="map-placeholder">
+            <i class="bi bi-geo-alt-fill"></i>
+
+            <h3>Your Business Location</h3>
+
+            <p>Your City, Your State, India</p>
+
+            <!-- Replace # with your actual Google Maps location later -->
+            <a href="#" class="map-button">
+              <i class="bi bi-map"></i>
+
+              View on Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- ABOUT -->
+
+        <div class="footer-about">
+          <a href="index1.html" class="brand footer-brand">
+            <div class="brand-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
+
+            <div class="brand-text">
+              <span class="brand-name">YOUR BRAND</span>
+
+              <span class="brand-tagline"> Custom Products & Supplies </span>
+            </div>
+          </a>
+
+          <p>
+            Quality products, custom printing and reliable solutions for
+            schools, businesses, institutions and individuals.
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a
+              href="https://wa.me/919177670168"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+
+          <a href="index1.html">Home</a>
+
+          <a href="products.html">Products</a>
+
+          <a href="custom-printing.html">Custom Printing</a>
+
+          <a href="bulk-orders.html">Bulk Orders</a>
+
+          <a href="about.html">About Us</a>
+        </div>
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-column">
+          <h4>Categories</h4>
+
+          <a href="products.html?category=jute">Jute Bags</a>
+
+          <a href="products.html?category=bottles">Water Bottles</a>
+
+          <a href="products.html?category=pens">Pens</a>
+
+          <a href="products.html?category=stationery">Stationery</a>
+
+          <a href="products.html?category=tshirts">T-Shirts</a>
+
+          <a href="products.html?category=learning">Kids Learning</a>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column footer-contact">
+          <h4>Contact Us</h4>
+
+          <a href="https://wa.me/919177670168" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+
+            +91 98765 43210
+          </a>
+
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+
+            sales@yourdomain.com
+          </a>
+
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+
+            <span> Your City, Your State, India </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>
+            © <span id="currentYear"></span>
+            YOUR BRAND. All Rights Reserved.
+          </p>
+
+          <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+
+            <a href="#">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         FLOATING WHATSAPP
+    ========================================================= -->
+
+    <a
+      href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+      /* =========================================================
+         MOBILE MENU
+      ========================================================= */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
+
+        const icon = mobileMenuButton.querySelector("i");
+
+        if (mobileMenu.classList.contains("open")) {
+          icon.classList.remove("bi-list");
+
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+
+          icon.classList.add("bi-list");
+        }
+      });
+
+      /* =========================================================
+         SEND CONTACT FORM TO WHATSAPP
+      ========================================================= */
+
+      function sendWhatsApp(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+
+        const phone = document.getElementById("phone").value.trim();
+
+        const email = document.getElementById("email").value.trim();
+
+        const requirement = document.getElementById("requirement").value;
+
+        const message = document.getElementById("message").value.trim();
+
+        const whatsappMessage =
+          "Hello, I would like to make an enquiry.%0A%0A" +
+          "*Name:* " +
+          encodeURIComponent(name) +
+          "%0A" +
+          "*Phone:* " +
+          encodeURIComponent(phone) +
+          "%0A" +
+          "*Email:* " +
+          encodeURIComponent(email || "Not provided") +
+          "%0A" +
+          "*Requirement:* " +
+          encodeURIComponent(requirement) +
+          "%0A" +
+          "*Message:* " +
+          encodeURIComponent(message);
+
+        const whatsappURL =
+          "https://wa.me/919876543210?text=" + whatsappMessage;
+
+        window.open(whatsappURL, "_blank");
+      }
+
+      /* =========================================================
+         CURRENT YEAR
+      ========================================================= */
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>

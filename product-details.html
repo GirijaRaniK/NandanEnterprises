@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Product Details | YOUR BRAND</title>
+
+    <meta
+      name="description"
+      content="View product details, customization options and enquire through WhatsApp."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style1.css" />
+
+    <style>
+      /* =====================================================
+           PRODUCT DETAILS PAGE
+        ===================================================== */
+
+      .product-details-section {
+        padding: 70px 0 100px;
+        background: var(--light);
+      }
+
+      .product-details-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 55px;
+        align-items: start;
+      }
+
+      /* =====================================================
+           PRODUCT IMAGE
+        ===================================================== */
+
+      .product-detail-image {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 18px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .product-detail-image img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 16px;
+        display: block;
+      }
+
+      .detail-image-placeholder {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+
+        border-radius: 16px;
+
+        background: linear-gradient(145deg, #edf2f7, #fcf7e8);
+
+        border: 1px dashed rgba(11, 31, 58, 0.22);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 10px;
+
+        color: var(--primary);
+      }
+
+      .detail-image-placeholder i {
+        font-size: 80px;
+        color: var(--accent);
+      }
+
+      .detail-image-placeholder span {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .detail-image-placeholder small {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      /* =====================================================
+           PRODUCT INFORMATION
+        ===================================================== */
+
+      .product-detail-info {
+        padding-top: 10px;
+      }
+
+      .detail-category {
+        display: inline-block;
+
+        color: var(--accent-dark);
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.2px;
+
+        text-transform: uppercase;
+
+        margin-bottom: 10px;
+      }
+
+      .product-detail-info h1 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: clamp(36px, 4vw, 52px);
+
+        line-height: 1.15;
+
+        margin-bottom: 18px;
+      }
+
+      .detail-description {
+        color: var(--text);
+
+        font-size: 15px;
+
+        line-height: 1.8;
+
+        margin-bottom: 28px;
+      }
+
+      /* =====================================================
+           HIGHLIGHTS
+        ===================================================== */
+
+      .product-highlights {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+
+        margin-bottom: 30px;
+      }
+
+      .highlight-box {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 15px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+      }
+
+      .highlight-box i {
+        width: 38px;
+
+        height: 38px;
+
+        border-radius: 9px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: var(--accent-light);
+
+        color: var(--primary);
+
+        font-size: 18px;
+      }
+
+      .highlight-box span {
+        font-size: 11px;
+
+        color: var(--muted);
+
+        display: block;
+      }
+
+      .highlight-box strong {
+        display: block;
+
+        color: var(--primary);
+
+        font-size: 13px;
+
+        margin-top: 2px;
+      }
+
+      /* =====================================================
+           CUSTOMIZATION BOX
+        ===================================================== */
+
+      .customization-box {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 16px;
+
+        padding: 22px;
+
+        margin-bottom: 28px;
+      }
+
+      .customization-box h3 {
+        color: var(--primary);
+
+        font-size: 18px;
+
+        margin-bottom: 15px;
+      }
+
+      .customization-list {
+        list-style: none;
+
+        padding: 0;
+
+        margin: 0;
+      }
+
+      .customization-list li {
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        color: var(--text);
+
+        font-size: 13px;
+
+        margin-bottom: 10px;
+      }
+
+      .customization-list li:last-child {
+        margin-bottom: 0;
+      }
+
+      .customization-list i {
+        color: var(--accent-dark);
+
+        font-size: 15px;
+      }
+
+      /* =====================================================
+           ACTION BUTTONS
+        ===================================================== */
+
+      .product-detail-actions {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+      }
+
+      .detail-whatsapp {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 9px;
+
+        padding: 14px 22px;
+
+        border-radius: 10px;
+
+        background: var(--primary);
+
+        color: white;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        transition: 0.3s;
+      }
+
+      .detail-whatsapp:hover {
+        background: var(--primary-dark);
+
+        color: white;
+
+        transform: translateY(-2px);
+      }
+
+      .detail-whatsapp i {
+        font-size: 18px;
+      }
+
+      .back-products {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        padding: 14px 20px;
+
+        border-radius: 10px;
+
+        border: 1px solid var(--border);
+
+        background: white;
+
+        color: var(--primary);
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        transition: 0.3s;
+      }
+
+      .back-products:hover {
+        background: var(--accent-light);
+
+        color: var(--primary);
+
+        transform: translateY(-2px);
+      }
+
+      /* =====================================================
+           ENQUIRY NOTE
+        ===================================================== */
+
+      .detail-note {
+        margin-top: 18px;
+
+        color: var(--muted);
+
+        font-size: 11px;
+
+        line-height: 1.6;
+      }
+
+      .detail-note i {
+        color: var(--accent-dark);
+
+        margin-right: 4px;
+      }
+
+      /* =====================================================
+           NOT FOUND
+        ===================================================== */
+
+      .product-not-found {
+        display: none;
+
+        text-align: center;
+
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 70px 20px;
+      }
+
+      .product-not-found i {
+        font-size: 55px;
+
+        color: var(--accent);
+      }
+
+      .product-not-found h2 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        margin: 15px 0 8px;
+      }
+
+      .product-not-found p {
+        color: var(--muted);
+
+        font-size: 13px;
+
+        margin-bottom: 20px;
+      }
+
+      /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+      @media (max-width: 900px) {
+        .product-details-wrapper {
+          grid-template-columns: 1fr;
+
+          gap: 35px;
+        }
+
+        .product-detail-info {
+          padding-top: 0;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .product-details-section {
+          padding: 50px 0 70px;
+        }
+
+        .product-highlights {
+          grid-template-columns: 1fr;
+        }
+
+        .product-detail-info h1 {
+          font-size: 36px;
+        }
+
+        .detail-description {
+          font-size: 14px;
+        }
+
+        .product-detail-actions {
+          flex-direction: column;
+        }
+
+        .detail-whatsapp,
+        .back-products {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <a href="tel:+919177670168">
+            <i class="bi bi-telephone"></i>
+            +91 9177670168
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     HEADER
+========================================================= -->
+
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index1.html" class="logo">
+          <img src="images/logo.jpeg" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html" class="active"> Products </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+
+          <a href="contact.html"> Contact </a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919876543210"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Open Menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index1.html"> Home </a>
+
+      <a href="products.html"> Products </a>
+
+      <a href="custom-printing.html"> Custom Printing </a>
+
+      <a href="bulk-orders.html"> Bulk Orders </a>
+
+      <a href="about.html"> About Us </a>
+
+      <a href="contact.html"> Contact </a>
+    </div>
+
+    <!-- =========================================================
+     BREADCRUMB
+========================================================= -->
+
+    <div class="breadcrumb-area">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index1.html"> Home </a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <a href="products.html"> Products </a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <span id="breadcrumbProduct"> Product Details </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     PRODUCT DETAILS
+========================================================= -->
+
+    <section class="product-details-section">
+      <div class="container">
+        <!-- PRODUCT -->
+
+        <div class="product-details-wrapper" id="productDetails">
+          <!-- IMAGE -->
+
+          <div class="product-detail-image">
+            <div class="detail-image-placeholder" id="productImagePlaceholder">
+              <i id="productIcon" class="bi bi-box"></i>
+
+              <span id="placeholderTitle"> Product Image </span>
+
+              <small> Add your product image later </small>
+            </div>
+
+            <img id="productImage" src="" alt="" style="display: none" />
+          </div>
+
+          <!-- INFORMATION -->
+
+          <div class="product-detail-info">
+            <span class="detail-category" id="productCategory"> Product </span>
+
+            <h1 id="productName">Product Name</h1>
+
+            <p class="detail-description" id="productDescription">
+              Product description
+            </p>
+
+            <!-- HIGHLIGHTS -->
+
+            <div class="product-highlights">
+              <div class="highlight-box">
+                <i class="bi bi-palette"></i>
+
+                <div>
+                  <span> Customization </span>
+
+                  <strong> Available </strong>
+                </div>
+              </div>
+
+              <div class="highlight-box">
+                <i class="bi bi-box-seam"></i>
+
+                <div>
+                  <span> Order Type </span>
+
+                  <strong> Bulk Orders </strong>
+                </div>
+              </div>
+
+              <div class="highlight-box">
+                <i class="bi bi-building"></i>
+
+                <div>
+                  <span> Suitable For </span>
+
+                  <strong id="suitableFor"> Schools & Businesses </strong>
+                </div>
+              </div>
+
+              <div class="highlight-box">
+                <i class="bi bi-chat-dots"></i>
+
+                <div>
+                  <span> Enquiry </span>
+
+                  <strong> WhatsApp </strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- CUSTOMIZATION -->
+
+            <div class="customization-box">
+              <h3>Customization Options</h3>
+
+              <ul class="customization-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Logo / Brand Name Printing
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Name or Text Customization
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  School / Company Branding
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Custom Colour & Design Options
+                </li>
+              </ul>
+            </div>
+
+            <!-- ACTIONS -->
+
+            <div class="product-detail-actions">
+              <a
+                href="#"
+                id="whatsappButton"
+                target="_blank"
+                class="detail-whatsapp"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire on WhatsApp
+              </a>
+
+              <a href="products.html" class="back-products">
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Products
+              </a>
+            </div>
+
+            <p class="detail-note">
+              <i class="bi bi-info-circle"></i>
+
+              Contact us for product specifications, available colours,
+              customization options and bulk pricing.
+            </p>
+          </div>
+        </div>
+
+        <!-- NOT FOUND -->
+
+        <div class="product-not-found" id="productNotFound">
+          <i class="bi bi-search"></i>
+
+          <h2>Product Not Found</h2>
+
+          <p>The product you are looking for could not be found.</p>
+
+          <a href="products.html" class="back-products">
+            <i class="bi bi-arrow-left"></i>
+
+            View All Products
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- ABOUT -->
+
+        <div class="footer-about">
+          <a href="index1.html" class="brand footer-brand">
+            <div class="brand-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
+
+            <div class="brand-text">
+              <span class="brand-name"> YOUR BRAND </span>
+
+              <span class="brand-tagline"> Custom Products & Supplies </span>
+            </div>
+          </a>
+
+          <p>
+            Quality products, custom printing and reliable solutions for
+            schools, businesses, institutions and individuals.
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a
+              href="https://wa.me/919177670168"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+        </div>
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-column">
+          <h4>Categories</h4>
+
+          <a href="products.html?category=jute"> Jute Bags </a>
+
+          <a href="products.html?category=bottles"> Water Bottles </a>
+
+          <a href="products.html?category=pens"> Pens </a>
+
+          <a href="products.html?category=stationery"> Stationery </a>
+
+          <a href="products.html?category=books"> Books </a>
+
+          <a href="products.html?category=idcards"> ID Cards </a>
+
+          <a href="products.html?category=tshirts"> T-Shirts </a>
+
+          <a href="products.html?category=learning"> Kids Learning </a>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column footer-contact">
+          <h4>Contact Us</h4>
+
+          <a href="https://wa.me/919177670168" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+
+            +91 98765 43210
+          </a>
+
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+
+            sales@yourdomain.com
+          </a>
+
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+
+            <span> Your City, Your State, India </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>
+            ©
+
+            <span id="currentYear"></span>
+
+            YOUR BRAND. All Rights Reserved.
+          </p>
+
+          <div>
+            <a href="privacy-policy.html"> Privacy Policy </a>
+
+            <a href="#"> Terms & Conditions </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+    <a
+      href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script>
+      /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
+
+        const icon = mobileMenuButton.querySelector("i");
+
+        if (mobileMenu.classList.contains("open")) {
+          icon.classList.remove("bi-list");
+
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+
+          icon.classList.add("bi-list");
+        }
+      });
+
+      /* =====================================================
+       PRODUCT DATA
+    ===================================================== */
+
+      const products = {
+        "jute-bag": {
+          name: "Custom Printed Jute Bag",
+
+          category: "Jute Bags",
+
+          icon: "bi-bag",
+
+          description:
+            "Eco-friendly reusable jute bags suitable for schools, events, businesses and promotional requirements.",
+
+          suitable: "Schools & Businesses",
+        },
+
+        "jute-tote": {
+          name: "Jute Tote Bag",
+
+          category: "Jute Bags",
+
+          icon: "bi-bag-heart",
+
+          description:
+            "Stylish and reusable jute tote bags that can be customized with your logo, school name or branding.",
+
+          suitable: "Events & Businesses",
+        },
+
+        "water-bottle": {
+          name: "Customized Water Bottle",
+
+          category: "Water Bottles",
+
+          icon: "bi-cup-straw",
+
+          description:
+            "Personalized water bottles with names, logos, school branding or custom artwork.",
+
+          suitable: "Schools & Institutions",
+        },
+
+        "kids-bottle": {
+          name: "Kids Customized Bottle",
+
+          category: "Water Bottles",
+
+          icon: "bi-water",
+
+          description:
+            "Fun and personalized water bottles designed for school children and young learners.",
+
+          suitable: "School Children",
+        },
+
+        "ball-pen": {
+          name: "Promotional Ball Pen",
+
+          category: "Pens",
+
+          icon: "bi-pen",
+
+          description:
+            "Quality promotional ball pens suitable for schools, offices, events and corporate branding.",
+
+          suitable: "Schools & Offices",
+        },
+
+        "premium-pen": {
+          name: "Personalized Premium Pen",
+
+          category: "Pens",
+
+          icon: "bi-pencil",
+
+          description:
+            "Elegant personalized pens suitable for corporate gifting, special occasions and professional use.",
+
+          suitable: "Corporate & Events",
+        },
+
+        "stationery-kit": {
+          name: "School Stationery Kit",
+
+          category: "Stationery",
+
+          icon: "bi-pencil-square",
+
+          description:
+            "Essential stationery kits containing useful school supplies for students and educational institutions.",
+
+          suitable: "Schools & Students",
+        },
+
+        notebook: {
+          name: "Customized Notebook",
+
+          category: "Stationery",
+
+          icon: "bi-journal-text",
+
+          description:
+            "Personalized notebooks suitable for schools, offices, organizations and promotional requirements.",
+
+          suitable: "Schools & Offices",
+        },
+
+        "educational-books": {
+          name: "Educational Books",
+
+          category: "Books",
+
+          icon: "bi-book",
+
+          description:
+            "Educational books and learning resources designed to support school children and young learners.",
+
+          suitable: "Students & Schools",
+        },
+
+        "activity-books": {
+          name: "Kids Activity Books",
+
+          category: "Books",
+
+          icon: "bi-book-half",
+
+          description:
+            "Engaging activity books designed to make learning enjoyable through creative activities and exercises.",
+
+          suitable: "Kids & Schools",
+        },
+
+        "student-id-card": {
+          name: "School Student ID Cards",
+
+          category: "ID Cards",
+
+          icon: "bi-person-badge",
+
+          description:
+            "Professional student identity cards customized with school details, student information and branding.",
+
+          suitable: "Schools",
+        },
+
+        "staff-id-card": {
+          name: "Office / Staff ID Cards",
+
+          category: "ID Cards",
+
+          icon: "bi-person-vcard",
+
+          description:
+            "Professional identification cards for offices, staff members, institutions and organizations.",
+
+          suitable: "Offices & Organizations",
+        },
+
+        "custom-tshirt": {
+          name: "Custom Printed T-Shirt",
+
+          category: "T-Shirts",
+
+          icon: "bi-person",
+
+          description:
+            "Custom T-shirts with logos, artwork, names, event designs and organization branding.",
+
+          suitable: "Events & Organizations",
+        },
+
+        "school-tshirt": {
+          name: "School / Event T-Shirts",
+
+          category: "T-Shirts",
+
+          icon: "bi-person-arms-up",
+
+          description:
+            "Customized T-shirts for school events, teams, celebrations, programs and special occasions.",
+
+          suitable: "Schools & Events",
+        },
+
+        "learning-materials": {
+          name: "Kids Learning Materials",
+
+          category: "Kids Learning",
+
+          icon: "bi-puzzle",
+
+          description:
+            "Fun and educational learning materials designed to encourage creativity and development in young learners.",
+
+          suitable: "Kids & Schools",
+        },
+
+        "activity-kit": {
+          name: "Kids Educational Activity Kit",
+
+          category: "Kids Learning",
+
+          icon: "bi-shapes",
+
+          description:
+            "Creative educational activity kits that encourage children to learn through play and hands-on activities.",
+
+          suitable: "Kids & Schools",
+        },
+      };
+
+      /* =====================================================
+       GET PRODUCT FROM URL
+       
+       Example:
+       product-details.html?product=jute-bag
+    ===================================================== */
+
+      const urlParams = new URLSearchParams(window.location.search);
+
+      const productId = urlParams.get("product");
+
+      const product = products[productId];
+
+      /* =====================================================
+       DISPLAY PRODUCT
+    ===================================================== */
+
+      if (product) {
+        document.title = product.name + " | YOUR BRAND";
+
+        document.getElementById("breadcrumbProduct").textContent = product.name;
+
+        document.getElementById("productCategory").textContent =
+          product.category;
+
+        document.getElementById("productName").textContent = product.name;
+
+        document.getElementById("productDescription").textContent =
+          product.description;
+
+        document.getElementById("suitableFor").textContent = product.suitable;
+
+        /* PRODUCT ICON */
+
+        const icon = document.getElementById("productIcon");
+
+        icon.className = "bi " + product.icon;
+
+        document.getElementById("placeholderTitle").textContent = product.name;
+
+        /* WHATSAPP */
+
+        const whatsappMessage =
+          "Hello, I am interested in " +
+          product.name +
+          ". Please share the details and pricing.";
+
+        const whatsappUrl =
+          "https://wa.me/919876543210?text=" +
+          encodeURIComponent(whatsappMessage);
+
+        document.getElementById("whatsappButton").href = whatsappUrl;
+
+        /*
+         * IMAGE
+         *
+         * Later, when you add real images,
+         * uncomment/use the following mapping.
+         */
+
+        const imageMap = {
+          "jute-bag": "images/products/jute-bag.jpg",
+
+          "jute-tote": "images/products/jute-tote.jpg",
+
+          "water-bottle": "images/products/water-bottle.jpg",
+
+          "kids-bottle": "images/products/kids-bottle.jpg",
+
+          "ball-pen": "images/products/ball-pen.jpg",
+
+          "premium-pen": "images/products/premium-pen.jpg",
+
+          "stationery-kit": "images/products/stationery-kit.jpg",
+
+          notebook: "images/products/notebook.jpg",
+
+          "educational-books": "images/products/educational-books.jpg",
+
+          "activity-books": "images/products/activity-books.jpg",
+
+          "student-id-card": "images/products/student-id-card.jpg",
+
+          "staff-id-card": "images/products/staff-id-card.jpg",
+
+          "custom-tshirt": "images/products/custom-tshirt.jpg",
+
+          "school-tshirt": "images/products/school-tshirt.jpg",
+
+          "learning-materials": "images/products/learning-material.jpg",
+
+          "activity-kit": "images/products/activity-kit.jpg",
+        };
+
+        /*
+         * Do NOT display image now if
+         * you haven't added the files yet.
+         */
+
+        const imagePath = imageMap[productId];
+
+        const productImage = document.getElementById("productImage");
+
+        const placeholder = document.getElementById("productImagePlaceholder");
+
+        /*
+         * Check whether image exists.
+         */
+
+        if (imagePath) {
+          const testImage = new Image();
+
+          testImage.onload = function () {
+            productImage.src = imagePath;
+
+            productImage.alt = product.name;
+
+            productImage.style.display = "block";
+
+            placeholder.style.display = "none";
+          };
+
+          testImage.onerror = function () {
+            productImage.style.display = "none";
+
+            placeholder.style.display = "flex";
+          };
+
+          testImage.src = imagePath;
+        }
+      } else {
+        /*
+         * Product does not exist
+         */
+
+        document.getElementById("productDetails").style.display = "none";
+
+        document.getElementById("productNotFound").style.display = "block";
+      }
+
+      /* =====================================================
+       CURRENT YEAR
+    ===================================================== */
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>

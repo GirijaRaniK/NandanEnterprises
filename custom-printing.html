@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Custom Printing | YOUR BRAND</title>
+
+    <meta
+      name="description"
+      content="Custom printing and branding solutions for T-shirts, jute bags, bottles, pens, notebooks, ID cards and more."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style1.css" />
+
+    <style>
+      /* =========================================================
+       CUSTOM PRINTING PAGE
+    ========================================================= */
+
+      .custom-hero {
+        padding: 80px 0;
+
+        background:
+          radial-gradient(
+            circle at 85% 20%,
+            rgba(201, 162, 39, 0.15),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #f3f6fa 0%, #ffffff 60%, #fcf8ec 100%);
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .custom-hero-content {
+        max-width: 850px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .custom-hero h1 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: clamp(42px, 5vw, 62px);
+
+        line-height: 1.1;
+
+        margin: 18px 0;
+      }
+
+      .custom-hero h1 span {
+        color: var(--accent-dark);
+      }
+
+      .custom-hero p {
+        max-width: 700px;
+
+        margin: auto;
+
+        color: var(--text);
+
+        font-size: 16px;
+
+        line-height: 1.7;
+      }
+
+      .hero-buttons {
+        display: flex;
+
+        justify-content: center;
+
+        gap: 12px;
+
+        margin-top: 30px;
+
+        flex-wrap: wrap;
+      }
+
+      .hero-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding: 13px 20px;
+
+        border-radius: 10px;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        transition: 0.3s;
+      }
+
+      .hero-button.primary {
+        background: var(--primary);
+
+        color: white;
+      }
+
+      .hero-button.primary:hover {
+        background: var(--primary-dark);
+
+        transform: translateY(-3px);
+      }
+
+      .hero-button.secondary {
+        background: white;
+
+        color: var(--primary);
+
+        border: 1px solid var(--border);
+      }
+
+      .hero-button.secondary:hover {
+        border-color: var(--accent);
+
+        transform: translateY(-3px);
+      }
+
+      /* =========================================================
+       BREADCRUMB
+    ========================================================= */
+
+      .breadcrumb-area {
+        padding: 18px 0;
+
+        background: white;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .breadcrumb {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 12px;
+
+        color: var(--muted);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+
+        font-weight: 600;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-dark);
+      }
+
+      .breadcrumb i {
+        font-size: 10px;
+
+        color: var(--accent-dark);
+      }
+
+      /* =========================================================
+       CUSTOM SERVICES
+    ========================================================= */
+
+      .custom-services {
+        padding: 80px 0 100px;
+
+        background: var(--light);
+      }
+
+      .custom-section-heading {
+        max-width: 700px;
+
+        margin: 0 auto 45px;
+
+        text-align: center;
+      }
+
+      .custom-section-heading h2 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: 38px;
+
+        margin: 12px 0;
+      }
+
+      .custom-section-heading p {
+        color: var(--muted);
+
+        font-size: 14px;
+
+        line-height: 1.7;
+      }
+
+      /* =========================================================
+       CUSTOM PRODUCT GRID
+    ========================================================= */
+
+      .custom-products-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 22px;
+      }
+
+      .custom-product-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        overflow: hidden;
+
+        box-shadow: var(--shadow-sm);
+
+        transition: 0.35s;
+
+        display: flex;
+
+        flex-direction: column;
+      }
+
+      .custom-product-card:hover {
+        transform: translateY(-7px);
+
+        box-shadow: var(--shadow);
+
+        border-color: rgba(201, 162, 39, 0.45);
+      }
+
+      /* =========================================================
+       IMAGE PLACEHOLDER
+    ========================================================= */
+
+      .custom-product-image {
+        aspect-ratio: 1;
+
+        background: linear-gradient(145deg, #edf2f7, #fcf7e8);
+
+        padding: 13px;
+
+        position: relative;
+      }
+
+      .custom-image-placeholder {
+        width: 100%;
+
+        height: 100%;
+
+        border-radius: 13px;
+
+        border: 1px dashed rgba(11, 31, 58, 0.22);
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        text-align: center;
+
+        color: var(--primary);
+      }
+
+      .custom-image-placeholder i {
+        font-size: 55px;
+
+        color: var(--accent);
+      }
+
+      .custom-image-placeholder span {
+        font-size: 12px;
+
+        font-weight: 700;
+
+        color: var(--primary);
+      }
+
+      .custom-image-placeholder small {
+        font-size: 10px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================================
+       BADGE
+    ========================================================= */
+
+      .custom-badge {
+        position: absolute;
+
+        top: 22px;
+
+        left: 22px;
+
+        z-index: 2;
+
+        background: var(--accent);
+
+        color: var(--primary-dark);
+
+        padding: 5px 10px;
+
+        border-radius: 6px;
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.5px;
+      }
+
+      /* =========================================================
+       CARD CONTENT
+    ========================================================= */
+
+      .custom-product-info {
+        padding: 20px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        flex: 1;
+      }
+
+      .custom-category {
+        color: var(--accent-dark);
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.1px;
+
+        text-transform: uppercase;
+      }
+
+      .custom-product-info h3 {
+        color: var(--primary);
+
+        font-size: 17px;
+
+        line-height: 1.35;
+
+        margin-top: 7px;
+      }
+
+      .custom-product-info p {
+        color: var(--muted);
+
+        font-size: 12px;
+
+        line-height: 1.6;
+
+        margin: 7px 0 18px;
+      }
+
+      .custom-enquire {
+        margin-top: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 7px;
+
+        padding: 10px 13px;
+
+        border-radius: 9px;
+
+        background: var(--primary);
+
+        color: white;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        transition: 0.3s;
+      }
+
+      .custom-enquire:hover {
+        background: var(--primary-dark);
+
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+       HOW IT WORKS
+    ========================================================= */
+
+      .custom-process {
+        padding: 85px 0;
+
+        background: white;
+      }
+
+      .process-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 25px;
+
+        margin-top: 45px;
+      }
+
+      .process-card {
+        text-align: center;
+
+        padding: 25px 18px;
+      }
+
+      .process-number {
+        width: 52px;
+
+        height: 52px;
+
+        margin: auto;
+
+        border-radius: 50%;
+
+        background: var(--primary);
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 17px;
+
+        font-weight: 800;
+      }
+
+      .process-card h3 {
+        color: var(--primary);
+
+        font-size: 17px;
+
+        margin: 17px 0 8px;
+      }
+
+      .process-card p {
+        color: var(--muted);
+
+        font-size: 12px;
+
+        line-height: 1.6;
+      }
+
+      /* =========================================================
+       CUSTOM REQUIREMENT BANNER
+    ========================================================= */
+
+      .custom-banner-section {
+        padding: 0 0 90px;
+
+        background: white;
+      }
+
+      .custom-banner {
+        background: linear-gradient(
+          120deg,
+          var(--primary-dark),
+          var(--primary)
+        );
+
+        border-radius: 24px;
+
+        padding: 48px;
+
+        color: white;
+
+        display: grid;
+
+        grid-template-columns: 1fr auto;
+
+        align-items: center;
+
+        gap: 30px;
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .custom-banner::after {
+        content: "";
+
+        position: absolute;
+
+        width: 300px;
+
+        height: 300px;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(201, 162, 39, 0.25);
+
+        right: -100px;
+
+        top: -140px;
+      }
+
+      .custom-banner .section-label {
+        color: #e5c96a;
+      }
+
+      .custom-banner h2 {
+        font-family: "Playfair Display", serif;
+
+        font-size: 31px;
+
+        margin: 10px 0;
+      }
+
+      .custom-banner p {
+        color: #d7dfe8;
+
+        font-size: 13px;
+
+        max-width: 650px;
+
+        line-height: 1.7;
+      }
+
+      .custom-whatsapp {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        background: white;
+
+        color: var(--primary);
+
+        padding: 13px 20px;
+
+        border-radius: 10px;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+
+        position: relative;
+
+        z-index: 2;
+
+        transition: 0.3s;
+      }
+
+      .custom-whatsapp:hover {
+        background: var(--accent-light);
+
+        transform: translateY(-3px);
+      }
+
+      /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+      @media (max-width: 1100px) {
+        .custom-products-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .process-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .custom-products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .custom-banner {
+          grid-template-columns: 1fr;
+
+          padding: 40px 30px;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .custom-hero {
+          padding: 55px 0;
+        }
+
+        .custom-hero h1 {
+          font-size: 40px;
+        }
+
+        .custom-hero p {
+          font-size: 14px;
+        }
+
+        .custom-services {
+          padding: 55px 0 70px;
+        }
+
+        .custom-section-heading h2 {
+          font-size: 31px;
+        }
+
+        .custom-products-grid {
+          grid-template-columns: repeat(2, 1fr);
+
+          gap: 12px;
+        }
+
+        .custom-product-info {
+          padding: 14px;
+        }
+
+        .custom-product-info h3 {
+          font-size: 14px;
+        }
+
+        .custom-product-info p {
+          font-size: 11px;
+        }
+
+        .custom-enquire {
+          font-size: 11px;
+
+          padding: 9px 8px;
+        }
+
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .custom-banner h2 {
+          font-size: 27px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .custom-products-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+
+            sales@yourdomain.com
+          </a>
+
+          <a href="tel:+919876543210">
+            <i class="bi bi-telephone"></i>
+
+            +91 98765 43210
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     HEADER
+========================================================= -->
+
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index1.html" class="logo">
+          <img src="images/logo.jpeg" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="custom-printing.html" class="active"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+
+          <a href="contact.html"> Contact </a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919177670168"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Open Menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index1.html"> Home </a>
+
+      <a href="products.html"> Products </a>
+
+      <a href="custom-printing.html"> Custom Printing </a>
+
+      <a href="bulk-orders.html"> Bulk Orders </a>
+
+      <a href="about.html"> About Us </a>
+
+      <a href="contact.html"> Contact </a>
+    </div>
+
+    <!-- =========================================================
+     BREADCRUMB
+========================================================= -->
+
+    <div class="breadcrumb-area">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index1.html"> Home </a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <span> Custom Printing </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     HERO
+========================================================= -->
+
+    <section class="custom-hero">
+      <div class="container">
+        <div class="custom-hero-content">
+          <span class="section-label"> CUSTOM PRINTING & BRANDING </span>
+
+          <h1>
+            Make It
+            <span>Uniquely Yours</span>
+          </h1>
+
+          <p>
+            Add your logo, school name, company branding, artwork, photographs
+            or special message to selected products. We provide customized
+            solutions for schools, businesses, institutions, events and
+            individuals.
+          </p>
+
+          <div class="hero-buttons">
+            <a
+              href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20know%20about%20custom%20printing."
+              target="_blank"
+              class="hero-button primary"
+            >
+              <i class="bi bi-whatsapp"></i>
+
+              Get a Quote
+            </a>
+
+            <a href="products.html" class="hero-button secondary">
+              <i class="bi bi-grid"></i>
+
+              View Products
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     CUSTOM PRODUCTS
+========================================================= -->
+
+    <section class="custom-services">
+      <div class="container">
+        <div class="custom-section-heading">
+          <span class="section-label"> WHAT WE CAN CUSTOMIZE </span>
+
+          <h2>Products Made for Your Brand</h2>
+
+          <p>
+            Choose a product and tell us what you would like printed or
+            customized. We will discuss the available options, quantity and
+            pricing with you.
+          </p>
+        </div>
+
+        <div class="custom-products-grid">
+          <!-- 1 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <span class="custom-badge"> Popular </span>
+
+              <div class="custom-image-placeholder">
+                <i class="bi bi-bag"></i>
+
+                <span> Jute Bag Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> Jute Bags </span>
+
+              <h3>Custom Printed Jute Bags</h3>
+
+              <p>
+                Add your company logo, school name, event artwork or promotional
+                message.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Custom%20Printed%20Jute%20Bags."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 2 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <div class="custom-image-placeholder">
+                <i class="bi bi-cup-straw"></i>
+
+                <span> Water Bottle Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> Water Bottles </span>
+
+              <h3>Customized Water Bottles</h3>
+
+              <p>
+                Personalize bottles with names, logos, school branding or
+                special designs.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20Water%20Bottles."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 3 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <div class="custom-image-placeholder">
+                <i class="bi bi-pen"></i>
+
+                <span> Pen Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> Pens </span>
+
+              <h3>Promotional Pens</h3>
+
+              <p>
+                Print your business name, logo or promotional message on quality
+                pens.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20Promotional%20Pens."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 4 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <span class="custom-badge"> School </span>
+
+              <div class="custom-image-placeholder">
+                <i class="bi bi-journal-text"></i>
+
+                <span> Notebook Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> Stationery </span>
+
+              <h3>Customized Notebooks</h3>
+
+              <p>
+                Personalized notebooks for schools, offices, organizations and
+                events.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20Notebooks."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 5 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <div class="custom-image-placeholder">
+                <i class="bi bi-person-badge"></i>
+
+                <span> ID Card Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> ID Cards </span>
+
+              <h3>Customized ID Cards</h3>
+
+              <p>
+                Student, staff, employee and organization ID cards with
+                customized details.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20ID%20Cards."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 6 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <span class="custom-badge"> Custom </span>
+
+              <div class="custom-image-placeholder">
+                <i class="bi bi-person"></i>
+
+                <span> T-Shirt Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> T-Shirts </span>
+
+              <h3>Custom Printed T-Shirts</h3>
+
+              <p>
+                T-shirts with logos, names, artwork, photographs and event
+                designs.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Custom%20Printed%20T-Shirts."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 7 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <div class="custom-image-placeholder">
+                <i class="bi bi-book"></i>
+
+                <span> Books Image </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> Books </span>
+
+              <h3>Customized Books</h3>
+
+              <p>
+                Educational, activity and promotional books with customized
+                covers and branding.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20Books."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+
+          <!-- 8 -->
+
+          <div class="custom-product-card">
+            <div class="custom-product-image">
+              <span class="custom-badge"> Kids </span>
+
+              <div class="custom-image-placeholder">
+                <i class="bi bi-puzzle"></i>
+
+                <span> Learning Material </span>
+
+                <small> Add image later </small>
+              </div>
+            </div>
+
+            <div class="custom-product-info">
+              <span class="custom-category"> Kids Learning </span>
+
+              <h3>Educational Materials</h3>
+
+              <p>
+                Customized learning materials, activity kits and educational
+                resources for children.
+              </p>
+
+              <a
+                href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20Kids%20Learning%20Materials."
+                target="_blank"
+                class="custom-enquire"
+              >
+                <i class="bi bi-whatsapp"></i>
+
+                Enquire Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+    <section class="custom-process">
+      <div class="container">
+        <div class="custom-section-heading">
+          <span class="section-label"> SIMPLE PROCESS </span>
+
+          <h2>How Custom Printing Works</h2>
+
+          <p>
+            Getting your customized products is simple. Just tell us what you
+            need and we will guide you.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-number">01</div>
+
+            <h3>Choose a Product</h3>
+
+            <p>
+              Select the product you want to customize from our product
+              collection.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">02</div>
+
+            <h3>Share Your Design</h3>
+
+            <p>
+              Send your logo, name, artwork, photograph or printing
+              requirements.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">03</div>
+
+            <h3>Confirm Details</h3>
+
+            <p>
+              We discuss quantity, customization options, pricing and delivery
+              requirements.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">04</div>
+
+            <h3>Get Your Products</h3>
+
+            <p>
+              Once everything is confirmed, your customized products are
+              prepared and delivered.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     FINAL BANNER
+========================================================= -->
+
+    <section class="custom-banner-section">
+      <div class="container">
+        <div class="custom-banner">
+          <div>
+            <span class="section-label"> READY TO CUSTOMIZE? </span>
+
+            <h2>Have a Design in Mind?</h2>
+
+            <p>
+              Send us your requirement through WhatsApp. Tell us the product,
+              quantity and customization you need. We will help you with the
+              next steps.
+            </p>
+          </div>
+
+          <a
+            href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20a%20custom%20printing%20quotation."
+            target="_blank"
+            class="custom-whatsapp"
+          >
+            <i class="bi bi-whatsapp"></i>
+
+            Contact on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- ABOUT -->
+
+        <div class="footer-about">
+          <a href="index1.html" class="brand footer-brand">
+            <div class="brand-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
+
+            <div class="brand-text">
+              <span class="brand-name"> YOUR BRAND </span>
+
+              <span class="brand-tagline"> Custom Products & Supplies </span>
+            </div>
+          </a>
+
+          <p>
+            Quality products, custom printing and reliable solutions for
+            schools, businesses, institutions and individuals.
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a
+              href="https://wa.me/919177670168"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+        </div>
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-column">
+          <h4>Categories</h4>
+
+          <a href="products.html?category=jute"> Jute Bags </a>
+
+          <a href="products.html?category=bottles"> Water Bottles </a>
+
+          <a href="products.html?category=pens"> Pens </a>
+
+          <a href="products.html?category=stationery"> Stationery </a>
+
+          <a href="products.html?category=tshirts"> T-Shirts </a>
+
+          <a href="products.html?category=learning"> Kids Learning </a>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column footer-contact">
+          <h4>Contact Us</h4>
+
+          <a href="https://wa.me/919177670168" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+
+            +91 98765 43210
+          </a>
+
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+
+            sales@yourdomain.com
+          </a>
+
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+
+            <span> Your City, Your State, India </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>
+            ©
+            <span id="currentYear"></span>
+
+            YOUR BRAND. All Rights Reserved.
+          </p>
+
+          <div>
+            <a href="privacy-policy.html"> Privacy Policy </a>
+
+            <a href="#"> Terms & Conditions </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+    <a
+      href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script>
+      /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
+
+        const icon = mobileMenuButton.querySelector("i");
+
+        if (mobileMenu.classList.contains("open")) {
+          icon.classList.remove("bi-list");
+
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+
+          icon.classList.add("bi-list");
+        }
+      });
+
+      /* =========================================================
+     CURRENT YEAR
+  ========================================================= */
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>

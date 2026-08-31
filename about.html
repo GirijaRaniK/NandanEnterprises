@@ -1,0 +1,1599 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>About Us | YOUR BRAND</title>
+
+    <meta
+      name="description"
+      content="Learn more about YOUR BRAND, providing quality products, customized printing and reliable solutions for schools, businesses, institutions and individuals."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style1.css" />
+
+    <style>
+      /* =========================================================
+         ABOUT PAGE
+      ========================================================= */
+
+      .about-hero {
+        padding: 75px 0 70px;
+
+        background:
+          radial-gradient(
+            circle at 85% 20%,
+            rgba(201, 162, 39, 0.13),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #f3f6fa 0%, #ffffff 60%, #fcf8ec 100%);
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .about-hero-content {
+        max-width: 780px;
+
+        margin: auto;
+
+        text-align: center;
+      }
+
+      .about-hero h1 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: clamp(42px, 5vw, 62px);
+
+        line-height: 1.1;
+
+        margin: 18px 0;
+      }
+
+      .about-hero h1 span {
+        color: var(--accent-dark);
+      }
+
+      .about-hero p {
+        max-width: 680px;
+
+        margin: auto;
+
+        color: var(--text);
+
+        font-size: 16px;
+
+        line-height: 1.8;
+      }
+
+      /* =========================================================
+         BREADCRUMB
+      ========================================================= */
+
+      .breadcrumb-area {
+        padding: 18px 0;
+
+        background: white;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .breadcrumb {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 12px;
+
+        color: var(--muted);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+
+        font-weight: 600;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-dark);
+      }
+
+      .breadcrumb i {
+        font-size: 10px;
+
+        color: var(--accent-dark);
+      }
+
+      /* =========================================================
+         COMMON SECTION
+      ========================================================= */
+
+      .about-section {
+        padding: 85px 0;
+
+        background: var(--light);
+      }
+
+      .about-section.white {
+        background: white;
+      }
+
+      .about-two-column {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 65px;
+
+        align-items: center;
+      }
+
+      .about-section-label {
+        color: var(--accent-dark);
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.5px;
+
+        text-transform: uppercase;
+
+        display: inline-block;
+
+        margin-bottom: 10px;
+      }
+
+      .about-section h2 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: clamp(32px, 4vw, 44px);
+
+        line-height: 1.2;
+
+        margin-bottom: 18px;
+      }
+
+      .about-section h2 span {
+        color: var(--accent-dark);
+      }
+
+      .about-section p {
+        color: var(--muted);
+
+        font-size: 14px;
+
+        line-height: 1.85;
+
+        margin-bottom: 15px;
+      }
+
+      /* =========================================================
+         IMAGE PLACEHOLDER
+      ========================================================= */
+
+      .about-image-box {
+        min-height: 420px;
+
+        border-radius: 24px;
+
+        padding: 18px;
+
+        background: linear-gradient(145deg, #edf2f7, #fcf7e8);
+
+        border: 1px solid var(--border);
+
+        box-shadow: var(--shadow);
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .about-image-box::before {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+
+        height: 180px;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(201, 162, 39, 0.25);
+
+        top: -80px;
+
+        right: -60px;
+      }
+
+      .about-image-placeholder {
+        height: 100%;
+
+        min-height: 380px;
+
+        border-radius: 18px;
+
+        border: 1px dashed rgba(11, 31, 58, 0.25);
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        color: var(--primary);
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .about-image-placeholder i {
+        font-size: 65px;
+
+        color: var(--accent);
+
+        margin-bottom: 12px;
+      }
+
+      .about-image-placeholder strong {
+        font-size: 15px;
+
+        color: var(--primary);
+      }
+
+      .about-image-placeholder span {
+        font-size: 11px;
+
+        color: var(--muted);
+
+        margin-top: 5px;
+      }
+
+      /* =========================================================
+         HIGHLIGHT BOXES
+      ========================================================= */
+
+      .about-highlights {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 14px;
+
+        margin-top: 25px;
+      }
+
+      .about-highlight {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 13px;
+
+        padding: 17px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        box-shadow: var(--shadow-sm);
+      }
+
+      .about-highlight-icon {
+        width: 40px;
+
+        height: 40px;
+
+        border-radius: 10px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: var(--accent-light);
+
+        color: var(--primary);
+
+        flex-shrink: 0;
+      }
+
+      .about-highlight strong {
+        display: block;
+
+        color: var(--primary);
+
+        font-size: 13px;
+      }
+
+      .about-highlight span {
+        display: block;
+
+        color: var(--muted);
+
+        font-size: 10px;
+
+        margin-top: 3px;
+      }
+
+      /* =========================================================
+         SERVICES
+      ========================================================= */
+
+      .about-services-heading {
+        text-align: center;
+
+        max-width: 700px;
+
+        margin: 0 auto 45px;
+      }
+
+      .about-services-heading p {
+        margin-bottom: 0;
+      }
+
+      .about-service-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 22px;
+      }
+
+      .about-service-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 28px 24px;
+
+        box-shadow: var(--shadow-sm);
+
+        transition: 0.35s;
+      }
+
+      .about-service-card:hover {
+        transform: translateY(-7px);
+
+        box-shadow: var(--shadow);
+
+        border-color: rgba(201, 162, 39, 0.45);
+      }
+
+      .about-service-icon {
+        width: 52px;
+
+        height: 52px;
+
+        border-radius: 13px;
+
+        background: var(--accent-light);
+
+        color: var(--primary);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        margin-bottom: 18px;
+      }
+
+      .about-service-icon i {
+        font-size: 25px;
+      }
+
+      .about-service-card h3 {
+        color: var(--primary);
+
+        font-size: 18px;
+
+        margin-bottom: 9px;
+      }
+
+      .about-service-card p {
+        font-size: 12px;
+
+        line-height: 1.7;
+
+        margin-bottom: 0;
+      }
+
+      .service-link {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        color: var(--primary);
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        margin-top: 15px;
+      }
+
+      .service-link:hover {
+        color: var(--accent-dark);
+      }
+
+      /* =========================================================
+         WHY CHOOSE US
+      ========================================================= */
+
+      .why-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 18px;
+
+        margin-top: 40px;
+      }
+
+      .why-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 16px;
+
+        padding: 25px 20px;
+
+        text-align: center;
+
+        box-shadow: var(--shadow-sm);
+
+        transition: 0.3s;
+      }
+
+      .why-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow: var(--shadow);
+      }
+
+      .why-icon {
+        width: 55px;
+
+        height: 55px;
+
+        margin: 0 auto 15px;
+
+        border-radius: 50%;
+
+        background: var(--primary);
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+      }
+
+      .why-icon i {
+        font-size: 23px;
+      }
+
+      .why-card h3 {
+        color: var(--primary);
+
+        font-size: 15px;
+
+        margin-bottom: 8px;
+      }
+
+      .why-card p {
+        font-size: 11px;
+
+        line-height: 1.65;
+
+        margin-bottom: 0;
+      }
+
+      /* =========================================================
+         WHO WE SERVE
+      ========================================================= */
+
+      .serve-section {
+        background: linear-gradient(
+          120deg,
+          var(--primary-dark),
+          var(--primary)
+        );
+
+        color: white;
+
+        position: relative;
+
+        overflow: hidden;
+      }
+
+      .serve-section::after {
+        content: "";
+
+        position: absolute;
+
+        width: 350px;
+
+        height: 350px;
+
+        border-radius: 50%;
+
+        border: 1px solid rgba(201, 162, 39, 0.2);
+
+        right: -130px;
+
+        top: -170px;
+      }
+
+      .serve-content {
+        text-align: center;
+
+        max-width: 760px;
+
+        margin: auto;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .serve-content .about-section-label {
+        color: #e5c96a;
+      }
+
+      .serve-content h2 {
+        color: white;
+
+        margin-bottom: 15px;
+      }
+
+      .serve-content p {
+        color: #d7dfe8;
+
+        max-width: 680px;
+
+        margin: auto;
+      }
+
+      .serve-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 15px;
+
+        margin-top: 38px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .serve-card {
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        border-radius: 15px;
+
+        padding: 23px 15px;
+
+        text-align: center;
+
+        backdrop-filter: blur(5px);
+      }
+
+      .serve-card i {
+        font-size: 27px;
+
+        color: #e5c96a;
+
+        display: block;
+
+        margin-bottom: 10px;
+      }
+
+      .serve-card strong {
+        font-size: 12px;
+
+        color: white;
+      }
+
+      /* =========================================================
+         PROCESS
+      ========================================================= */
+
+      .process-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 25px;
+
+        margin-top: 45px;
+      }
+
+      .process-card {
+        position: relative;
+
+        text-align: center;
+
+        padding: 25px;
+      }
+
+      .process-number {
+        width: 55px;
+
+        height: 55px;
+
+        border-radius: 50%;
+
+        background: var(--primary);
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-family: "Playfair Display", serif;
+
+        font-size: 20px;
+
+        margin: 0 auto 18px;
+      }
+
+      .process-card h3 {
+        color: var(--primary);
+
+        font-size: 17px;
+
+        margin-bottom: 8px;
+      }
+
+      .process-card p {
+        font-size: 12px;
+
+        max-width: 300px;
+
+        margin: auto;
+      }
+
+      /* =========================================================
+         CTA
+      ========================================================= */
+
+      .about-cta {
+        margin-top: 20px;
+
+        background:
+          radial-gradient(
+            circle at 90% 20%,
+            rgba(201, 162, 39, 0.18),
+            transparent 25%
+          ),
+          linear-gradient(120deg, #f4f7fa, #fffdf4);
+
+        border: 1px solid var(--border);
+
+        border-radius: 24px;
+
+        padding: 48px;
+
+        display: grid;
+
+        grid-template-columns: 1fr auto;
+
+        align-items: center;
+
+        gap: 30px;
+      }
+
+      .about-cta h2 {
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: 30px;
+
+        margin-bottom: 8px;
+      }
+
+      .about-cta p {
+        max-width: 650px;
+
+        margin-bottom: 0;
+      }
+
+      .cta-buttons {
+        display: flex;
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+      }
+
+      .cta-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        padding: 13px 18px;
+
+        border-radius: 10px;
+
+        background: var(--primary);
+
+        color: white;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+
+        transition: 0.3s;
+      }
+
+      .cta-button:hover {
+        background: var(--primary-dark);
+
+        transform: translateY(-3px);
+      }
+
+      .cta-button.whatsapp {
+        background: #198754;
+      }
+
+      .cta-button.whatsapp:hover {
+        background: #146c43;
+      }
+
+      /* =========================================================
+         RESPONSIVE
+      ========================================================= */
+
+      @media (max-width: 1000px) {
+        .about-two-column {
+          gap: 40px;
+        }
+
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .serve-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 850px) {
+        .about-two-column {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image-box {
+          order: -1;
+        }
+
+        .about-service-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-cta {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .about-hero {
+          padding: 55px 0;
+        }
+
+        .about-hero h1 {
+          font-size: 40px;
+        }
+
+        .about-hero p {
+          font-size: 14px;
+        }
+
+        .about-section {
+          padding: 60px 0;
+        }
+
+        .about-section h2 {
+          font-size: 32px;
+        }
+
+        .about-image-box {
+          min-height: 330px;
+        }
+
+        .about-image-placeholder {
+          min-height: 290px;
+        }
+
+        .about-highlights {
+          grid-template-columns: 1fr;
+        }
+
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .serve-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .about-cta {
+          padding: 32px 24px;
+        }
+
+        .about-cta h2 {
+          font-size: 27px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .why-grid,
+        .serve-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+        }
+
+        .cta-button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+         TOP BAR
+    ========================================================= -->
+
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <a href="tel:+919876543210">
+            <i class="bi bi-telephone"></i>
+            +91 9177670168
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index1.html" class="logo">
+          <img src="images/logo.jpeg" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index1.html">Home</a>
+
+          <a href="products.html">Products</a>
+
+          <a href="custom-printing.html">Custom Printing</a>
+
+          <a href="bulk-orders.html">Bulk Orders</a>
+
+          <a href="about.html" class="active">About Us</a>
+
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919876543210"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Open Menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         MOBILE MENU
+    ========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index1.html">Home</a>
+
+      <a href="products.html">Products</a>
+
+      <a href="custom-printing.html">Custom Printing</a>
+
+      <a href="bulk-orders.html">Bulk Orders</a>
+
+      <a href="about.html">About Us</a>
+
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- =========================================================
+         BREADCRUMB
+    ========================================================= -->
+
+    <div class="breadcrumb-area">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index1.html">Home</a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <span>About Us</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-content">
+          <span class="section-label">ABOUT OUR BRAND</span>
+
+          <h1>
+            Quality Products,
+            <span>Reliable Solutions</span>
+          </h1>
+
+          <p>
+            We provide quality products, customized printing and bulk solutions
+            designed for schools, businesses, institutions and individuals. Our
+            goal is to make product sourcing simple, convenient and dependable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WHO WE ARE
+    ========================================================= -->
+
+    <section class="about-section">
+      <div class="container">
+        <div class="about-two-column">
+          <div>
+            <span class="about-section-label">WHO WE ARE</span>
+
+            <h2>
+              Products That Meet
+              <span>Your Requirements</span>
+            </h2>
+
+            <p>
+              YOUR BRAND is focused on providing a wide range of useful,
+              practical and customizable products for everyday and institutional
+              requirements.
+            </p>
+
+            <p>
+              From jute bags and water bottles to stationery, books, ID cards,
+              T-shirts and kids learning materials, we bring multiple
+              requirements together under one roof.
+            </p>
+
+            <p>
+              We also support customized printing and bulk orders, making it
+              easier for schools, organizations, businesses and event organizers
+              to order products according to their needs.
+            </p>
+
+            <div class="about-highlights">
+              <div class="about-highlight">
+                <div class="about-highlight-icon">
+                  <i class="bi bi-box-seam"></i>
+                </div>
+
+                <div>
+                  <strong>Wide Product Range</strong>
+
+                  <span>Multiple categories</span>
+                </div>
+              </div>
+
+              <div class="about-highlight">
+                <div class="about-highlight-icon">
+                  <i class="bi bi-palette"></i>
+                </div>
+
+                <div>
+                  <strong>Customization</strong>
+
+                  <span>Names, logos & designs</span>
+                </div>
+              </div>
+
+              <div class="about-highlight">
+                <div class="about-highlight-icon">
+                  <i class="bi bi-building"></i>
+                </div>
+
+                <div>
+                  <strong>Institutional Orders</strong>
+
+                  <span>Schools & organizations</span>
+                </div>
+              </div>
+
+              <div class="about-highlight">
+                <div class="about-highlight-icon">
+                  <i class="bi bi-chat-dots"></i>
+                </div>
+
+                <div>
+                  <strong>Easy Enquiry</strong>
+
+                  <span>Quick WhatsApp support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IMAGE PLACEHOLDER -->
+
+          <div class="about-image-box">
+            <div class="about-image-placeholder">
+              <i class="bi bi-shop"></i>
+
+              <strong>About Us Image</strong>
+
+              <span>Replace this area with your company image later</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WHAT WE OFFER
+    ========================================================= -->
+
+    <section class="about-section white">
+      <div class="container">
+        <div class="about-services-heading">
+          <span class="about-section-label">WHAT WE OFFER</span>
+
+          <h2>
+            Everything You Need,
+            <span>In One Place</span>
+          </h2>
+
+          <p>
+            We offer products and services suitable for personal, educational,
+            corporate and institutional requirements.
+          </p>
+        </div>
+
+        <div class="about-service-grid">
+          <!-- CARD 1 -->
+
+          <div class="about-service-card">
+            <div class="about-service-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
+
+            <h3>Quality Products</h3>
+
+            <p>
+              Choose from jute bags, bottles, pens, stationery, books, ID cards,
+              T-shirts and kids learning products.
+            </p>
+
+            <a href="products.html" class="service-link">
+              View Products
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- CARD 2 -->
+
+          <div class="about-service-card">
+            <div class="about-service-icon">
+              <i class="bi bi-brush"></i>
+            </div>
+
+            <h3>Custom Printing</h3>
+
+            <p>
+              Add your logo, school name, company branding, artwork, names or
+              special designs to selected products.
+            </p>
+
+            <a href="custom-printing.html" class="service-link">
+              Explore Custom Printing
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- CARD 3 -->
+
+          <div class="about-service-card">
+            <div class="about-service-icon">
+              <i class="bi bi-boxes"></i>
+            </div>
+
+            <h3>Bulk Orders</h3>
+
+            <p>
+              We support bulk requirements for schools, offices, institutions,
+              events and organizations.
+            </p>
+
+            <a href="bulk-orders.html" class="service-link">
+              Bulk Order Enquiry
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WHY CHOOSE US
+    ========================================================= -->
+
+    <section class="about-section">
+      <div class="container">
+        <div class="about-services-heading">
+          <span class="about-section-label">WHY CHOOSE US</span>
+
+          <h2>
+            Simple, Flexible &
+            <span>Customer Focused</span>
+          </h2>
+
+          <p>
+            We focus on understanding your requirement and helping you find the
+            right product or customized solution.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon">
+              <i class="bi bi-award"></i>
+            </div>
+
+            <h3>Quality Focus</h3>
+
+            <p>
+              We aim to provide dependable products suitable for everyday and
+              institutional use.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <i class="bi bi-pencil-square"></i>
+            </div>
+
+            <h3>Customization</h3>
+
+            <p>
+              Personalize selected products with logos, names, artwork and
+              branding.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <i class="bi bi-truck"></i>
+            </div>
+
+            <h3>Bulk Support</h3>
+
+            <p>
+              We help manage larger requirements for schools, businesses and
+              organizations.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon">
+              <i class="bi bi-headset"></i>
+            </div>
+
+            <h3>Easy Communication</h3>
+
+            <p>
+              Contact us easily through WhatsApp, phone or email for your
+              product enquiry.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WHO WE SERVE
+    ========================================================= -->
+
+    <section class="about-section serve-section">
+      <div class="container">
+        <div class="serve-content">
+          <span class="about-section-label">WHO WE SERVE</span>
+
+          <h2>Solutions for Different Requirements</h2>
+
+          <p>
+            Whether you need a few customized products or a large institutional
+            order, we can help you identify suitable options.
+          </p>
+        </div>
+
+        <div class="serve-grid">
+          <div class="serve-card">
+            <i class="bi bi-mortarboard"></i>
+
+            <strong>Schools</strong>
+          </div>
+
+          <div class="serve-card">
+            <i class="bi bi-building"></i>
+
+            <strong>Businesses</strong>
+          </div>
+
+          <div class="serve-card">
+            <i class="bi bi-bank"></i>
+
+            <strong>Institutions</strong>
+          </div>
+
+          <div class="serve-card">
+            <i class="bi bi-people"></i>
+
+            <strong>Individuals</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         OUR APPROACH
+    ========================================================= -->
+
+    <section class="about-section white">
+      <div class="container">
+        <div class="about-services-heading">
+          <span class="about-section-label">OUR APPROACH</span>
+
+          <h2>
+            From Requirement
+            <span>to Delivery</span>
+          </h2>
+
+          <p>
+            We keep the enquiry process simple so you can focus on your
+            requirement.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-number">01</div>
+
+            <h3>Tell Us Your Requirement</h3>
+
+            <p>
+              Contact us with the product, quantity, customization and delivery
+              requirements.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">02</div>
+
+            <h3>Discuss & Customize</h3>
+
+            <p>
+              We discuss suitable products, customization options and quantities
+              based on your requirement.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-number">03</div>
+
+            <h3>Confirm Your Order</h3>
+
+            <p>
+              Once the details are finalized, your order can be processed
+              according to the agreed requirements.
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA -->
+
+        <div class="about-cta">
+          <div>
+            <span class="about-section-label"> HAVE A REQUIREMENT? </span>
+
+            <h2>Let's Discuss Your Requirement</h2>
+
+            <p>
+              Tell us what you need and we will help you explore the available
+              product and customization options.
+            </p>
+          </div>
+
+          <div class="cta-buttons">
+            <a href="products.html" class="cta-button">
+              <i class="bi bi-grid"></i>
+              View Products
+            </a>
+
+            <a
+              href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20discuss%20a%20product%20requirement."
+              target="_blank"
+              class="cta-button whatsapp"
+            >
+              <i class="bi bi-whatsapp"></i>
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- ABOUT -->
+
+        <div class="footer-about">
+          <a href="index1.html" class="brand footer-brand">
+            <div class="brand-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
+
+            <div class="brand-text">
+              <span class="brand-name">YOUR BRAND</span>
+
+              <span class="brand-tagline"> Custom Products & Supplies </span>
+            </div>
+          </a>
+
+          <p>
+            Quality products, custom printing and reliable solutions for
+            schools, businesses, institutions and individuals.
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a
+              href="https://wa.me/919177670168"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+
+          <a href="index1.html">Home</a>
+
+          <a href="products.html">Products</a>
+
+          <a href="custom-printing.html">Custom Printing</a>
+
+          <a href="bulk-orders.html">Bulk Orders</a>
+
+          <a href="about.html">About Us</a>
+        </div>
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-column">
+          <h4>Categories</h4>
+
+          <a href="products.html?category=jute"> Jute Bags </a>
+
+          <a href="products.html?category=bottles"> Water Bottles </a>
+
+          <a href="products.html?category=pens"> Pens </a>
+
+          <a href="products.html?category=stationery"> Stationery </a>
+
+          <a href="products.html?category=books"> Books </a>
+
+          <a href="products.html?category=idcards"> ID Cards </a>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column footer-contact">
+          <h4>Contact Us</h4>
+
+          <a href="https://wa.me/919876543210" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+
+            +91 98765 43210
+          </a>
+
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+
+            sales@yourdomain.com
+          </a>
+
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+
+            <span> Your City, Your State, India </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>
+            © <span id="currentYear"></span>
+            YOUR BRAND. All Rights Reserved.
+          </p>
+
+          <div>
+            <a href="privacy-policy.html">Privacy Policy</a>
+
+            <a href="#">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         FLOATING WHATSAPP
+    ========================================================= -->
+
+    <a
+      href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+      /* =========================================================
+         MOBILE MENU
+      ========================================================= */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
+
+        const icon = mobileMenuButton.querySelector("i");
+
+        if (mobileMenu.classList.contains("open")) {
+          icon.classList.remove("bi-list");
+
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+
+          icon.classList.add("bi-list");
+        }
+      });
+
+      /* =========================================================
+         CURRENT YEAR
+      ========================================================= */
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>
