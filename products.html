@@ -680,6 +680,7 @@
         }
       }
     </style>
+    <script src="js/cart.js"></script>
   </head>
 
   <body>
@@ -908,7 +909,7 @@
               </p>
 
               <div class="product-price">
-                ₹1
+                ₹150
                 <span>/ piece</span>
               </div>
 
@@ -943,7 +944,7 @@
 
               <div class="product-total">
                 Total:
-                <strong id="juteTotal"> ₹1 </strong>
+                <strong id="juteTotal"> ₹150 </strong>
               </div>
 
               <div class="catalog-actions">
@@ -959,10 +960,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="buyJuteBag()"
+                  onclick="
+                    addToCart(
+                      'jute-bag',
+                      'Custom Printed Jute Bag',
+                      150,
+                      'jute',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy Now
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1007,10 +1015,10 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Jute Tote Bag')"
+                  onclick="addToCart('jute-tote', 'Jute Tote Bag', 150, 'jute')"
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1057,10 +1065,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Customized Water Bottle')"
+                  onclick="
+                    addToCart(
+                      'water-bottle',
+                      'Customized Water Bottle',
+                      150,
+                      'bottles',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1105,10 +1120,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Kids Customized Bottle')"
+                  onclick="
+                    addToCart(
+                      'kids-bottle',
+                      'Kids Customized Bottle',
+                      150,
+                      'bottles',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1158,10 +1180,12 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Promotional Ball Pen')"
+                  onclick="
+                    addToCart('ball-pen', 'Promotional Ball Pen', 150, 'pens')
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1209,10 +1233,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Personalized Premium Pen')"
+                  onclick="
+                    addToCart(
+                      'premium-pen',
+                      'Personalized Premium Pen',
+                      150,
+                      'pens',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1262,10 +1293,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'School Stationery Kit')"
+                  onclick="
+                    addToCart(
+                      'stationery-kit',
+                      'School Stationery Kit',
+                      150,
+                      'stationery',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1312,10 +1350,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Customized Notebook')"
+                  onclick="
+                    addToCart(
+                      'notebook',
+                      'Customized Notebook',
+                      150,
+                      'stationery',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1360,10 +1405,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Educational Books')"
+                  onclick="
+                    addToCart(
+                      'educational-books',
+                      'Educational Books',
+                      150,
+                      'books',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1412,10 +1464,17 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="startPayment(1, 'Kids Activity Books')"
+                  onclick="
+                    addToCart(
+                      'activity-books',
+                      'Kids Activity Books',
+                      150,
+                      'books',
+                    )
+                  "
                 >
-                  <i class="bi bi-credit-card"></i>
-                  Buy ₹1
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -1948,7 +2007,7 @@
          JUTE BAG DYNAMIC PRICING
       ========================================================= */
 
-      const JUTE_BAG_PRICE = 1;
+      const JUTE_BAG_PRICE = 150;
 
       function changeQuantity(inputId, change) {
         const input = document.getElementById(inputId);
