@@ -1282,9 +1282,51 @@
                       "\n\nPayment ID: " +
                       paymentResponse.razorpay_payment_id,
                   );
-                  /* Clear cart after successful TEST payment */ localStorage.removeItem(
-                    "nandan_cart",
-                  );
+                  const cart =
+                    JSON.parse(localStorage.getItem("nandan_cart")) || [];
+
+                  const orders =
+                    JSON.parse(localStorage.getItem("nandan_orders")) || [];
+
+                  /* Calculate total */
+
+                  const orderAmount = cart.reduce((total, item) => {
+                    return (
+                      total + Number(item.price) * (Number(item.quantity) || 1)
+                    );
+                  }, 0);
+
+                  /* Create order */
+
+                  const order = {
+                    orderId: "ORD-" + Date.now(),
+
+                    date: new Date().toISOString(),
+
+                    items: cart,
+
+                    amount: orderAmount,
+
+                    paymentStatus: "Paid",
+
+                    orderStatus: "Order Placed",
+
+                    razorpayPaymentId: response.razorpay_payment_id || "",
+                  };
+
+                  /* Save order */
+
+                  orders.push(order);
+
+                  localStorage.setItem("nandan_orders", JSON.stringify(orders));
+
+                  /* Now clear cart */
+
+                  localStorage.removeItem("nandan_cart");
+
+                  /* Go to Orders */
+
+                  window.location.href = "orders.html";
                   cart = [];
                   displayCart();
                 },
