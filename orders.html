@@ -5,11 +5,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Bulk Orders | YOUR BRAND</title>
+    <title>My Orders | YOUR BRAND</title>
 
     <meta
       name="description"
-      content="Bulk orders for schools, businesses, institutions and events. Get customized products at competitive prices."
+      content="View your orders, payment details and order status."
     />
 
     <!-- Google Fonts -->
@@ -31,296 +31,686 @@
     <link rel="stylesheet" href="css/style1.css" />
 
     <style>
+      /* =========================================================
+        ORDERS PAGE
+        ========================================================= */
 
-      /* =========================
-       PAGE HEADER
-    ========================= */
+      .orders-page {
+        padding: 80px 0;
+        background: var(--light);
+      }
 
-      .page-header {
+      /* =========================================================
+        ORDERS SECTION HEADING
+        ========================================================= */
+
+      .orders-section-heading {
+        max-width: 700px;
+        margin: 0 auto 45px;
         text-align: center;
-        padding: 55px 20px 35px;
       }
 
-      .page-header h1 {
-        font-size: 34px;
-        margin-bottom: 10px;
-        color: #162b4d;
+      .orders-section-heading h1 {
+        font-family: "Playfair Display", serif;
+        color: var(--primary);
+        font-size: 38px;
+        font-weight: 700;
+        margin: 12px 0;
+        line-height: 1.2;
       }
 
-      .page-header p {
-        color: #666;
-        font-size: 15px;
+      .orders-section-heading p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 0;
       }
 
-      /* =========================
-       ORDERS CONTAINER
-    ========================= */
+      /* =========================================================
+        ORDERS CONTAINER
+        ========================================================= */
 
       .orders-container {
-        width: 92%;
-        max-width: 1100px;
-        margin: 0 auto 60px;
+        max-width: 1000px;
+        margin: 0 auto;
       }
 
-      /* =========================
-       EMPTY ORDERS
-    ========================= */
+      /* =========================================================
+        EMPTY ORDERS
+        ========================================================= */
 
       .empty-orders {
-        background: #ffffff;
-        border: 1px solid #e3d7b8;
-        border-radius: 12px;
-        padding: 60px 20px;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 65px 25px;
         text-align: center;
-        box-shadow: 0 5px 20px rgba(22, 43, 77, 0.06);
+        box-shadow: var(--shadow-sm);
       }
 
-      .empty-orders i {
-        font-size: 55px;
-        color: #b38a2e;
-        margin-bottom: 15px;
+      .empty-orders-icon {
+        width: 75px;
+        height: 75px;
+        border-radius: 18px;
+        background: var(--accent-light);
+        color: var(--accent-dark);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0 auto 20px;
+      }
+
+      .empty-orders-icon i {
+        font-size: 35px;
       }
 
       .empty-orders h2 {
-        margin-bottom: 10px;
-        color: #162b4d;
+        font-family: "Playfair Display", serif;
+        color: var(--primary);
+        font-size: 27px;
+        font-weight: 700;
+        margin: 0 0 10px;
       }
 
       .empty-orders p {
-        color: #777;
-        margin-bottom: 25px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        margin: 0 0 25px;
       }
 
+      /* =========================================================
+        SHOP BUTTON
+        ========================================================= */
+
       .shop-button {
-        display: inline-block;
-        background: #162b4d;
-        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        background: var(--primary);
+        color: white;
+
+        padding: 13px 20px;
+        border-radius: 10px;
+
+        font-size: 13px;
+        font-weight: 700;
+
         text-decoration: none;
-        padding: 11px 22px;
-        border-radius: 6px;
-        font-weight: 600;
-        transition: 0.3s;
+
+        transition:
+          background 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
       }
 
       .shop-button:hover {
-        background: #b38a2e;
+        background: var(--primary-dark);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-sm);
       }
 
-      /* =========================
-       ORDER CARD
-    ========================= */
+      /* =========================================================
+        ORDER CARD
+        ========================================================= */
 
       .order-card {
-        background: #ffffff;
-        border: 1px solid #e3d7b8;
-        border-radius: 12px;
-        margin-bottom: 25px;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+
         overflow: hidden;
-        box-shadow: 0 5px 20px rgba(22, 43, 77, 0.06);
+
+        margin-bottom: 25px;
+
+        box-shadow: var(--shadow-sm);
+
+        transition:
+          box-shadow 0.3s ease,
+          transform 0.3s ease;
       }
 
+      .order-card:hover {
+        box-shadow: var(--shadow);
+        transform: translateY(-2px);
+      }
+
+      /* =========================================================
+        ORDER HEADER
+        ========================================================= */
+
       .order-header {
-        background: #162b4d;
-        color: #ffffff;
+        background: linear-gradient(
+          135deg,
+          var(--primary-dark),
+          var(--primary)
+        );
+
+        color: white;
+
         padding: 18px 22px;
+
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         gap: 15px;
+
         flex-wrap: wrap;
       }
 
       .order-id {
+        font-size: 13px;
         font-weight: 700;
+        color: white;
+      }
+
+      .order-id span {
+        color: #e5c96a;
       }
 
       .order-date {
-        font-size: 13px;
-        opacity: 0.9;
+        font-size: 11px;
+        color: #d7dfe8;
       }
+
+      /* =========================================================
+        ORDER BODY
+        ========================================================= */
 
       .order-body {
         padding: 22px;
       }
 
+      /* =========================================================
+        ORDER INFORMATION
+        ========================================================= */
+
       .order-info {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-bottom: 22px;
+
+        gap: 14px;
+
+        margin-bottom: 25px;
       }
 
       .info-box {
-        background: #faf9f5;
-        border: 1px solid #eee4c9;
+        background: var(--light);
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
         padding: 14px;
-        border-radius: 8px;
       }
 
       .info-label {
         display: block;
-        font-size: 12px;
-        color: #777;
-        margin-bottom: 4px;
+
+        color: var(--muted);
+
+        font-size: 10px;
+        font-weight: 600;
+
+        margin-bottom: 5px;
+
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
       }
 
       .info-value {
-        font-weight: 600;
-        color: #162b4d;
+        display: block;
+
+        color: var(--primary);
+
+        font-size: 12px;
+        font-weight: 700;
+
+        line-height: 1.5;
+
+        word-break: break-word;
+      }
+      /* =========================================================
+       BREADCRUMB
+    ========================================================= */
+
+      .breadcrumb-area {
+        padding: 18px 0;
+
+        background: white;
+
+        border-bottom: 1px solid var(--border);
       }
 
+      .breadcrumb {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 12px;
+
+        color: var(--muted);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+
+        font-weight: 600;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-dark);
+      }
+
+      .breadcrumb i {
+        font-size: 10px;
+
+        color: var(--accent-dark);
+      }
+
+      /* =========================================================
+        PAYMENT STATUS
+        ========================================================= */
+
       .status-paid {
-        color: #238636;
+        color: #218739 !important;
       }
 
       .status-pending {
-        color: #b7791f;
+        color: #b7791f !important;
       }
 
-      /* =========================
-       PRODUCTS
-    ========================= */
+      .status-failed {
+        color: #c53030 !important;
+      }
+
+      /* =========================================================
+        PRODUCTS TITLE
+        ========================================================= */
 
       .products-title {
-        font-size: 18px;
-        margin-bottom: 12px;
-        color: #162b4d;
+        font-family: "Playfair Display", serif;
+
+        color: var(--primary);
+
+        font-size: 21px;
+        font-weight: 700;
+
+        margin: 0 0 10px;
       }
+
+      /* =========================================================
+        ORDER PRODUCT
+        ========================================================= */
 
       .order-product {
         display: flex;
         align-items: center;
+
         gap: 15px;
-        padding: 14px 0;
-        border-bottom: 1px solid #eeeeee;
+
+        padding: 15px 0;
+
+        border-bottom: 1px solid var(--border);
       }
 
       .order-product:last-child {
         border-bottom: none;
       }
 
+      /* =========================================================
+        PRODUCT IMAGE
+        ========================================================= */
+
       .product-image {
-        width: 70px;
-        height: 70px;
-        border-radius: 8px;
+        width: 65px;
+        height: 65px;
+
         object-fit: cover;
-        border: 1px solid #e3d7b8;
-        background: #faf9f5;
+
+        border-radius: 9px;
+
+        border: 1px solid var(--border);
+
+        background: var(--light);
+
+        flex-shrink: 0;
       }
+
+      /* =========================================================
+        PRODUCT PLACEHOLDER
+        ========================================================= */
+
+      .product-placeholder {
+        width: 65px;
+        height: 65px;
+
+        border-radius: 9px;
+
+        border: 1px solid var(--border);
+
+        background: var(--light);
+
+        color: var(--accent-dark);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+      }
+
+      .product-placeholder i {
+        font-size: 23px;
+      }
+
+      /* =========================================================
+        PRODUCT DETAILS
+        ========================================================= */
 
       .product-details {
         flex: 1;
+        min-width: 0;
       }
 
       .product-name {
-        font-weight: 600;
-        color: #162b4d;
+        color: var(--primary);
+
+        font-size: 13px;
+        font-weight: 700;
+
+        line-height: 1.4;
+
         margin-bottom: 4px;
       }
 
       .product-quantity {
-        color: #777;
-        font-size: 13px;
+        color: var(--muted);
+
+        font-size: 11px;
+
+        line-height: 1.5;
       }
 
       .product-price {
-        font-weight: 600;
-        color: #162b4d;
+        color: var(--primary);
+
+        font-size: 13px;
+        font-weight: 700;
+
         white-space: nowrap;
       }
 
-      /* =========================
-       ORDER FOOTER
-    ========================= */
+      /* =========================================================
+        ORDER FOOTER
+        ========================================================= */
 
       .order-footer {
-        background: #faf9f5;
-        border-top: 1px solid #eee4c9;
-        padding: 18px 22px;
+        background: var(--light);
+
+        border-top: 1px solid var(--border);
+
+        padding: 17px 22px;
+
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+
         gap: 15px;
+
         flex-wrap: wrap;
       }
 
+      /* =========================================================
+        ORDER STATUS
+        ========================================================= */
+
       .order-status {
-        font-weight: 600;
+        display: flex;
+        align-items: center;
+
+        gap: 7px;
+
+        color: #218739;
+
+        font-size: 12px;
+        font-weight: 700;
       }
 
+      .order-status i {
+        font-size: 15px;
+      }
+
+      /* =========================================================
+        TOTAL
+        ========================================================= */
+
       .total-label {
-        color: #777;
-        margin-right: 8px;
+        color: var(--muted);
+
+        font-size: 12px;
+
+        margin-right: 5px;
       }
 
       .total-amount {
-        font-size: 21px;
+        color: var(--primary);
+
+        font-size: 19px;
         font-weight: 700;
-        color: #162b4d;
       }
 
-      /* =========================
-       FOOTER
-    ========================= */
+      /* =========================================================
+        PAYMENT ID
+        ========================================================= */
 
-      footer {
-        background: #162b4d;
-        color: #ffffff;
-        text-align: center;
-        padding: 25px 15px;
-        font-size: 13px;
+      .payment-id {
+        font-size: 11px;
+
+        color: var(--muted);
+
+        word-break: break-all;
       }
 
-      footer span {
-        color: #d4af37;
+      /* =========================================================
+        ORDER STATUS BADGES
+        ========================================================= */
+
+      .order-status-badge {
+        display: inline-flex;
+        align-items: center;
+
+        padding: 5px 10px;
+
+        border-radius: 20px;
+
+        font-size: 10px;
+        font-weight: 700;
+
+        background: var(--accent-light);
+        color: var(--accent-dark);
       }
 
-      /* =========================
-       MOBILE
-    ========================= */
+      /* =========================================================
+        RESPONSIVE - TABLET
+        ========================================================= */
 
       @media (max-width: 768px) {
-        .navbar {
-          justify-content: center;
+        .orders-page {
+          padding: 55px 0;
         }
 
-        .nav-menu {
-          justify-content: center;
+        .orders-section-heading {
+          margin-bottom: 35px;
         }
 
-        .page-header {
-          padding-top: 35px;
+        .orders-section-heading h1 {
+          font-size: 32px;
         }
 
-        .page-header h1 {
-          font-size: 28px;
+        .orders-section-heading p {
+          font-size: 13px;
+        }
+
+        .orders-container {
+          width: 92%;
         }
 
         .order-info {
           grid-template-columns: 1fr;
         }
 
-        .order-product {
-          align-items: flex-start;
+        .order-header {
+          padding: 17px 18px;
         }
 
-        .product-price {
-          font-size: 14px;
+        .order-body {
+          padding: 20px;
+        }
+
+        .order-footer {
+          padding: 16px 20px;
         }
       }
 
+      /* =========================================================
+        RESPONSIVE - MOBILE
+        ========================================================= */
+
       @media (max-width: 500px) {
-        .nav-menu {
-          gap: 3px;
+        .orders-page {
+          padding: 45px 0;
         }
 
-        .nav-menu a {
+        .orders-section-heading {
+          margin-bottom: 30px;
+        }
+
+        .orders-section-heading h1 {
+          font-size: 29px;
+        }
+
+        .orders-section-heading p {
           font-size: 12px;
-          padding: 7px 8px;
+          line-height: 1.6;
+        }
+
+        .empty-orders {
+          padding: 50px 20px;
+          border-radius: 14px;
+        }
+
+        .empty-orders-icon {
+          width: 65px;
+          height: 65px;
+        }
+
+        .empty-orders-icon i {
+          font-size: 30px;
+        }
+
+        .empty-orders h2 {
+          font-size: 24px;
+        }
+
+        .empty-orders p {
+          font-size: 12px;
+        }
+
+        .order-card {
+          border-radius: 13px;
+          margin-bottom: 20px;
         }
 
         .order-header {
-          padding: 15px;
+          padding: 15px 16px;
+          gap: 8px;
+        }
+
+        .order-id {
+          font-size: 12px;
+        }
+
+        .order-date {
+          font-size: 10px;
+        }
+
+        .order-body {
+          padding: 17px;
+        }
+
+        .products-title {
+          font-size: 19px;
+        }
+
+        .order-product {
+          gap: 11px;
+          padding: 13px 0;
+        }
+
+        .product-image,
+        .product-placeholder {
+          width: 55px;
+          height: 55px;
+        }
+
+        .product-placeholder i {
+          font-size: 20px;
+        }
+
+        .product-name {
+          font-size: 12px;
+        }
+
+        .product-quantity {
+          font-size: 10px;
+        }
+
+        .product-price {
+          font-size: 12px;
+        }
+
+        .order-footer {
+          padding: 15px 16px;
+
+          align-items: flex-start;
+        }
+
+        .order-status {
+          font-size: 11px;
+        }
+
+        .total-label {
+          font-size: 11px;
+        }
+
+        .total-amount {
+          font-size: 17px;
+        }
+      }
+
+      /* =========================================================
+        VERY SMALL SCREENS
+        ========================================================= */
+
+      @media (max-width: 380px) {
+        .orders-container {
+          width: 94%;
+        }
+
+        .orders-section-heading h1 {
+          font-size: 27px;
+        }
+
+        .order-header {
+          padding: 14px;
         }
 
         .order-body {
@@ -328,47 +718,29 @@
         }
 
         .order-footer {
-          padding: 15px;
+          padding: 14px;
         }
 
-        .product-image {
-          width: 55px;
-          height: 55px;
+        .product-image,
+        .product-placeholder {
+          width: 50px;
+          height: 50px;
+        }
+
+        .product-price {
+          font-size: 11px;
         }
       }
     </style>
+
+    <!-- Cart JS -->
     <script src="js/cart.js"></script>
   </head>
 
   <body>
-    <!-- =========================
-       NAVBAR
-  ========================= -->
-
-    <header class="navbar">
-      <a href="index.html" class="logo"> Nandan Enterprises </a>
-
-      <nav class="nav-menu">
-        <a href="index.html"> Home </a>
-
-        <a href="products.html"> Products </a>
-
-        <a href="custom-printing.html"> Custom Printing </a>
-
-        <a href="bulk-orders.html"> Bulk Orders </a>
-
-        <a href="about.html"> About Us </a>
-
-        <a href="contact.html"> Contact </a>
-
-        <a href="cart.html">
-          <i class="bi bi-cart3"></i>
-          Cart
-          <span class="cart-count">0</span>
-        </a>
-<!-- =========================================================
-       TOP BAR
-  ========================================================= -->
+    <!-- =========================================================
+         TOP BAR
+    ========================================================= -->
 
     <div class="top-bar">
       <div class="container top-bar-content">
@@ -383,7 +755,7 @@
             sales@yourdomain.com
           </a>
 
-          <a href="tel:+919876543210">
+          <a href="tel:+919177670168">
             <i class="bi bi-telephone"></i>
             +91 9177670168
           </a>
@@ -392,8 +764,8 @@
     </div>
 
     <!-- =========================================================
-       HEADER
-  ========================================================= -->
+         HEADER
+    ========================================================= -->
 
     <header class="main-header">
       <div class="container navbar">
@@ -408,7 +780,7 @@
 
           <a href="custom-printing.html"> Custom Printing </a>
 
-          <a href="bulk-orders.html" class="active"> Bulk Orders </a>
+          <a href="bulk-orders.html"> Bulk Orders </a>
 
           <a href="about.html"> About Us </a>
 
@@ -416,12 +788,15 @@
 
           <a href="cart.html">
             <i class="bi bi-cart3"></i>
+
             Cart
-            <span class="cart-count">0</span>
+
+            <span class="cart-count"> 0 </span>
           </a>
 
-          <a href="orders.html">
+          <a href="orders.html" class="active">
             <i class="bi bi-box-seam"></i>
+
             Orders
           </a>
         </nav>
@@ -433,7 +808,8 @@
             class="whatsapp-button"
           >
             <i class="bi bi-whatsapp"></i>
-            <span>WhatsApp</span>
+
+            <span> WhatsApp </span>
           </a>
 
           <button
@@ -448,37 +824,40 @@
     </header>
 
     <!-- =========================================================
-       MOBILE MENU
-  ========================================================= -->
+         MOBILE MENU
+    ========================================================= -->
 
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
+      <a href="index.html"> Home </a>
 
-      <a href="products.html">Products</a>
+      <a href="products.html"> Products </a>
 
-      <a href="custom-printing.html">Custom Printing</a>
+      <a href="custom-printing.html"> Custom Printing </a>
 
-      <a href="bulk-orders.html">Bulk Orders</a>
+      <a href="bulk-orders.html"> Bulk Orders </a>
 
-      <a href="about.html">About Us</a>
+      <a href="about.html"> About Us </a>
 
-      <a href="contact.html">Contact</a>
+      <a href="contact.html"> Contact </a>
 
       <a href="cart.html">
         <i class="bi bi-cart3"></i>
+
         Cart
-        <span id="mobileCartCount" class="cart-count">0</span>
+
+        <span id="mobileCartCount" class="cart-count"> 0 </span>
       </a>
 
-      <a href="orders.html">
+      <a href="orders.html" class="active">
         <i class="bi bi-box-seam"></i>
+
         Orders
       </a>
     </div>
 
     <!-- =========================================================
-       BREADCRUMB
-  ========================================================= -->
+         BREADCRUMB
+    ========================================================= -->
 
     <div class="breadcrumb-area">
       <div class="container">
@@ -487,34 +866,32 @@
 
           <i class="bi bi-chevron-right"></i>
 
-          <span> Bulk Orders </span>
+          <span> My Orders </span>
         </div>
       </div>
     </div>
 
+    <!-- =========================================================
+         ORDERS PAGE
+    ========================================================= -->
 
-    <!-- =========================
-       PAGE HEADER
-  ========================= -->
+    <section class="orders-page">
+      <div class="container">
+        <div class="orders-section-heading">
+          <span class="section-label"> ORDER HISTORY </span>
 
-    <section class="page-header">
-      <h1>My Orders</h1>
+          <h1>My Orders</h1>
 
-      <p>View your previous orders and payment details</p>
+          <p>View your previous orders, payment details and order status.</p>
+        </div>
+
+        <div class="orders-container" id="ordersContainer"></div>
+      </div>
     </section>
 
-    <!-- =========================
-       ORDERS
-  ========================= -->
-
-    <main class="orders-container">
-      <div id="ordersContainer"></div>
-    </main>
-
-
-       <!-- =========================================================
-       FOOTER
-  ========================================================= -->
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
 
     <footer class="footer">
       <div class="container footer-grid">
@@ -571,6 +948,8 @@
           <a href="bulk-orders.html"> Bulk Orders </a>
 
           <a href="about.html"> About Us </a>
+
+          <a href="orders.html"> My Orders </a>
         </div>
 
         <!-- CATEGORIES -->
@@ -598,11 +977,13 @@
 
           <a href="https://wa.me/919177670168" target="_blank">
             <i class="bi bi-whatsapp"></i>
-            +91 98765 43210
+
+            +91 9177670168
           </a>
 
           <a href="mailto:sales@yourdomain.com">
             <i class="bi bi-envelope"></i>
+
             sales@yourdomain.com
           </a>
 
@@ -620,7 +1001,9 @@
         <div class="container footer-bottom-content">
           <p>
             ©
+
             <span id="currentYear"></span>
+
             YOUR BRAND. All Rights Reserved.
           </p>
 
@@ -633,14 +1016,63 @@
       </div>
     </footer>
 
-    <!-- =========================
-       JAVASCRIPT
-  ========================= -->
+    <!-- =========================================================
+         FLOATING WHATSAPP
+    ========================================================= -->
+
+    <a
+      href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
 
     <script>
-      /* =========================
-       CART COUNT
-    ========================= */
+      /* =========================================================
+         MOBILE MENU
+      ========================================================= */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("open");
+
+          const icon = mobileMenuButton.querySelector("i");
+
+          if (mobileMenu.classList.contains("open")) {
+            icon.classList.remove("bi-list");
+
+            icon.classList.add("bi-x");
+          } else {
+            icon.classList.remove("bi-x");
+
+            icon.classList.add("bi-list");
+          }
+        });
+      }
+
+      /* =========================================================
+         CURRENT YEAR
+      ========================================================= */
+
+      const currentYear = document.getElementById("currentYear");
+
+      if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+      }
+
+      /* =========================================================
+         CART COUNT
+      ========================================================= */
 
       function updateCartCount() {
         const cart = JSON.parse(localStorage.getItem("nandan_cart")) || [];
@@ -654,23 +1086,21 @@
         });
       }
 
-      /* =========================
-       FORMAT CURRENCY
-    ========================= */
+      /* =========================================================
+         FORMAT CURRENCY
+      ========================================================= */
 
       function formatCurrency(amount) {
         return new Intl.NumberFormat("en-IN", {
           style: "currency",
-
           currency: "INR",
-
           maximumFractionDigits: 2,
         }).format(Number(amount) || 0);
       }
 
-      /* =========================
-       FORMAT DATE
-    ========================= */
+      /* =========================================================
+         FORMAT DATE
+      ========================================================= */
 
       function formatDate(dateValue) {
         if (!dateValue) {
@@ -685,71 +1115,83 @@
 
         return date.toLocaleString("en-IN", {
           day: "2-digit",
-
           month: "short",
-
           year: "numeric",
-
           hour: "2-digit",
-
           minute: "2-digit",
         });
       }
 
-      /* =========================
-       LOAD ORDERS
-    ========================= */
+      /* =========================================================
+         LOAD ORDERS
+      ========================================================= */
 
       function loadOrders() {
         const orders = JSON.parse(localStorage.getItem("nandan_orders")) || [];
 
         const container = document.getElementById("ordersContainer");
 
-        /* =========================
-         NO ORDERS
-      ========================= */
+        if (!container) {
+          return;
+        }
+
+        /* =====================================================
+           NO ORDERS
+        ===================================================== */
 
         if (orders.length === 0) {
           container.innerHTML = `
 
-          <div class="empty-orders">
+            <div class="empty-orders">
 
-            <i class="bi bi-box-seam"></i>
+              <div class="empty-orders-icon">
 
-            <h2>No Orders Yet</h2>
+                <i class="bi bi-box-seam"></i>
 
-            <p>
-              You haven't placed any orders yet.
-            </p>
+              </div>
 
-            <a
-              href="products.html"
-              class="shop-button"
-            >
-              Continue Shopping
-            </a>
+              <h2>
+                No Orders Yet
+              </h2>
 
-          </div>
+              <p>
+                You haven't placed any orders yet.
+              </p>
 
-        `;
+              <a
+                href="products.html"
+                class="shop-button"
+              >
+
+                <i class="bi bi-cart3"></i>
+
+                Continue Shopping
+
+              </a>
+
+            </div>
+
+          `;
 
           return;
         }
 
-        /* =========================
-         DISPLAY ORDERS
-      ========================= */
-
-        container.innerHTML = "";
-
-        /* Newest orders first */
+        /* =====================================================
+           NEWEST ORDERS FIRST
+        ===================================================== */
 
         const sortedOrders = [...orders].reverse();
+
+        container.innerHTML = "";
 
         sortedOrders.forEach(function (order) {
           const items = order.items || [];
 
           let productsHTML = "";
+
+          /* ===============================================
+               PRODUCTS
+            =============================================== */
 
           items.forEach(function (item) {
             const quantity = Number(item.quantity) || 1;
@@ -758,55 +1200,68 @@
 
             const itemTotal = price * quantity;
 
-            productsHTML += `
+            let imageHTML = "";
 
-            <div class="order-product">
+            if (item.image) {
+              imageHTML = `
 
-              ${
-                item.image
-                  ? `<img
+                    <img
                       src="${item.image}"
                       class="product-image"
                       alt="${item.name || "Product"}"
-                    >`
-                  : `<div
-                      class="product-image"
-                      style="
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                      "
                     >
+
+                  `;
+            } else {
+              imageHTML = `
+
+                    <div class="product-placeholder">
+
                       <i class="bi bi-image"></i>
-                    </div>`
-              }
 
-              <div class="product-details">
+                    </div>
 
-                <div class="product-name">
+                  `;
+            }
 
-                  ${item.name || "Product"}
+            productsHTML += `
 
-                </div>
+                  <div class="order-product">
 
-                <div class="product-quantity">
+                    ${imageHTML}
 
-                  Quantity: ${quantity}
 
-                </div>
+                    <div class="product-details">
 
-              </div>
+                      <div class="product-name">
 
-              <div class="product-price">
+                        ${item.name || "Product"}
 
-                ${formatCurrency(itemTotal)}
+                      </div>
 
-              </div>
+                      <div class="product-quantity">
 
-            </div>
+                        Quantity: ${quantity}
 
-          `;
+                      </div>
+
+                    </div>
+
+
+                    <div class="product-price">
+
+                      ${formatCurrency(itemTotal)}
+
+                    </div>
+
+                  </div>
+
+                `;
           });
+
+          /* ===============================================
+               PAYMENT STATUS
+            =============================================== */
 
           const paymentStatus = order.paymentStatus || "Unknown";
 
@@ -815,122 +1270,147 @@
               ? "status-paid"
               : "status-pending";
 
+          /* ===============================================
+               ORDER HTML
+            =============================================== */
+
           const orderHTML = `
 
-          <div class="order-card">
-
-            <div class="order-header">
-
-              <div class="order-id">
-
-                Order ID:
-                ${order.orderId || "N/A"}
-
-              </div>
-
-              <div class="order-date">
-
-                ${formatDate(order.date)}
-
-              </div>
-
-            </div>
+              <div class="order-card">
 
 
-            <div class="order-body">
+                <div class="order-header">
 
-              <div class="order-info">
+                  <div class="order-id">
 
-                <div class="info-box">
+                    Order ID:
 
-                  <span class="info-label">
-                    Payment Status
-                  </span>
+                    <span>
+                      ${order.orderId || "N/A"}
+                    </span>
 
-                  <span class="info-value ${paymentClass}">
-                    ${paymentStatus}
-                  </span>
+                  </div>
+
+
+                  <div class="order-date">
+
+                    ${formatDate(order.date)}
+
+                  </div>
 
                 </div>
 
 
-                <div class="info-box">
+                <div class="order-body">
 
-                  <span class="info-label">
-                    Order Status
-                  </span>
 
-                  <span class="info-value">
+                  <div class="order-info">
+
+
+                    <div class="info-box">
+
+                      <span class="info-label">
+                        Payment Status
+                      </span>
+
+                      <span
+                        class="info-value ${paymentClass}"
+                      >
+
+                        ${paymentStatus}
+
+                      </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                      <span class="info-label">
+                        Order Status
+                      </span>
+
+                      <span class="info-value">
+
+                        ${order.orderStatus || "Order Placed"}
+
+                      </span>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                      <span class="info-label">
+                        Payment ID
+                      </span>
+
+                      <span class="info-value">
+
+                        ${order.razorpayPaymentId || "N/A"}
+
+                      </span>
+
+                    </div>
+
+
+                  </div>
+
+
+                  <h3 class="products-title">
+
+                    Products Ordered
+
+                  </h3>
+
+
+                  ${productsHTML}
+
+
+                </div>
+
+
+                <div class="order-footer">
+
+
+                  <div class="order-status">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
                     ${order.orderStatus || "Order Placed"}
-                  </span>
+
+                  </div>
+
+
+                  <div class="total-box">
+
+                    <span class="total-label">
+                      Total:
+                    </span>
+
+                    <span class="total-amount">
+
+                      ${formatCurrency(order.amount)}
+
+                    </span>
+
+                  </div>
+
 
                 </div>
 
 
-                <div class="info-box">
-
-                  <span class="info-label">
-                    Payment ID
-                  </span>
-
-                  <span class="info-value">
-
-                    ${order.razorpayPaymentId || "N/A"}
-
-                  </span>
-
-                </div>
-
               </div>
 
-
-              <h3 class="products-title">
-                Products
-              </h3>
-
-              ${productsHTML}
-
-            </div>
-
-
-            <div class="order-footer">
-
-              <div class="order-status">
-
-                <i class="bi bi-check-circle"></i>
-
-                ${order.orderStatus || "Order Placed"}
-
-              </div>
-
-
-              <div>
-
-                <span class="total-label">
-                  Total:
-                </span>
-
-                <span class="total-amount">
-
-                  ${formatCurrency(order.amount)}
-
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        `;
+            `;
 
           container.insertAdjacentHTML("beforeend", orderHTML);
         });
       }
 
-      /* =========================
-       INITIALIZE
-    ========================= */
+      /* =========================================================
+         INITIALIZE
+      ========================================================= */
 
       document.addEventListener("DOMContentLoaded", function () {
         updateCartCount();
