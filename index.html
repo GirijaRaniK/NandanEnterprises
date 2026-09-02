@@ -29,6 +29,266 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style1.css" />
+    <style>
+      /* =========================================================
+         OUR CLIENTS - NAVY BLUE & GOLD
+      ========================================================= */
+
+      .clients-section {
+        padding: 80px 0;
+        background: #faf9f5;
+        overflow: hidden;
+      }
+
+      .clients-container {
+        width: 100%;
+      }
+
+      /* =========================================================
+         HEADING
+      ========================================================= */
+
+      .clients-heading {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 45px;
+        padding: 0 20px;
+      }
+
+      .clients-heading span {
+        display: block;
+        margin-bottom: 10px;
+
+        color: #b38a2e;
+
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+      }
+
+      .clients-heading h2 {
+        position: relative;
+
+        margin: 0 0 15px;
+
+        color: #162b4d;
+
+        font-size: 34px;
+        font-weight: 700;
+      }
+
+      .clients-heading h2::after {
+        content: "";
+
+        display: block;
+
+        width: 55px;
+        height: 3px;
+
+        margin: 14px auto 0;
+
+        background: #b38a2e;
+        border-radius: 3px;
+      }
+
+      .clients-heading p {
+        margin: 0;
+
+        color: #666;
+
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      /* =========================================================
+         SLIDER
+      ========================================================= */
+
+      .clients-slider {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* =========================================================
+         FADE EFFECT
+      ========================================================= */
+
+      .clients-slider::before,
+      .clients-slider::after {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        width: 110px;
+        height: 100%;
+
+        z-index: 2;
+
+        pointer-events: none;
+      }
+
+      .clients-slider::before {
+        left: 0;
+
+        background: linear-gradient(to right, #faf9f5, rgba(250, 249, 245, 0));
+      }
+
+      .clients-slider::after {
+        right: 0;
+
+        background: linear-gradient(to left, #faf9f5, rgba(250, 249, 245, 0));
+      }
+
+      /* =========================================================
+         MOVING TRACK
+      ========================================================= */
+
+      .clients-track {
+        display: flex;
+
+        width: max-content;
+
+        gap: 25px;
+
+        animation: clientScroll 32s linear infinite;
+      }
+
+      .clients-slider:hover .clients-track {
+        animation-play-state: paused;
+      }
+
+      /* =========================================================
+         CLIENT CARD
+      ========================================================= */
+
+      .client-card {
+        width: 215px;
+        min-width: 215px;
+
+        padding: 28px 20px;
+
+        background: #ffffff;
+
+        border: 1px solid rgba(179, 138, 46, 0.25);
+
+        border-radius: 12px;
+
+        text-align: center;
+
+        box-shadow: 0 4px 15px rgba(22, 43, 77, 0.06);
+
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .client-card:hover {
+        transform: translateY(-6px);
+
+        border-color: #b38a2e;
+
+        box-shadow: 0 12px 28px rgba(22, 43, 77, 0.12);
+      }
+
+      /* =========================================================
+         LOGO CIRCLE
+      ========================================================= */
+
+      .client-logo {
+        width: 78px;
+        height: 78px;
+
+        margin: 0 auto 17px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #162b4d;
+
+        border: 3px solid #b38a2e;
+
+        color: #ffffff;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        letter-spacing: 0.5px;
+
+        box-shadow: 0 4px 10px rgba(22, 43, 77, 0.15);
+      }
+
+      .client-card h4 {
+        margin: 0;
+
+        color: #162b4d;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        line-height: 1.5;
+      }
+
+      /* =========================================================
+         SCROLL ANIMATION
+      ========================================================= */
+
+      @keyframes clientScroll {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* =========================================================
+         MOBILE
+      ========================================================= */
+
+      @media (max-width: 768px) {
+        .clients-section {
+          padding: 60px 0;
+        }
+
+        .clients-heading {
+          margin-bottom: 35px;
+        }
+
+        .clients-heading h2 {
+          font-size: 28px;
+        }
+
+        .clients-heading p {
+          font-size: 13px;
+        }
+
+        .client-card {
+          width: 180px;
+          min-width: 180px;
+
+          padding: 22px 15px;
+        }
+
+        .client-logo {
+          width: 68px;
+          height: 68px;
+
+          font-size: 12px;
+        }
+
+        .client-card h4 {
+          font-size: 12px;
+        }
+      }
+    </style>
     <script src="js/cart.js"></script>
   </head>
 
@@ -744,7 +1004,140 @@
         </div>
       </div>
     </section>
+    <!-- =========================================================
+     OUR CLIENTS
+========================================================= -->
 
+    <section class="clients-section">
+      <div class="clients-container">
+        <div class="clients-heading">
+          <span>TRUSTED BY</span>
+
+          <h2>Our Clients</h2>
+
+          <p>
+            We are proud to work with reputed organizations and institutions
+            across different sectors.
+          </p>
+        </div>
+
+        <div class="clients-slider">
+          <div class="clients-track">
+            <!-- NABARD -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>NABARD</span>
+              </div>
+
+              <h4>NABARD</h4>
+            </div>
+
+            <!-- PIB -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>PIB</span>
+              </div>
+
+              <h4>Press Information Bureau</h4>
+            </div>
+
+            <!-- NIDM -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>NIDM</span>
+              </div>
+
+              <h4>NIDM</h4>
+            </div>
+
+            <!-- NIC -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>NIC</span>
+              </div>
+
+              <h4>National Informatics Centre</h4>
+            </div>
+
+            <!-- DRDO -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>DRDO</span>
+              </div>
+
+              <h4>DRDO</h4>
+            </div>
+
+            <!-- VIZAG LIGHTHOUSE -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>VL</span>
+              </div>
+
+              <h4>Vizag Lighthouse</h4>
+            </div>
+
+            <!-- =================================================
+             DUPLICATE SET FOR CONTINUOUS SCROLL
+        ================================================= -->
+
+            <!-- NABARD -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>NABARD</span>
+              </div>
+
+              <h4>NABARD</h4>
+            </div>
+
+            <!-- PIB -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>PIB</span>
+              </div>
+
+              <h4>Press Information Bureau</h4>
+            </div>
+
+            <!-- NIDM -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>NIDM</span>
+              </div>
+
+              <h4>NIDM</h4>
+            </div>
+
+            <!-- NIC -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>NIC</span>
+              </div>
+
+              <h4>National Informatics Centre</h4>
+            </div>
+
+            <!-- DRDO -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>DRDO</span>
+              </div>
+
+              <h4>DRDO</h4>
+            </div>
+
+            <!-- VIZAG LIGHTHOUSE -->
+            <div class="client-card">
+              <div class="client-logo">
+                <span>VL</span>
+              </div>
+
+              <h4>Vizag Lighthouse</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- =========================================================
      WHY CHOOSE US
 ========================================================= -->
