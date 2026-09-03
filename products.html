@@ -784,7 +784,7 @@
     ========================================================= -->
 
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index1.html"> Home </a>
+      <a href="index.html"> Home </a>
 
       <a href="products.html"> Products </a>
 
@@ -803,8 +803,8 @@
       </a>
 
       <a href="orders.html">
-            <i class="bi bi-box-seam"></i>
-            Orders
+        <i class="bi bi-box-seam"></i>
+        Orders
       </a>
     </div>
 
@@ -815,7 +815,7 @@
     <div class="breadcrumb-area">
       <div class="container">
         <div class="breadcrumb">
-          <a href="index1.html"> Home </a>
+          <a href="index.html"> Home </a>
 
           <i class="bi bi-chevron-right"></i>
 
@@ -917,7 +917,7 @@
             </div>
 
             <div class="catalog-product-info">
-              <span class="catalog-category"> Jute Bags </span>
+              <span class="catalog-category">Jute Bags</span>
 
               <h3>
                 <a href="product-details.html?product=jute-bag">
@@ -936,7 +936,7 @@
               </div>
 
               <div class="product-quantity">
-                <label> Quantity </label>
+                <label>Quantity</label>
 
                 <div class="quantity-control">
                   <button
@@ -953,6 +953,8 @@
                     min="1"
                     max="100"
                     readonly
+                    data-price="150"
+                    data-total="juteTotal"
                   />
 
                   <button
@@ -966,7 +968,7 @@
 
               <div class="product-total">
                 Total:
-                <strong id="juteTotal"> ₹150 </strong>
+                <strong id="juteTotal">₹150</strong>
               </div>
 
               <div class="catalog-actions">
@@ -987,7 +989,7 @@
                       'jute-bag',
                       'Custom Printed Jute Bag',
                       150,
-                      'jute',
+                      document.getElementById('juteQuantity').value,
                     )
                   "
                 >
@@ -1023,7 +1025,46 @@
               </h3>
 
               <p>Stylish reusable tote bag with custom logo or branding.</p>
+              <div class="product-price">
+                ₹100
+                <span>/ piece</span>
+              </div>
 
+              <div class="product-quantity">
+                <label>Quantity</label>
+
+                <div class="quantity-control">
+                  <button
+                    type="button"
+                    onclick="changeQuantity('jute-tote-quantity', -1)"
+                  >
+                    −
+                  </button>
+
+                  <input
+                    type="number"
+                    id="jute-tote-quantity"
+                    value="1"
+                    min="1"
+                    max="100"
+                    readonly
+                    data-price="100"
+                    data-total="jute-tote-Total"
+                  />
+
+                  <button
+                    type="button"
+                    onclick="changeQuantity('jute-tote-quantity', 1)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-total">
+                Total:
+                <strong id="jute-tote-Total">₹100</strong>
+              </div>
               <div class="catalog-actions">
                 <a
                   href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Jute%20Tote%20Bag."
@@ -1037,7 +1078,14 @@
                 <button
                   type="button"
                   class="catalog-buy-now"
-                  onclick="addToCart('jute-tote', 'Jute Tote Bag', 150, 'jute')"
+                  onclick="
+                    addToCart(
+                      'jute-tote',
+                      'Jute Tote Bag',
+                      100,
+                      document.getElementById('jute-tote-quantity').value,
+                    )
+                  "
                 >
                   <i class="bi bi-cart-plus"></i>
                   Add to Cart
@@ -1073,7 +1121,46 @@
               </h3>
 
               <p>Personalized bottles with name, logo or school branding.</p>
+              <div class="product-price">
+                ₹180
+                <span>/ piece</span>
+              </div>
 
+              <div class="product-quantity">
+                <label>Quantity</label>
+
+                <div class="quantity-control">
+                  <button
+                    type="button"
+                    onclick="changeQuantity('water-bottle-quantity', -1)"
+                  >
+                    −
+                  </button>
+
+                  <input
+                    type="number"
+                    id="water-bottle-quantity"
+                    value="1"
+                    min="1"
+                    max="100"
+                    readonly
+                    data-price="180"
+                    data-total="water-bottle-Total"
+                  />
+
+                  <button
+                    type="button"
+                    onclick="changeQuantity('water-bottle-quantity', 1)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-total">
+                Total:
+                <strong id="water-bottle-Total">₹180</strong>
+              </div>
               <div class="catalog-actions">
                 <a
                   href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Customized%20Water%20Bottle."
@@ -1091,8 +1178,8 @@
                     addToCart(
                       'water-bottle',
                       'Customized Water Bottle',
-                      150,
-                      'bottles',
+                      180,
+                      document.getElementById('water-bottle-quantity').value,
                     )
                   "
                 >
@@ -1107,7 +1194,7 @@
                4. KIDS BOTTLE
           =================================================== -->
 
-          <div class="catalog-product-card" data-category="bottles">
+          <!-- <div class="catalog-product-card" data-category="bottles">
             <div class="catalog-product-image">
               <div class="catalog-image-placeholder">
                 <i class="bi bi-water"></i>
@@ -1156,7 +1243,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- ===================================================
                5. PEN
@@ -1188,7 +1275,46 @@
                 Quality pens suitable for schools, offices and promotional
                 requirements.
               </p>
+              <div class="product-price">
+                ₹120
+                <span>/ piece</span>
+              </div>
 
+              <div class="product-quantity">
+                <label>Quantity</label>
+
+                <div class="quantity-control">
+                  <button
+                    type="button"
+                    onclick="changeQuantity('ball-pen-quantity', -1)"
+                  >
+                    −
+                  </button>
+
+                  <input
+                    type="number"
+                    id="ball-pen-quantity"
+                    value="1"
+                    min="1"
+                    max="100"
+                    readonly
+                    data-price="120"
+                    data-total="ball-pen-Total"
+                  />
+
+                  <button
+                    type="button"
+                    onclick="changeQuantity('ball-pen-quantity', 1)"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              <div class="product-total">
+                Total:
+                <strong id="ball-pen-Total">₹120</strong>
+              </div>
               <div class="catalog-actions">
                 <a
                   href="https://wa.me/919177670168?text=Hello%2C%20I%20am%20interested%20in%20Promotional%20Ball%20Pen."
@@ -1203,7 +1329,12 @@
                   type="button"
                   class="catalog-buy-now"
                   onclick="
-                    addToCart('ball-pen', 'Promotional Ball Pen', 150, 'pens')
+                    addToCart(
+                      'ball-pen',
+                      'Ball Pen',
+                      120,
+                      document.getElementById('ball-pen-quantity').value,
+                    )
                   "
                 >
                   <i class="bi bi-cart-plus"></i>
@@ -1790,7 +1921,7 @@
         <!-- ABOUT -->
 
         <div class="footer-about">
-          <a href="index1.html" class="brand footer-brand">
+          <a href="index.html" class="brand footer-brand">
             <div class="brand-icon">
               <i class="bi bi-bag-heart"></i>
             </div>
@@ -1831,7 +1962,7 @@
         <div class="footer-column">
           <h4>Quick Links</h4>
 
-          <a href="index1.html"> Home </a>
+          <a href="index.html"> Home </a>
 
           <a href="products.html"> Products </a>
 
@@ -2031,33 +2162,64 @@
 
       const JUTE_BAG_PRICE = 150;
 
+      // function changeQuantity(inputId, change) {
+      //   const input = document.getElementById(inputId);
+
+      //   let quantity = parseInt(input.value) || 1;
+
+      //   quantity = quantity + change;
+
+      //   if (quantity < 1) {
+      //     quantity = 1;
+      //   }
+
+      //   if (quantity > 100) {
+      //     quantity = 100;
+      //   }
+
+      //   input.value = quantity;
+
+      //   updateJuteTotal();
+      // }
+
+      // function updateJuteTotal() {
+      //   const quantity =
+      //     parseInt(document.getElementById("juteQuantity").value) || 1;
+
+      //   const total = JUTE_BAG_PRICE * quantity;
+
+      //   document.getElementById("juteTotal").textContent =
+      //     "₹" + total.toLocaleString("en-IN");
+      // }
+
       function changeQuantity(inputId, change) {
         const input = document.getElementById(inputId);
 
         let quantity = parseInt(input.value) || 1;
 
-        quantity = quantity + change;
+        const min = parseInt(input.min) || 1;
+        const max = parseInt(input.max) || 100;
 
-        if (quantity < 1) {
-          quantity = 1;
-        }
+        quantity += change;
 
-        if (quantity > 100) {
-          quantity = 100;
-        }
+        if (quantity < min) quantity = min;
+        if (quantity > max) quantity = max;
 
         input.value = quantity;
 
-        updateJuteTotal();
+        const price = Number(input.dataset.price);
+        const totalId = input.dataset.total;
+
+        updateProductTotal(inputId, totalId, price);
       }
 
-      function updateJuteTotal() {
+      function updateProductTotal(quantityId, totalId, price) {
         const quantity =
-          parseInt(document.getElementById("juteQuantity").value) || 1;
+          parseInt(document.getElementById(quantityId).value) || 1;
 
-        const total = JUTE_BAG_PRICE * quantity;
+        const total = price * quantity;
 
-        document.getElementById("juteTotal").textContent =
+        document.getElementById(totalId).textContent =
           "₹" + total.toLocaleString("en-IN");
       }
 
