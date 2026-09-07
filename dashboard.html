@@ -189,6 +189,46 @@
         color: #0b1f3a;
       }
 
+      /* =========================================================
+     BREADCRUMB
+  ========================================================= */
+
+      .breadcrumb-area {
+        padding: 18px 0;
+
+        background: white;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .breadcrumb {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 12px;
+
+        color: var(--muted);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+
+        font-weight: 600;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-dark);
+      }
+
+      .breadcrumb i {
+        font-size: 10px;
+
+        color: var(--accent-dark);
+      }
+
       @media (max-width: 900px) {
         .dashboard-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -222,78 +262,145 @@
   <body>
     <!-- =========================================================
        TOP BAR
-  ========================================================= -->
+    ========================================================= -->
 
     <div class="top-bar">
-      <div class="container">
-        <div class="top-bar-content">
-          <span>
-            <i class="bi bi-telephone"></i>
-            +91 9177670168
-          </span>
-          <span>
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
             <i class="bi bi-envelope"></i>
             sales@yourdomain.com
-          </span>
+          </a>
+
+          <a href="tel:+919876543210">
+            <i class="bi bi-telephone"></i>
+            +91 9177670168
+          </a>
         </div>
       </div>
     </div>
 
     <!-- =========================================================
-       HEADER / NAVBAR
-  ========================================================= -->
+   HEADER
+========================================================= -->
 
-    <header class="site-header">
-      <div class="container">
-        <div class="header-inner">
-          <a href="index.html" class="brand">
-            <span class="brand-name">NandanEnterprises</span>
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index1.html" class="logo">
+          <img src="images/logo.jpeg" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+
+          <a href="contact.html"> Contact </a>
+
+          <a href="cart.html">
+            <i class="bi bi-cart3"></i>
+            Cart
+            <span class="cart-count">0</span>
+          </a>
+
+          <a href="orders.html">
+            <i class="bi bi-box-seam"></i>
+            Orders
+          </a>
+
+          <a href="login.html">
+            <i class="bi bi-person"></i>
+            Login
+          </a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919177670168"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+            <span>WhatsApp</span>
           </a>
 
           <button
             class="mobile-menu-button"
             id="mobileMenuButton"
-            type="button"
-            aria-label="Toggle navigation"
+            aria-label="Open Menu"
           >
             <i class="bi bi-list"></i>
           </button>
-
-          <nav class="main-navigation" id="mainNavigation">
-            <a href="index.html">Home</a>
-
-            <a href="products.html">Products</a>
-
-            <a href="custom-printing.html">Custom Printing</a>
-
-            <a href="bulk-orders.html">Bulk Orders</a>
-
-            <a href="about.html">About</a>
-
-            <a href="contact.html">Contact</a>
-
-            <a href="orders.html">
-              <i class="bi bi-box-seam"></i>
-              Orders
-            </a>
-
-            <a href="cart.html">
-              <i class="bi bi-cart3"></i>
-              Cart
-              <span id="cartCount" class="cart-count">0</span>
-            </a>
-          </nav>
         </div>
       </div>
-
     </header>
+
+    <!-- =========================================================
+   MOBILE MENU
+========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index1.html">Home</a>
+
+      <a href="products.html">Products</a>
+
+      <a href="custom-printing.html">Custom Printing</a>
+
+      <a href="bulk-orders.html">Bulk Orders</a>
+
+      <a href="about.html">About Us</a>
+
+      <a href="contact.html">Contact</a>
+
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span id="mobileCartCount" class="cart-count">0</span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="login.html">
+        <i class="bi bi-person"></i>
+        Login
+      </a>
+    </div>
+
+    <!-- =========================================================
+   BREADCRUMB
+========================================================= -->
+
+    <div class="breadcrumb-area">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index1.html"> Home </a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <span> Create Account </span>
+        </div>
+      </div>
+    </div>
 
     <!-- =========================================================
        DASHBOARD
   ========================================================= -->
 
     <main class="dashboard-section">
-
       <div class="dashboard-container">
         <!-- Welcome -->
         <div class="dashboard-welcome">
@@ -406,63 +513,141 @@
           </button>
         </div>
       </div>
-
     </main>
 
     <!-- =========================================================
-       FOOTER
-  ========================================================= -->
+   FOOTER
+========================================================= -->
 
-    <footer class="site-footer">
-  
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-column">
-            <h3>NandanEnterprises</h3>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- ABOUT -->
 
-            <p>
-              Quality products and customized solutions for individuals,
-              businesses, institutions and organizations.
-            </p>
-          </div>
+        <div class="footer-about">
+          <a href="index1.html" class="brand footer-brand">
+            <div class="brand-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
 
-          <div class="footer-column">
-            <h4>Quick Links</h4>
+            <div class="brand-text">
+              <span class="brand-name"> YOUR BRAND </span>
 
-            <a href="index.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
-          </div>
+              <span class="brand-tagline"> Custom Products & Supplies </span>
+            </div>
+          </a>
 
-          <div class="footer-column">
-            <h4>Customer</h4>
+          <p>
+            Quality products, custom printing and reliable solutions for
+            schools, businesses, institutions and individuals.
+          </p>
 
-            <a href="dashboard.html">My Dashboard</a>
-            <a href="orders.html">My Orders</a>
-            <a href="cart.html">My Cart</a>
-          </div>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
 
-          <div class="footer-column">
-            <h4>Contact</h4>
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
 
-            <p>
-              <i class="bi bi-telephone"></i>
-              +91 9177670168
-            </p>
-
-            <p>
-              <i class="bi bi-envelope"></i>
-              sales@yourdomain.com
-            </p>
+            <a
+              href="https://wa.me/919177670168"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="bi bi-whatsapp"></i>
+            </a>
           </div>
         </div>
 
-        <div class="footer-bottom">
-          <p>© 2026 NandanEnterprises. All Rights Reserved.</p>
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+
+          <a href="index1.html">Home</a>
+
+          <a href="products.html">Products</a>
+
+          <a href="custom-printing.html">Custom Printing</a>
+
+          <a href="bulk-orders.html">Bulk Orders</a>
+
+          <a href="about.html">About Us</a>
+        </div>
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-column">
+          <h4>Categories</h4>
+
+          <a href="products.html?category=jute"> Jute Bags </a>
+
+          <a href="products.html?category=bottles"> Water Bottles </a>
+
+          <a href="products.html?category=pens"> Pens </a>
+
+          <a href="products.html?category=stationery"> Stationery </a>
+
+          <a href="products.html?category=tshirts"> T-Shirts </a>
+
+          <a href="products.html?category=learning"> Kids Learning </a>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column footer-contact">
+          <h4>Contact Us</h4>
+
+          <a href="https://wa.me/919177670168" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+            +91 98765 43210
+          </a>
+
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+
+            <span> Your City, Your State, India </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>
+            ©
+            <span id="currentYear"></span>
+            YOUR BRAND. All Rights Reserved.
+          </p>
+
+          <div>
+            <a href="privacy-policy.html"> Privacy Policy </a>
+
+            <a href="#"> Terms & Conditions </a>
+          </div>
         </div>
       </div>
     </footer>
+
+    <!-- =========================================================
+   FLOATING WHATSAPP
+========================================================= -->
+
+    <a
+      href="https://wa.me/919177670168?text=Hello%2C%20I%20would%20like%20to%20create%20an%20account."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
 
     <!-- =========================================================
        JAVASCRIPT
