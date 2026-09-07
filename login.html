@@ -1,0 +1,814 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login | YOUR BRAND</title>
+
+    <meta
+      name="description"
+      content="Login to your YOUR BRAND customer account."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style1.css" />
+
+    <style>
+      /* =========================================================
+     LOGIN PAGE
+  ========================================================= */
+
+      .auth-section {
+        min-height: calc(100vh - 90px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        background: #f8f9fc;
+      }
+
+      .auth-container {
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .auth-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 40px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .auth-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0b1f3a;
+        color: #d4af37;
+        font-size: 30px;
+      }
+
+      .auth-title {
+        font-family: "Playfair Display", serif;
+        color: #0b1f3a;
+        text-align: center;
+        font-size: 32px;
+        margin: 0 0 8px;
+      }
+
+      .auth-subtitle {
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 30px;
+        font-size: 15px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #172033;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .input-wrapper {
+        position: relative;
+      }
+
+      .input-wrapper > i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #8a94a6;
+        font-size: 18px;
+        pointer-events: none;
+      }
+
+      .auth-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 15px 13px 45px;
+        border: 1px solid #d9dee8;
+        border-radius: 9px;
+        outline: none;
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        transition: 0.2s;
+      }
+
+      .auth-input:focus {
+        border-color: #d4af37;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+      }
+
+      .password-wrapper .auth-input {
+        padding-right: 48px;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: #7a8494;
+        font-size: 18px;
+        padding: 4px;
+      }
+
+      .toggle-password:hover {
+        color: #0b1f3a;
+      }
+
+      .login-button {
+        width: 100%;
+        border: none;
+        border-radius: 9px;
+        padding: 14px;
+        background: #0b1f3a;
+        color: #ffffff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-top: 5px;
+      }
+
+      .login-button:hover {
+        background: #132d52;
+        transform: translateY(-1px);
+      }
+
+      .login-button:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .message {
+        display: none;
+        padding: 12px 14px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .message.error {
+        display: block;
+        background: #fff1f2;
+        color: #b42318;
+        border: 1px solid #fecdd3;
+      }
+
+      .message.success {
+        display: block;
+        background: #ecfdf3;
+        color: #067647;
+        border: 1px solid #abefc6;
+      }
+
+      .register-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .register-link a {
+        color: #0b1f3a;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .register-link a:hover {
+        color: #b08d1e;
+        text-decoration: underline;
+      }
+
+      /* =========================================================
+     BREADCRUMB
+  ========================================================= */
+
+      .breadcrumb-area {
+        padding: 18px 0;
+        background: white;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .breadcrumb a {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--accent-dark);
+      }
+
+      .breadcrumb i {
+        font-size: 10px;
+        color: var(--accent-dark);
+      }
+
+      /* =========================================================
+     MOBILE
+  ========================================================= */
+
+      @media (max-width: 768px) {
+        .auth-section {
+          padding: 35px 15px;
+        }
+
+        .auth-card {
+          padding: 30px 22px;
+        }
+
+        .auth-title {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <a href="tel:+919177670168">
+            <i class="bi bi-telephone"></i>
+            +91 9177670168
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     HEADER
+========================================================= -->
+
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index1.html" class="logo">
+          <img src="images/logo.jpeg" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+
+          <a href="contact.html"> Contact </a>
+
+          <a href="cart.html">
+            <i class="bi bi-cart3"></i>
+            Cart
+            <span class="cart-count">0</span>
+          </a>
+
+          <a href="orders.html">
+            <i class="bi bi-box-seam"></i>
+            Orders
+          </a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919177670168"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Open Menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index1.html"> Home </a>
+
+      <a href="products.html"> Products </a>
+
+      <a href="custom-printing.html"> Custom Printing </a>
+
+      <a href="bulk-orders.html"> Bulk Orders </a>
+
+      <a href="about.html"> About Us </a>
+
+      <a href="contact.html"> Contact </a>
+
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span id="mobileCartCount" class="cart-count">0</span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+    </div>
+
+    <!-- =========================================================
+     BREADCRUMB
+========================================================= -->
+
+    <div class="breadcrumb-area">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index1.html"> Home </a>
+
+          <i class="bi bi-chevron-right"></i>
+
+          <span> Login </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     LOGIN SECTION
+========================================================= -->
+
+    <main class="auth-section">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-icon">
+            <i class="bi bi-person"></i>
+          </div>
+
+          <h1 class="auth-title">Welcome Back</h1>
+
+          <p class="auth-subtitle">Login to manage your account and orders.</p>
+
+          <!-- MESSAGE -->
+
+          <div id="message" class="message"></div>
+
+          <!-- LOGIN FORM -->
+
+          <form id="loginForm">
+            <!-- EMAIL -->
+
+            <div class="form-group">
+              <label for="email"> Email Address </label>
+
+              <div class="input-wrapper">
+                <i class="bi bi-envelope"></i>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="auth-input"
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                  maxlength="255"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+              <label for="password"> Password </label>
+
+              <div class="input-wrapper password-wrapper">
+                <i class="bi bi-lock"></i>
+
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="auth-input"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  class="toggle-password"
+                  id="togglePassword"
+                  aria-label="Show password"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- LOGIN BUTTON -->
+
+            <button type="submit" id="loginButton" class="login-button">
+              <i class="bi bi-box-arrow-in-right"></i>
+              Login
+            </button>
+          </form>
+
+          <!-- REGISTER LINK -->
+
+          <div class="register-link">
+            Don't have an account?
+
+            <a href="register.html"> Create Account </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- ABOUT -->
+
+        <div class="footer-about">
+          <a href="index1.html" class="brand footer-brand">
+            <div class="brand-icon">
+              <i class="bi bi-bag-heart"></i>
+            </div>
+
+            <div class="brand-text">
+              <span class="brand-name"> YOUR BRAND </span>
+
+              <span class="brand-tagline"> Custom Products & Supplies </span>
+            </div>
+          </a>
+
+          <p>
+            Quality products, custom printing and reliable solutions for
+            schools, businesses, institutions and individuals.
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a
+              href="https://wa.me/919177670168"
+              target="_blank"
+              aria-label="WhatsApp"
+            >
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+
+          <a href="index1.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+        </div>
+
+        <!-- CATEGORIES -->
+
+        <div class="footer-column">
+          <h4>Categories</h4>
+
+          <a href="products.html?category=jute"> Jute Bags </a>
+
+          <a href="products.html?category=bottles"> Water Bottles </a>
+
+          <a href="products.html?category=pens"> Pens </a>
+
+          <a href="products.html?category=stationery"> Stationery </a>
+
+          <a href="products.html?category=tshirts"> T-Shirts </a>
+
+          <a href="products.html?category=learning"> Kids Learning </a>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="footer-column footer-contact">
+          <h4>Contact Us</h4>
+
+          <a href="https://wa.me/919177670168" target="_blank">
+            <i class="bi bi-whatsapp"></i>
+            +91 9177670168
+          </a>
+
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <div class="contact-line">
+            <i class="bi bi-geo-alt"></i>
+
+            <span> Your City, Your State, India </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER BOTTOM -->
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+          <p>
+            ©
+            <span id="currentYear"></span>
+            YOUR BRAND. All Rights Reserved.
+          </p>
+
+          <div>
+            <a href="privacy-policy.html"> Privacy Policy </a>
+
+            <a href="#"> Terms & Conditions </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+    <a
+      href="https://wa.me/919177670168?text=Hello%2C%20I%20need%20help."
+      target="_blank"
+      class="floating-whatsapp"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script>
+      /* =========================================================
+     CONFIGURATION
+  ========================================================= */
+
+      const API_BASE_URL =
+        "https://nandanenterprises-razorpay-backend.vercel.app";
+
+      /* =========================================================
+     CURRENT YEAR
+  ========================================================= */
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("active");
+
+          const icon = mobileMenuButton.querySelector("i");
+
+          if (mobileMenu.classList.contains("active")) {
+            icon.classList.remove("bi-list");
+            icon.classList.add("bi-x");
+          } else {
+            icon.classList.remove("bi-x");
+            icon.classList.add("bi-list");
+          }
+        });
+      }
+
+      /* =========================================================
+     PASSWORD SHOW / HIDE
+  ========================================================= */
+
+      const togglePassword = document.getElementById("togglePassword");
+
+      const passwordInput = document.getElementById("password");
+
+      if (togglePassword && passwordInput) {
+        togglePassword.addEventListener("click", function () {
+          const icon = togglePassword.querySelector("i");
+
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+
+            icon.classList.remove("bi-eye");
+            icon.classList.add("bi-eye-slash");
+
+            togglePassword.setAttribute("aria-label", "Hide password");
+          } else {
+            passwordInput.type = "password";
+
+            icon.classList.remove("bi-eye-slash");
+            icon.classList.add("bi-eye");
+
+            togglePassword.setAttribute("aria-label", "Show password");
+          }
+        });
+      }
+
+      /* =========================================================
+     MESSAGE
+  ========================================================= */
+
+      const messageBox = document.getElementById("message");
+
+      function showMessage(text, type) {
+        messageBox.textContent = text;
+
+        messageBox.className = "message " + type;
+      }
+
+      function hideMessage() {
+        messageBox.textContent = "";
+
+        messageBox.className = "message";
+      }
+
+      /* =========================================================
+     LOGIN
+  ========================================================= */
+
+      const loginForm = document.getElementById("loginForm");
+
+      const loginButton = document.getElementById("loginButton");
+
+      loginForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        hideMessage();
+
+        const email = document.getElementById("email").value.trim();
+
+        const password = document.getElementById("password").value;
+
+        /* VALIDATION */
+
+        if (!email) {
+          showMessage("Please enter your email address.", "error");
+
+          return;
+        }
+
+        if (!password) {
+          showMessage("Please enter your password.", "error");
+
+          return;
+        }
+
+        /* BUTTON LOADING */
+
+        loginButton.disabled = true;
+
+        loginButton.innerHTML =
+          '<i class="bi bi-arrow-repeat"></i> Logging in...';
+
+        try {
+          /* API REQUEST */
+
+          const response = await fetch(API_BASE_URL + "/api/login", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+          });
+
+          const data = await response.json();
+
+          /* API ERROR */
+
+          if (!response.ok) {
+            showMessage(data.error || "Invalid email or password.", "error");
+
+            return;
+          }
+
+          /* =================================================
+           LOGIN SUCCESS
+        ================================================= */
+
+          localStorage.setItem("isLoggedIn", "true");
+
+          /* Store user information if API returns it */
+
+          if (data.user) {
+            localStorage.setItem("user", JSON.stringify(data.user));
+          }
+
+          showMessage("Login successful! Redirecting...", "success");
+
+          /* REDIRECT */
+
+          setTimeout(function () {
+            window.location.href = "index1.html";
+          }, 1000);
+        } catch (error) {
+          console.error("Login error:", error);
+
+          showMessage(
+            "Unable to connect to the server. Please try again.",
+            "error",
+          );
+        } finally {
+          loginButton.disabled = false;
+
+          loginButton.innerHTML =
+            '<i class="bi bi-box-arrow-in-right"></i> Login';
+        }
+      });
+    </script>
+  </body>
+</html>
