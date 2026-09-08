@@ -627,22 +627,22 @@
 
     <script>
       /* =========================================================
-     CONFIGURATION
-  ========================================================= */
+           CONFIGURATION
+        ========================================================= */
 
       const API_BASE_URL =
         "https://nandanenterprises-razorpay-backend.vercel.app";
 
       /* =========================================================
-     CURRENT YEAR
-  ========================================================= */
+           CURRENT YEAR
+        ========================================================= */
 
       document.getElementById("currentYear").textContent =
         new Date().getFullYear();
 
       /* =========================================================
-     MOBILE MENU
-  ========================================================= */
+           MOBILE MENU
+        ========================================================= */
 
       const mobileMenuButton = document.getElementById("mobileMenuButton");
 
@@ -665,8 +665,8 @@
       }
 
       /* =========================================================
-     PASSWORD SHOW / HIDE
-  ========================================================= */
+           PASSWORD SHOW / HIDE
+        ========================================================= */
 
       const togglePassword = document.getElementById("togglePassword");
 
@@ -695,8 +695,8 @@
       }
 
       /* =========================================================
-     MESSAGE
-  ========================================================= */
+           MESSAGE
+        ========================================================= */
 
       const messageBox = document.getElementById("message");
 
@@ -713,8 +713,8 @@
       }
 
       /* =========================================================
-     LOGIN
-  ========================================================= */
+           LOGIN
+        ========================================================= */
 
       const loginForm = document.getElementById("loginForm");
 
@@ -751,7 +751,9 @@
           '<i class="bi bi-arrow-repeat"></i> Logging in...';
 
         try {
-          /* API REQUEST */
+          /* =================================================
+          API REQUEST
+          ================================================= */
 
           const response = await fetch(API_BASE_URL + "/api/login", {
             method: "POST",
@@ -768,29 +770,43 @@
 
           const data = await response.json();
 
-          /* API ERROR */
+          /* =================================================
+          API ERROR
+          ================================================= */
 
           if (!response.ok) {
             showMessage(data.error || "Invalid email or password.", "error");
 
-            return;
+            ```
+          return;
+          ```;
           }
 
           /* =================================================
-           LOGIN SUCCESS
-        ================================================= */
+          LOGIN SUCCESS
+          ================================================= */
 
           localStorage.setItem("isLoggedIn", "true");
 
-          /* Store user information if API returns it */
+          /* Store JWT token */
+
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+          }
+
+          /* Store user information */
 
           if (data.user) {
             localStorage.setItem("user", JSON.stringify(data.user));
           }
 
+          /* Success message */
+
           showMessage("Login successful! Redirecting...", "success");
 
-          /* REDIRECT */
+          /* =================================================
+          REDIRECT TO CUSTOMER DASHBOARD
+          ================================================= */
 
           setTimeout(function () {
             window.location.href = "dashboard.html";
@@ -802,11 +818,6 @@
             "Unable to connect to the server. Please try again.",
             "error",
           );
-        } finally {
-          loginButton.disabled = false;
-
-          loginButton.innerHTML =
-            '<i class="bi bi-box-arrow-in-right"></i> Login';
         }
       });
     </script>
