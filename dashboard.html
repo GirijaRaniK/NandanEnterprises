@@ -229,6 +229,19 @@
         color: var(--accent-dark);
       }
 
+      /* =========================================================
+CUSTOMER MENU
+Keeps the existing navbar design
+========================================================= */
+
+      .customer-menu {
+        display: contents;
+      }
+
+      #mobileCustomerMenu {
+        display: contents;
+      }
+
       @media (max-width: 900px) {
         .dashboard-grid {
           grid-template-columns: repeat(2, 1fr);
@@ -286,17 +299,18 @@
     </div>
 
     <!-- =========================================================
-   HEADER
+     HEADER
 ========================================================= -->
 
     <header class="main-header">
       <div class="container navbar">
-        <a href="index1.html" class="logo">
+        
+        <a href="index.html" class="logo">
           <img src="images/logo.jpeg" alt="YOUR BRAND" />
         </a>
 
         <nav class="nav-menu">
-          <a href="index1.html"> Home </a>
+          <a href="index.html"> Home </a>
 
           <a href="products.html"> Products </a>
 
@@ -308,21 +322,18 @@
 
           <a href="contact.html"> Contact </a>
 
-          <a href="cart.html">
-            <i class="bi bi-cart3"></i>
-            Cart
-            <span class="cart-count">0</span>
-          </a>
+          <!-- =====================================================
+       CUSTOMER MENU
+       JavaScript will show:
+       
+       BEFORE LOGIN:
+       Login | Register
 
-          <a href="orders.html">
-            <i class="bi bi-box-seam"></i>
-            Orders
-          </a>
+       AFTER LOGIN:
+       Cart | Orders | My Account | Logout
+  ====================================================== -->
 
-          <a href="login.html">
-            <i class="bi bi-person"></i>
-            Login
-          </a>
+          <div id="customerMenu" class="customer-menu"></div>
         </nav>
 
         <div class="header-actions">
@@ -343,41 +354,30 @@
             <i class="bi bi-list"></i>
           </button>
         </div>
+        
       </div>
     </header>
 
     <!-- =========================================================
-   MOBILE MENU
+     MOBILE MENU
 ========================================================= -->
 
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index1.html">Home</a>
+      <a href="index.html"> Home </a>
 
-      <a href="products.html">Products</a>
+      <a href="products.html"> Products </a>
 
-      <a href="custom-printing.html">Custom Printing</a>
+      <a href="custom-printing.html"> Custom Printing </a>
 
-      <a href="bulk-orders.html">Bulk Orders</a>
+      <a href="bulk-orders.html"> Bulk Orders </a>
 
-      <a href="about.html">About Us</a>
+      <a href="about.html"> About Us </a>
 
-      <a href="contact.html">Contact</a>
+      <a href="contact.html"> Contact </a>
 
-      <a href="cart.html">
-        <i class="bi bi-cart3"></i>
-        Cart
-        <span id="mobileCartCount" class="cart-count">0</span>
-      </a>
+      <!-- Dynamic customer menu -->
 
-      <a href="orders.html">
-        <i class="bi bi-box-seam"></i>
-        Orders
-      </a>
-
-      <a href="login.html">
-        <i class="bi bi-person"></i>
-        Welcome, <span id="customerName" class="dashboard-name"> Customer </span>
-      </a>
+      <div id="mobileCustomerMenu"></div>
     </div>
 
     <!-- =========================================================
@@ -387,11 +387,11 @@
     <div class="breadcrumb-area">
       <div class="container">
         <div class="breadcrumb">
-          <a href="login.html"> Login </a>
+          <a href="index.html"> Home </a>
 
           <i class="bi bi-chevron-right"></i>
 
-          <span> Dashboard </span>
+          <span> Logged In </span>
         </div>
       </div>
     </div>
@@ -524,7 +524,7 @@
         <!-- ABOUT -->
 
         <div class="footer-about">
-          <a href="index1.html" class="brand footer-brand">
+          <a href="index.html" class="brand footer-brand">
             <div class="brand-icon">
               <i class="bi bi-bag-heart"></i>
             </div>
@@ -565,7 +565,7 @@
         <div class="footer-column">
           <h4>Quick Links</h4>
 
-          <a href="index1.html">Home</a>
+          <a href="index.html">Home</a>
 
           <a href="products.html">Products</a>
 
@@ -751,6 +751,180 @@
       }
 
       updateCartCount();
+    </script>
+
+    <script>
+      /* =========================================================
+     CUSTOMER NAVBAR
+  ========================================================= */
+
+      function updateCustomerMenu() {
+        const customerMenu = document.getElementById("customerMenu");
+
+        const mobileCustomerMenu =
+          document.getElementById("mobileCustomerMenu");
+
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+        const storedUser = localStorage.getItem("user");
+
+        /* =========================================================
+       NOT LOGGED IN
+    ========================================================= */
+
+        if (!isLoggedIn || !storedUser) {
+          const loginMenu = `
+        <a href="login.html">
+          <i class="bi bi-person"></i>
+          Login
+        </a>
+
+        <a href="register.html">
+          Register
+        </a>
+      `;
+
+          if (customerMenu) {
+            customerMenu.innerHTML = loginMenu;
+          }
+
+          if (mobileCustomerMenu) {
+            mobileCustomerMenu.innerHTML = loginMenu;
+          }
+
+          return;
+        }
+
+        /* =========================================================
+       LOGGED IN
+    ========================================================= */
+
+        let user;
+
+        try {
+          user = JSON.parse(storedUser);
+        } catch (error) {
+          console.error("Invalid user data");
+
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+
+          window.location.href = "login.html";
+
+          return;
+        }
+
+        const loggedInMenu = `
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span id="desktopCartCount" class="cart-count">0</span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="dashboard.html">
+        <i class="bi bi-person-circle"></i>
+        My Account
+      </a>
+
+      <a href="#" onclick="logoutUser(); return false;">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+      </a>
+    `;
+
+        if (customerMenu) {
+          customerMenu.innerHTML = loggedInMenu;
+        }
+
+        /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+        const mobileLoggedInMenu = `
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span id="mobileCartCount" class="cart-count">0</span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="dashboard.html">
+        <i class="bi bi-person-circle"></i>
+        My Account
+      </a>
+
+      <a href="#" onclick="logoutUser(); return false;">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+      </a>
+    `;
+
+        if (mobileCustomerMenu) {
+          mobileCustomerMenu.innerHTML = mobileLoggedInMenu;
+        }
+
+        updateNavbarCartCount();
+      }
+
+      /* =========================================================
+     LOGOUT
+  ========================================================= */
+
+      function logoutUser() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
+        window.location.href = "login.html";
+      }
+
+      /* =========================================================
+     CART COUNT
+  ========================================================= */
+
+      function updateNavbarCartCount() {
+        let cart = [];
+
+        try {
+          cart = JSON.parse(localStorage.getItem("cart")) || [];
+        } catch (error) {
+          cart = [];
+        }
+
+        let totalQuantity = 0;
+
+        cart.forEach(function (item) {
+          totalQuantity += Number(item.quantity) || 0;
+        });
+
+        const desktopCartCount = document.getElementById("desktopCartCount");
+
+        const mobileCartCount = document.getElementById("mobileCartCount");
+
+        if (desktopCartCount) {
+          desktopCartCount.textContent = totalQuantity;
+        }
+
+        if (mobileCartCount) {
+          mobileCartCount.textContent = totalQuantity;
+        }
+      }
+
+      /* =========================================================
+     INITIALIZE
+  ========================================================= */
+
+      updateCustomerMenu();
     </script>
   </body>
 </html>
