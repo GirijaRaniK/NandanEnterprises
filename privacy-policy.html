@@ -342,6 +342,19 @@
       }
 
       /* =========================================================
+        CUSTOMER MENU
+        Keeps the existing navbar design
+        ========================================================= */
+
+      .customer-menu {
+        display: contents;
+      }
+
+      #mobileCustomerMenu {
+        display: contents;
+      }
+
+      /* =========================================================
        RESPONSIVE
     ========================================================= */
 
@@ -424,8 +437,8 @@
     </div>
 
     <!-- =========================================================
-       HEADER
-  ========================================================= -->
+     HEADER
+    ========================================================= -->
 
     <header class="main-header">
       <div class="container navbar">
@@ -446,26 +459,27 @@
 
           <a href="contact.html"> Contact </a>
 
-          <a href="cart.html">
-            <i class="bi bi-cart3"></i>
-            Cart
-            <span id="mobileCartCount" class="cart-count">0</span>
-          </a>
+          <!-- =====================================================
+              CUSTOMER MENU
+              JavaScript will show:
+              
+              BEFORE LOGIN:
+              Login | Register
 
-          <a href="orders.html">
-            <i class="bi bi-box-seam"></i>
-            Orders
-          </a>
+              AFTER LOGIN:
+              Cart | Orders | My Account | Logout
+          ====================================================== -->
+
+          <div id="customerMenu" class="customer-menu"></div>
         </nav>
 
         <div class="header-actions">
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/919177670168"
             target="_blank"
             class="whatsapp-button"
           >
             <i class="bi bi-whatsapp"></i>
-
             <span>WhatsApp</span>
           </a>
 
@@ -481,8 +495,8 @@
     </header>
 
     <!-- =========================================================
-       MOBILE MENU
-  ========================================================= -->
+     MOBILE MENU
+========================================================= -->
 
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html"> Home </a>
@@ -497,16 +511,9 @@
 
       <a href="contact.html"> Contact </a>
 
-      <a href="cart.html">
-        <i class="bi bi-cart3"></i>
-        Cart
-        <span id="mobileCartCount" class="cart-count">0</span>
-      </a>
+      <!-- Dynamic customer menu -->
 
-      <a href="orders.html">
-            <i class="bi bi-box-seam"></i>
-            Orders
-      </a>
+      <div id="mobileCustomerMenu"></div>
     </div>
 
     <!-- =========================================================
@@ -997,6 +1004,179 @@
 
       document.getElementById("currentYear").textContent =
         new Date().getFullYear();
+    </script>
+    <script>
+      /* =========================================================
+     CUSTOMER NAVBAR
+  ========================================================= */
+
+      function updateCustomerMenu() {
+        const customerMenu = document.getElementById("customerMenu");
+
+        const mobileCustomerMenu =
+          document.getElementById("mobileCustomerMenu");
+
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+        const storedUser = localStorage.getItem("user");
+
+        /* =========================================================
+       NOT LOGGED IN
+    ========================================================= */
+
+        if (!isLoggedIn || !storedUser) {
+          const loginMenu = `
+        <a href="login.html">
+          <i class="bi bi-person"></i>
+          Login
+        </a>
+
+        <a href="register.html">
+          Register
+        </a>
+      `;
+
+          if (customerMenu) {
+            customerMenu.innerHTML = loginMenu;
+          }
+
+          if (mobileCustomerMenu) {
+            mobileCustomerMenu.innerHTML = loginMenu;
+          }
+
+          return;
+        }
+
+        /* =========================================================
+       LOGGED IN
+    ========================================================= */
+
+        let user;
+
+        try {
+          user = JSON.parse(storedUser);
+        } catch (error) {
+          console.error("Invalid user data");
+
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+
+          window.location.href = "login.html";
+
+          return;
+        }
+
+        const loggedInMenu = `
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span id="desktopCartCount" class="cart-count">0</span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="dashboard.html">
+        <i class="bi bi-person-circle"></i>
+        My Account
+      </a>
+
+      <a href="#" onclick="logoutUser(); return false;">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+      </a>
+    `;
+
+        if (customerMenu) {
+          customerMenu.innerHTML = loggedInMenu;
+        }
+
+        /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+        const mobileLoggedInMenu = `
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span id="mobileCartCount" class="cart-count">0</span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="dashboard.html">
+        <i class="bi bi-person-circle"></i>
+        My Account
+      </a>
+
+      <a href="#" onclick="logoutUser(); return false;">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+      </a>
+    `;
+
+        if (mobileCustomerMenu) {
+          mobileCustomerMenu.innerHTML = mobileLoggedInMenu;
+        }
+
+        updateNavbarCartCount();
+      }
+
+      /* =========================================================
+     LOGOUT
+  ========================================================= */
+
+      function logoutUser() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
+        window.location.href = "login.html";
+      }
+
+      /* =========================================================
+     CART COUNT
+  ========================================================= */
+
+      function updateNavbarCartCount() {
+        let cart = [];
+
+        try {
+          cart = JSON.parse(localStorage.getItem("cart")) || [];
+        } catch (error) {
+          cart = [];
+        }
+
+        let totalQuantity = 0;
+
+        cart.forEach(function (item) {
+          totalQuantity += Number(item.quantity) || 0;
+        });
+
+        const desktopCartCount = document.getElementById("desktopCartCount");
+
+        const mobileCartCount = document.getElementById("mobileCartCount");
+
+        if (desktopCartCount) {
+          desktopCartCount.textContent = totalQuantity;
+        }
+
+        if (mobileCartCount) {
+          mobileCartCount.textContent = totalQuantity;
+        }
+      }
+
+      /* =========================================================
+     INITIALIZE
+  ========================================================= */
+
+      updateCustomerMenu();
     </script>
   </body>
 </html>
