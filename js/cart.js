@@ -1,549 +1,367 @@
 /* =========================================================
-Nandan Enterprises - User Specific Shopping Cart
-========================================================= */
+   Nandan Enterprises - USER SPECIFIC SHOPPING CART
+   ========================================================= */
+
+const CART_STORAGE_PREFIX = "nandan_cart_user_";
 
 /* =========================================================
-GET CURRENT USER
-========================================================= */
+   GET LOGGED-IN USER
+   ========================================================= */
 
-function getCurrentUser() {
-try {
-const isLoggedIn =
-localStorage.getItem("isLoggedIn") === "true";
+function getLoggedInUser() {
+  try {
+    const userData = localStorage.getItem("user");
 
+    if (!userData) {
+      return null;
+    }
 
-const userData =
-  localStorage.getItem("user");
+    const user = JSON.parse(userData);
 
-if (!isLoggedIn || !userData) {
-  return null;
-}
+    if (!user || !user.id) {
+      return null;
+    }
 
-const user = JSON.parse(userData);
-
-if (!user || !user.id) {
-  return null;
-}
-
-return user;
-
-
-} catch (error) {
-
-
-console.error("Unable to read logged-in user:", error);
-
-return null;
-
-
-}
+    return user;
+  } catch (error) {
+    console.error("Unable to read logged-in user:", error);
+    return null;
+  }
 }
 
 /* =========================================================
-GET USER-SPECIFIC CART STORAGE KEY
-========================================================= */
+   GET USER CART STORAGE KEY
+   ========================================================= */
 
 function getCartStorageKey() {
+  const user = getLoggedInUser();
 
-const user = getCurrentUser();
+  if (!user) {
+    return null;
+  }
 
-if (!user) {
-return null;
-}
-
-return "nandan_cart_user_" + user.id;
+  return CART_STORAGE_PREFIX + user.id;
 }
 
 /* =========================================================
-GET CART
-========================================================= */
+   CHECK LOGIN
+   ========================================================= */
+
+function isUserLoggedIn() {
+  const user = getLoggedInUser();
+
+  return !!user;
+}
+
+/* =========================================================
+   GET CART
+   ========================================================= */
 
 function getCart() {
+  try {
+    const storageKey = getCartStorageKey();
 
-const cartStorageKey = getCartStorageKey();
+    if (!storageKey) {
+      return [];
+    }
 
-/*
-No logged-in user = no cart
-*/
+    const cart = localStorage.getItem(storageKey);
 
-if (!cartStorageKey) {
-return [];
-}
+    if (!cart) {
+      return [];
+    }
 
-try {
+    const parsedCart = JSON.parse(cart);
 
+    return Array.isArray(parsedCart) ? parsedCart : [];
+  } catch (error) {
+    console.error("Unable to read cart:", error);
 
-const cart =
-  localStorage.getItem(cartStorageKey);
-
-if (!cart) {
-  return [];
-}
-
-const parsedCart =
-  JSON.parse(cart);
-
-return Array.isArray(parsedCart)
-  ? parsedCart
-  : [];
-
-
-} catch (error) {
-
-
-console.error(
-  "Unable to read cart:",
-  error
-);
-
-return [];
-
-
-}
+    return [];
+  }
 }
 
 /* =========================================================
-SAVE CART
-========================================================= */
+   SAVE CART
+   ========================================================= */
 
 function saveCart(cart) {
+  const storageKey = getCartStorageKey();
 
-const cartStorageKey =
-getCartStorageKey();
+  if (!storageKey) {
+    console.warn("User is not logged in. Cart was not saved.");
+    return;
+  }
 
-/*
-Do not save cart for guest users
-*/
+  localStorage.setItem(storageKey, JSON.stringify(cart));
 
-if (!cartStorageKey) {
-
-
-alert(
-  "Please login to add products to your cart."
-);
-
-return;
-
-
-}
-
-localStorage.setItem(
-cartStorageKey,
-JSON.stringify(cart)
-);
-
-updateCartCount();
+  updateCartCount();
 }
 
 /* =========================================================
-ADD TO CART
-========================================================= */
+   ADD TO CART
+   ========================================================= */
 
-function addToCart(
-productId,
-productName,
-price,
-quantity = 1
-) {
+function addToCart(productId, productName, price, quantity = 1) {
+  /* ---------------------------------------------------------
+     LOGIN CHECK
+  --------------------------------------------------------- */
 
-/* ---------------------------------------------------------
-LOGIN CHECK
---------------------------------------------------------- */
+  if (!isUserLoggedIn()) {
+    alert("Please login to add products to your cart.");
+    window.location.href = "login.html";
+    return;
+  }
 
-const user = getCurrentUser();
+  price = Number(price);
+  quantity = Number(quantity);
 
-if (!user) {
+  /* ---------------------------------------------------------
+     VALIDATION
+  --------------------------------------------------------- */
 
+  if (!productId || !productName) {
+    alert("Invalid product.");
+    return;
+  }
 
-const loginNow =
-  confirm(
-    "Please login to add products to your cart.\n\nWould you like to login now?"
-  );
+  if (!Number.isFinite(price) || price <= 0) {
+    alert("Invalid product price.");
+    return;
+  }
 
-if (loginNow) {
-  window.location.href = "login.html";
-}
+  if (!Number.isFinite(quantity) || quantity < 1) {
+    quantity = 1;
+  }
 
-return;
+  /* ---------------------------------------------------------
+     GET CURRENT USER'S CART
+  --------------------------------------------------------- */
 
+  const cart = getCart();
 
-}
+  /* ---------------------------------------------------------
+     CHECK EXISTING PRODUCT
+  --------------------------------------------------------- */
 
-/* ---------------------------------------------------------
-VALIDATE PRODUCT
---------------------------------------------------------- */
+  const existingProduct = cart.find(function (item) {
+    return String(item.id) === String(productId);
+  });
 
-price = Number(price);
+  if (existingProduct) {
+    existingProduct.quantity = Number(existingProduct.quantity) + quantity;
+  } else {
+    cart.push({
+      id: productId,
+      name: productName,
+      price: price,
+      quantity: quantity,
+    });
+  }
 
-quantity = Number(quantity);
+  /* ---------------------------------------------------------
+     SAVE
+  --------------------------------------------------------- */
 
-if (!productId || !productName) {
+  saveCart(cart);
 
+  alert(productName + " added to cart.");
 
-alert("Invalid product.");
-
-return;
-
-
-}
-
-if (!Number.isFinite(price) || price <= 0) {
-
-
-alert("Invalid product price.");
-
-return;
-
-
-}
-
-if (!Number.isFinite(quantity) || quantity < 1) {
-
-
-quantity = 1;
-
-
-}
-
-/* ---------------------------------------------------------
-GET USER CART
---------------------------------------------------------- */
-
-const cart = getCart();
-
-/* ---------------------------------------------------------
-CHECK EXISTING PRODUCT
---------------------------------------------------------- */
-
-const existingProduct =
-cart.find(function (item) {
-
-
-  return item.id === productId;
-
-});
-
-
-if (existingProduct) {
-
-
-existingProduct.quantity += quantity;
-
-
-} else {
-
-
-cart.push({
-
-  id: productId,
-
-  name: productName,
-
-  price: price,
-
-  quantity: quantity,
-
-});
-
-
-}
-
-/* ---------------------------------------------------------
-SAVE USER CART
---------------------------------------------------------- */
-
-saveCart(cart);
-
-alert(
-productName + " added to cart."
-);
-
-updateCartCount();
+  updateCartCount();
 }
 
 /* =========================================================
-UPDATE QUANTITY
-========================================================= */
+   UPDATE QUANTITY
+   ========================================================= */
 
-function updateCartQuantity(
-productId,
-quantity
-) {
+function updateCartQuantity(productId, quantity) {
+  if (!isUserLoggedIn()) {
+    return;
+  }
 
-quantity = Number(quantity);
+  quantity = Number(quantity);
 
-if (
-!Number.isFinite(quantity) ||
-quantity < 1
-) {
+  if (!Number.isFinite(quantity) || quantity < 1) {
+    quantity = 1;
+  }
 
+  const cart = getCart();
 
-quantity = 1;
+  const product = cart.find(function (item) {
+    return String(item.id) === String(productId);
+  });
 
+  if (!product) {
+    return;
+  }
 
-}
+  product.quantity = quantity;
 
-const cart = getCart();
+  saveCart(cart);
 
-const product =
-cart.find(function (item) {
-
-
-  return item.id === productId;
-
-});
-
-
-if (!product) {
-return;
-}
-
-product.quantity = quantity;
-
-saveCart(cart);
-
-if (typeof renderCart === "function") {
-
-
-renderCart();
-
-
-}
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
 
 /* =========================================================
-INCREASE QUANTITY
-========================================================= */
+   INCREASE QUANTITY
+   ========================================================= */
 
 function increaseCartQuantity(productId) {
+  if (!isUserLoggedIn()) {
+    return;
+  }
 
-const cart = getCart();
+  const cart = getCart();
 
-const product =
-cart.find(function (item) {
+  const product = cart.find(function (item) {
+    return String(item.id) === String(productId);
+  });
 
+  if (!product) {
+    return;
+  }
 
-  return item.id === productId;
+  product.quantity++;
 
-});
+  saveCart(cart);
 
-
-if (!product) {
-return;
-}
-
-product.quantity++;
-
-saveCart(cart);
-
-if (typeof renderCart === "function") {
-
-
-renderCart();
-
-
-}
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
 
 /* =========================================================
-DECREASE QUANTITY
-========================================================= */
+   DECREASE QUANTITY
+   ========================================================= */
 
 function decreaseCartQuantity(productId) {
+  if (!isUserLoggedIn()) {
+    return;
+  }
 
-const cart = getCart();
+  const cart = getCart();
 
-const product =
-cart.find(function (item) {
+  const product = cart.find(function (item) {
+    return String(item.id) === String(productId);
+  });
 
+  if (!product) {
+    return;
+  }
 
-  return item.id === productId;
+  if (product.quantity > 1) {
+    product.quantity--;
+  }
 
-});
+  saveCart(cart);
 
-
-if (!product) {
-return;
-}
-
-if (product.quantity > 1) {
-
-
-product.quantity--;
-
-
-}
-
-saveCart(cart);
-
-if (typeof renderCart === "function") {
-
-
-renderCart();
-
-
-}
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
 
 /* =========================================================
-REMOVE FROM CART
-========================================================= */
+   REMOVE FROM CART
+   ========================================================= */
 
 function removeFromCart(productId) {
+  if (!isUserLoggedIn()) {
+    return;
+  }
 
-let cart = getCart();
+  let cart = getCart();
 
-cart = cart.filter(function (item) {
+  cart = cart.filter(function (item) {
+    return String(item.id) !== String(productId);
+  });
 
+  saveCart(cart);
 
-return item.id !== productId;
-
-
-});
-
-saveCart(cart);
-
-if (typeof renderCart === "function") {
-
-
-renderCart();
-
-
-}
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
 
 /* =========================================================
-CLEAR CURRENT USER CART
-========================================================= */
+   CLEAR CART
+   ========================================================= */
 
 function clearCart() {
+  const storageKey = getCartStorageKey();
 
-const cartStorageKey =
-getCartStorageKey();
+  if (!storageKey) {
+    return;
+  }
 
-if (!cartStorageKey) {
+  localStorage.removeItem(storageKey);
 
+  updateCartCount();
 
-return;
-
-
-}
-
-localStorage.removeItem(
-cartStorageKey
-);
-
-updateCartCount();
-
-if (typeof renderCart === "function") {
-
-
-renderCart();
-
-
-}
+  if (typeof renderCart === "function") {
+    renderCart();
+  }
 }
 
 /* =========================================================
-CART ITEM COUNT
-========================================================= */
+   CART ITEM COUNT
+   ========================================================= */
 
 function getCartItemCount() {
+  if (!isUserLoggedIn()) {
+    return 0;
+  }
 
-const cart = getCart();
+  const cart = getCart();
 
-return cart.reduce(
-function (total, item) {
-
-
-  return (
-    total +
-    Number(item.quantity || 0)
-  );
-
-},
-0
-
-
-);
+  return cart.reduce(function (total, item) {
+    return total + Number(item.quantity || 0);
+  }, 0);
 }
 
 /* =========================================================
-UPDATE CART COUNT
-========================================================= */
+   UPDATE CART COUNT
+   ========================================================= */
 
 function updateCartCount() {
+  const count = getCartItemCount();
 
-const count =
-getCartItemCount();
+  const cartCountElements = document.querySelectorAll(".cart-count");
 
-const cartCountElements =
-document.querySelectorAll(
-".cart-count"
-);
-
-cartCountElements.forEach(
-function (element) {
-
-
-  element.textContent = count;
-
-}
-
-
-);
+  cartCountElements.forEach(function (element) {
+    element.textContent = count;
+  });
 }
 
 /* =========================================================
-CART TOTAL
-========================================================= */
+   CART TOTAL
+   ========================================================= */
 
 function getCartTotal() {
+  if (!isUserLoggedIn()) {
+    return 0;
+  }
 
-const cart = getCart();
+  const cart = getCart();
 
-return cart.reduce(
-function (total, item) {
-
-
-  return (
-    total +
-    Number(item.price) *
-    Number(item.quantity)
-  );
-
-},
-0
-
-
-);
+  return cart.reduce(function (total, item) {
+    return total + Number(item.price) * Number(item.quantity);
+  }, 0);
 }
 
 /* =========================================================
-FORMAT CURRENCY
-========================================================= */
+   FORMAT CURRENCY
+   ========================================================= */
 
 function formatCurrency(amount) {
-
-return (
-"₹" +
-Number(amount).toLocaleString(
-"en-IN"
-)
-);
+  return "₹" + Number(amount).toLocaleString("en-IN");
 }
 
 /* =========================================================
-INITIALIZE CART
-========================================================= */
+   INITIALIZE CART
+   ========================================================= */
 
-document.addEventListener(
-"DOMContentLoaded",
-function () {
-
-
-updateCartCount();
-
-
-}
-);
+document.addEventListener("DOMContentLoaded", function () {
+  updateCartCount();
+});
