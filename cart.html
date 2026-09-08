@@ -968,811 +968,973 @@
       </div>
     </footer>
 
-    <!-- =========================================================
-       JAVASCRIPT
-  ========================================================= -->
+<script>
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
 
-    <script>
-      /* =========================================================
-       MOBILE MENU
-    ========================================================= */
+  const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
 
-      const mobileMenuButton = document.getElementById("mobileMenuButton");
+  const mobileMenu =
+    document.getElementById("mobileMenu");
 
-      const mobileMenu = document.getElementById("mobileMenu");
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener("click", function () {
+      mobileMenu.classList.toggle("open");
 
-      mobileMenuButton.addEventListener("click", function () {
-        mobileMenu.classList.toggle("open");
+      const icon =
+        mobileMenuButton.querySelector("i");
 
-        const icon = mobileMenuButton.querySelector("i");
+      if (mobileMenu.classList.contains("open")) {
+        icon.classList.remove("bi-list");
+        icon.classList.add("bi-x");
+      } else {
+        icon.classList.remove("bi-x");
+        icon.classList.add("bi-list");
+      }
+    });
+  }
 
-        if (mobileMenu.classList.contains("open")) {
-          icon.classList.remove("bi-list");
-          icon.classList.add("bi-x");
-        } else {
-          icon.classList.remove("bi-x");
-          icon.classList.add("bi-list");
-        }
-      });
 
-      /* =========================================================
-       CART STORAGE
-    ========================================================= */
+  /* =========================================================
+     FORMAT CURRENCY
+  ========================================================= */
 
-      let cart = JSON.parse(localStorage.getItem("nandan_cart")) || [];
+  function formatCurrency(amount) {
+    return (
+      "₹" +
+      Number(amount).toLocaleString("en-IN")
+    );
+  }
 
-      /* =========================================================
-       FORMAT CURRENCY
-    ========================================================= */
 
-      function formatCurrency(amount) {
-        return "₹" + Number(amount).toLocaleString("en-IN");
+  /* =========================================================
+     GET LOGGED-IN USER
+  ========================================================= */
+
+  function getLoggedInUser() {
+    try {
+      const userData =
+        localStorage.getItem("user");
+
+      if (!userData) {
+        return null;
       }
 
-      /* =========================================================
-       DISPLAY CART
-    ========================================================= */
+      const user =
+        JSON.parse(userData);
 
-      /* =========================================================
-   CART PAGE
-   Uses user-specific cart from cart.js
-========================================================= */
+      if (!user || !user.id) {
+        return null;
+      }
 
-      /* =========================================================
-   DISPLAY CART
-========================================================= */
+      return user;
 
-      function displayCart() {
-        const cartItems = document.getElementById("cartItems");
+    } catch (error) {
+      console.error(
+        "Unable to read logged-in user:",
+        error
+      );
 
-        const cartLayout = document.getElementById("cartLayout");
+      return null;
+    }
+  }
 
-        const emptyCart = document.getElementById("emptyCart");
 
-        const cartItemCount = document.getElementById("cartItemCount");
+  /* =========================================================
+     DISPLAY CART
+     Uses getCart() from js/cart.js
+  ========================================================= */
 
-        const summaryItemCount = document.getElementById("summaryItemCount");
+  function displayCart() {
 
-        const cartSubtotal = document.getElementById("cartSubtotal");
+    const cartItems =
+      document.getElementById("cartItems");
 
-        const cartGrandTotal = document.getElementById("cartGrandTotal");
+    const cartLayout =
+      document.getElementById("cartLayout");
 
-        /* =======================================================
-          GET CURRENT LOGGED-IN USER'S CART
-        ======================================================= */
+    const emptyCart =
+      document.getElementById("emptyCart");
 
-        const cart = getCart();
+    const cartItemCount =
+      document.getElementById("cartItemCount");
 
-        /* =======================================================
-          EMPTY CART
-        ======================================================= */
+    const summaryItemCount =
+      document.getElementById("summaryItemCount");
 
-        if (cart.length === 0) {
-          cartLayout.style.display = "none";
+    const cartSubtotal =
+      document.getElementById("cartSubtotal");
 
-          emptyCart.style.display = "block";
+    const cartGrandTotal =
+      document.getElementById("cartGrandTotal");
 
-          cartItemCount.textContent = "0";
 
-          summaryItemCount.textContent = "0";
+    /* =======================================================
+       GET CURRENT USER'S CART
+    ======================================================= */
 
-          cartSubtotal.textContent = "₹0";
+    const cart = getCart();
 
-          cartGrandTotal.textContent = "₹0";
 
-          return;
-        }
+    /* =======================================================
+       EMPTY CART
+    ======================================================= */
 
-        /* =======================================================
-            SHOW CART
-          ======================================================= */
+    if (cart.length === 0) {
 
-        cartLayout.style.display = "grid";
+      cartLayout.style.display = "none";
 
-        emptyCart.style.display = "none";
+      emptyCart.style.display = "block";
 
-        let totalQuantity = 0;
+      cartItemCount.textContent = "0";
 
-        let totalAmount = 0;
+      summaryItemCount.textContent = "0";
 
-        cartItems.innerHTML = "";
+      cartSubtotal.textContent = "₹0";
 
-        /* =======================================================
-            DISPLAY EACH PRODUCT
-          ======================================================= */
+      cartGrandTotal.textContent = "₹0";
 
-        cart.forEach(function (item, index) {
-          const quantity = Number(item.quantity) || 1;
+      return;
+    }
 
-          const price = Number(item.price) || 0;
 
-          const itemTotal = price * quantity;
+    /* =======================================================
+       SHOW CART
+    ======================================================= */
 
-          totalQuantity += quantity;
+    cartLayout.style.display = "grid";
 
-          totalAmount += itemTotal;
+    emptyCart.style.display = "none";
 
-          const imageHTML = item.image
-            ? `<img src="${item.image}" alt="${item.name}">`
-            : `<i class="bi bi-bag-heart"></i>`;
 
-          const itemHTML = `
+    let totalQuantity = 0;
+
+    let totalAmount = 0;
+
+
+    cartItems.innerHTML = "";
+
+
+    /* =======================================================
+       DISPLAY PRODUCTS
+    ======================================================= */
+
+    cart.forEach(function (item, index) {
+
+      const quantity =
+        Number(item.quantity) || 1;
+
+      const price =
+        Number(item.price) || 0;
+
+      const itemTotal =
+        price * quantity;
+
+
+      totalQuantity += quantity;
+
+      totalAmount += itemTotal;
+
+
+      const imageHTML = item.image
+        ? `
+          <img
+            src="${item.image}"
+            alt="${item.name}"
+          >
+        `
+        : `
+          <i class="bi bi-bag-heart"></i>
+        `;
+
+
+      const itemHTML = `
 
         <div class="cart-item">
 
-        <div class="cart-item-image">
-          ${imageHTML}
-        </div>
-
-        <div class="cart-item-details">
-
-          <span class="cart-item-category">
-            ${item.category || "Product"}
-          </span>
-
-          <h3>
-            ${item.name}
-          </h3>
-
-          <div class="cart-item-price">
-            ${formatCurrency(price)} / piece
+          <div class="cart-item-image">
+            ${imageHTML}
           </div>
 
-          <div class="cart-quantity">
 
-            <button
-              type="button"
-              onclick="changeCartQuantity(${index}, -1)"
-            >
-              −
-            </button>
+          <div class="cart-item-details">
 
-            <span>
-              ${quantity}
+            <span class="cart-item-category">
+              ${item.category || "Product"}
             </span>
 
+            <h3>
+              ${item.name}
+            </h3>
+
+            <div class="cart-item-price">
+              ${formatCurrency(price)} / piece
+            </div>
+
+
+            <div class="cart-quantity">
+
+              <button
+                type="button"
+                onclick="changeCartQuantity(${index}, -1)"
+              >
+                −
+              </button>
+
+              <span>
+                ${quantity}
+              </span>
+
+              <button
+                type="button"
+                onclick="changeCartQuantity(${index}, 1)"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="cart-item-right">
+
+            <div class="cart-item-total">
+              ${formatCurrency(itemTotal)}
+            </div>
+
             <button
               type="button"
-              onclick="changeCartQuantity(${index}, 1)"
+              class="remove-cart-item"
+              onclick="removeCartItem(${index})"
             >
-              +
+              <i class="bi bi-trash"></i>
+              Remove
             </button>
 
           </div>
 
         </div>
 
-        <div class="cart-item-right">
+      `;
 
-          <div class="cart-item-total">
-            ${formatCurrency(itemTotal)}
-          </div>
 
-          <button
-            type="button"
-            class="remove-cart-item"
-            onclick="removeCartItem(${index})"
-          >
-            <i class="bi bi-trash"></i>
-            Remove
-          </button>
+      cartItems.insertAdjacentHTML(
+        "beforeend",
+        itemHTML
+      );
+    });
 
-        </div>
 
-      </div>
+    /* =======================================================
+       UPDATE SUMMARY
+    ======================================================= */
 
-    `;
+    cartItemCount.textContent =
+      totalQuantity;
 
-          cartItems.insertAdjacentHTML("beforeend", itemHTML);
-        });
+    summaryItemCount.textContent =
+      totalQuantity;
 
-        /* =======================================================
-        UPDATE SUMMARY
-      ======================================================= */
+    cartSubtotal.textContent =
+      formatCurrency(totalAmount);
 
-        cartItemCount.textContent = totalQuantity;
+    cartGrandTotal.textContent =
+      formatCurrency(totalAmount);
+  }
 
-        summaryItemCount.textContent = totalQuantity;
 
-        cartSubtotal.textContent = formatCurrency(totalAmount);
+  /* =========================================================
+     CHANGE CART QUANTITY
+  ========================================================= */
 
-        cartGrandTotal.textContent = formatCurrency(totalAmount);
-      }
+  function changeCartQuantity(
+    index,
+    change
+  ) {
 
-      /* =========================================================
-        CHANGE CART QUANTITY
-      ========================================================= */
+    const cart = getCart();
 
-      function changeCartQuantity(index, change) {
-        const cart = getCart();
+    if (!cart[index]) {
+      return;
+    }
 
-        if (!cart[index]) {
-          return;
-        }
 
-        let quantity = Number(cart[index].quantity) || 1;
+    let quantity =
+      Number(cart[index].quantity) || 1;
 
-        quantity += change;
 
-        if (quantity < 1) {
-          quantity = 1;
-        }
+    quantity += change;
 
-        if (quantity > 100) {
-          quantity = 100;
-        }
 
-        cart[index].quantity = quantity;
+    if (quantity < 1) {
+      quantity = 1;
+    }
 
-        saveCart(cart);
 
-        displayCart();
-      }
+    if (quantity > 100) {
+      quantity = 100;
+    }
 
-      /* =========================================================
-   REMOVE ITEM
-========================================================= */
 
-      function removeCartItem(index) {
-        const cart = getCart();
+    cart[index].quantity =
+      quantity;
 
-        if (!cart[index]) {
-          return;
-        }
 
-        const productName = cart[index].name;
+    saveCart(cart);
 
-        const confirmRemove = confirm(
-          "Remove " + productName + " from your cart?",
+    displayCart();
+
+    updateNavbarCartCount();
+  }
+
+
+  /* =========================================================
+     REMOVE CART ITEM
+  ========================================================= */
+
+  function removeCartItem(index) {
+
+    const cart = getCart();
+
+    if (!cart[index]) {
+      return;
+    }
+
+
+    const productName =
+      cart[index].name;
+
+
+    const confirmRemove =
+      confirm(
+        "Remove " +
+        productName +
+        " from your cart?"
+      );
+
+
+    if (!confirmRemove) {
+      return;
+    }
+
+
+    cart.splice(index, 1);
+
+
+    saveCart(cart);
+
+    displayCart();
+
+    updateNavbarCartCount();
+  }
+
+
+  /* =========================================================
+     PROCEED TO PAYMENT
+  ========================================================= */
+
+  async function proceedToPayment() {
+
+    /* =======================================================
+       CHECK LOGIN
+    ======================================================= */
+
+    const user =
+      getLoggedInUser();
+
+
+    if (!user || !user.id) {
+
+      alert(
+        "Please login before proceeding to payment."
+      );
+
+      window.location.href =
+        "login.html";
+
+      return;
+    }
+
+
+    /* =======================================================
+       GET JWT TOKEN
+    ======================================================= */
+
+    const token =
+      localStorage.getItem("token");
+
+
+    if (!token) {
+
+      alert(
+        "Your login session has expired. Please login again."
+      );
+
+      localStorage.removeItem(
+        "isLoggedIn"
+      );
+
+      localStorage.removeItem(
+        "user"
+      );
+
+      window.location.href =
+        "login.html";
+
+      return;
+    }
+
+
+    /* =======================================================
+       GET CART
+    ======================================================= */
+
+    const cart =
+      getCart();
+
+
+    if (cart.length === 0) {
+
+      alert(
+        "Your cart is empty."
+      );
+
+      return;
+    }
+
+
+    /* =======================================================
+       CALCULATE TOTAL
+    ======================================================= */
+
+    const totalAmount =
+      getCartTotal();
+
+
+    if (
+      !Number.isFinite(totalAmount) ||
+      totalAmount <= 0
+    ) {
+
+      alert(
+        "Invalid cart amount."
+      );
+
+      return;
+    }
+
+
+    /* =======================================================
+       ELEMENTS
+    ======================================================= */
+
+    const paymentLoading =
+      document.getElementById(
+        "paymentLoading"
+      );
+
+    const checkoutButton =
+      document.getElementById(
+        "checkoutButton"
+      );
+
+
+    try {
+
+      paymentLoading.style.display =
+        "flex";
+
+      checkoutButton.disabled =
+        true;
+
+
+      /* =====================================================
+         PRODUCT DESCRIPTION
+      ===================================================== */
+
+      const productDescription =
+        cart
+          .map(function (item) {
+
+            return (
+              item.name +
+              " x " +
+              item.quantity
+            );
+
+          })
+          .join(", ");
+
+
+      /* =====================================================
+         CREATE RAZORPAY ORDER
+      ===================================================== */
+
+      const response =
+        await fetch(
+          "https://nandanenterprises-razorpay-backend.vercel.app/api/create-payment",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json",
+
+              "Authorization":
+                "Bearer " + token
+            },
+
+            body: JSON.stringify({
+              amount:
+                totalAmount,
+
+              items:
+                cart
+            })
+          }
         );
 
-        if (!confirmRemove) {
-          return;
-        }
 
-        cart.splice(index, 1);
+      const data =
+        await response.json();
 
-        saveCart(cart);
 
-        displayCart();
+      console.log(
+        "Create Payment Response:",
+        data
+      );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data.error ||
+          "Unable to create Razorpay order"
+        );
       }
 
-      /* =========================================================
-   PROCEED TO PAYMENT
-========================================================= */
 
-      async function proceedToPayment() {
-        const cart = getCart();
+      if (!data.order_id) {
 
-        if (cart.length === 0) {
-          alert("Your cart is empty.");
+        throw new Error(
+          "Razorpay order ID was not returned."
+        );
+      }
 
-          return;
-        }
 
-        const totalAmount = getCartTotal();
+      /* =====================================================
+         HIDE LOADING
+      ===================================================== */
 
-        if (!Number.isFinite(totalAmount) || totalAmount <= 0) {
-          alert("Invalid cart amount.");
+      paymentLoading.style.display =
+        "none";
 
-          return;
-        }
+      checkoutButton.disabled =
+        false;
 
-        const paymentLoading = document.getElementById("paymentLoading");
 
-        const checkoutButton = document.getElementById("checkoutButton");
+      /* =====================================================
+         RAZORPAY OPTIONS
+      ===================================================== */
 
-        try {
-          paymentLoading.style.display = "flex";
+      const options = {
 
-          checkoutButton.disabled = true;
+        /*
+         * This is the Razorpay TEST KEY ID.
+         * It is okay for this to be visible
+         * in frontend JavaScript.
+         */
 
-          /* =====================================================
-            CREATE RAZORPAY ORDER
-          ===================================================== */
+        key:
+          "rzp_test_TWLLf5m0kgiSP5",
 
-          const response = await fetch(
-            "https://nandanenterprises-razorpay-backend.vercel.app/api/create-payment",
-            {
-              method: "POST",
 
-              headers: {
-                "Content-Type": "application/json",
-              },
+        amount:
+          data.amount,
 
-              body: JSON.stringify({
-                amount: totalAmount,
-              }),
-            },
-          );
 
-          const data = await response.json();
+        currency:
+          data.currency || "INR",
 
-          console.log("Create Order Response:", data);
 
-          if (!response.ok) {
-            throw new Error(data.error || "Unable to create Razorpay order");
-          }
+        name:
+          "Nandan Enterprises",
 
-          if (!data.order_id) {
-            throw new Error("Razorpay order ID was not returned.");
-          }
 
-          /* =====================================================
-            HIDE LOADING
-          ===================================================== */
+        description:
+          productDescription,
 
-          paymentLoading.style.display = "none";
 
-          checkoutButton.disabled = false;
+        order_id:
+          data.order_id,
 
-          /* =====================================================
-            PRODUCT DESCRIPTION
-          ===================================================== */
 
-          const productDescription = cart
-            .map(function (item) {
-              return item.name + " x " + item.quantity;
-            })
-            .join(", ");
+        /* ===================================================
+           PREFILL CUSTOMER INFORMATION
+        =================================================== */
 
-          /* =====================================================
-          RAZORPAY OPTIONS
-        ===================================================== */
+        prefill: {
 
-          const options = {
-            key: "rzp_test_TWLLf5m0kgiSP5",
+          name:
+            user.name || "",
 
-            amount: data.amount,
+          email:
+            user.email || "",
 
-            currency: data.currency || "INR",
+          contact:
+            user.phone || ""
+        },
 
-            name: "Nandan Enterprises",
 
-            description: productDescription,
+        /* ===================================================
+           NOTES
+        =================================================== */
 
-            order_id: data.order_id,
+        notes: {
 
-            /* ===================================================
-            PAYMENT SUCCESS
-          =================================================== */
+          products:
+            productDescription,
 
-            handler: function (paymentResponse) {
-              console.log("Payment successful");
+          cart_total:
+            String(totalAmount)
+        },
 
-              console.log("Razorpay Payment Response:", paymentResponse);
 
-              /* ===============================================
-                  GET CURRENT USER CART
-                =============================================== */
+        /* ===================================================
+           THEME
+        =================================================== */
 
-              const currentCart = getCart();
+        theme: {
 
-              if (currentCart.length === 0) {
-                alert(
-                  "Payment was successful, but the cart could not be found.",
+          color:
+            "#0d3b66"
+        },
+
+
+        /* ===================================================
+           PAYMENT SUCCESS
+        =================================================== */
+
+        handler:
+          async function (
+            paymentResponse
+          ) {
+
+            console.log(
+              "Razorpay Payment Response:",
+              paymentResponse
+            );
+
+
+            /* ===============================================
+               SHOW VERIFYING MESSAGE
+            =============================================== */
+
+            paymentLoading.style.display =
+              "flex";
+
+
+            checkoutButton.disabled =
+              true;
+
+
+            try {
+
+              /* =============================================
+                 VERIFY PAYMENT WITH BACKEND
+              ============================================= */
+
+              const verifyResponse =
+                await fetch(
+                  "https://nandanenterprises-razorpay-backend.vercel.app/api/verify-payment",
+                  {
+                    method: "POST",
+
+                    headers: {
+                      "Content-Type":
+                        "application/json",
+
+                      "Authorization":
+                        "Bearer " + token
+                    },
+
+                    body: JSON.stringify({
+
+                      razorpay_order_id:
+                        paymentResponse.razorpay_order_id,
+
+                      razorpay_payment_id:
+                        paymentResponse.razorpay_payment_id,
+
+                      razorpay_signature:
+                        paymentResponse.razorpay_signature,
+
+                      amount:
+                        totalAmount,
+
+                      items:
+                        cart
+                    })
+                  }
                 );
 
-                window.location.href = "orders.html";
 
-                return;
+              const verifyData =
+                await verifyResponse.json();
+
+
+              console.log(
+                "Payment Verification Response:",
+                verifyData
+              );
+
+
+              /* =============================================
+                 CHECK VERIFICATION RESULT
+              ============================================= */
+
+              if (!verifyResponse.ok) {
+
+                throw new Error(
+                  verifyData.error ||
+                  "Payment verification failed"
+                );
               }
 
-              /* ===============================================
-                  GET EXISTING ORDERS
-                =============================================== */
 
-              const orders =
-                JSON.parse(localStorage.getItem("nandan_orders")) || [];
+              if (!verifyData.success) {
 
-              /* ===============================================
-                  CALCULATE ORDER TOTAL
-                =============================================== */
-
-              const orderAmount = currentCart.reduce(function (total, item) {
-                return (
-                  total + Number(item.price) * (Number(item.quantity) || 1)
+                throw new Error(
+                  "Payment could not be verified"
                 );
-              }, 0);
+              }
 
-              /* ===============================================
-                  CREATE ORDER
-                =============================================== */
 
-              const order = {
-                orderId: "ORD-" + Date.now(),
-
-                date: new Date().toISOString(),
-
-                items: currentCart,
-
-                amount: orderAmount,
-
-                paymentStatus: "Paid",
-
-                orderStatus: "Order Placed",
-
-                razorpayOrderId: data.order_id || "",
-
-                razorpayPaymentId: paymentResponse.razorpay_payment_id || "",
-              };
-
-              /* ===============================================
-                SAVE ORDER
-              =============================================== */
-
-              orders.push(order);
-
-              localStorage.setItem("nandan_orders", JSON.stringify(orders));
-
-              /* ===============================================
-                CLEAR ONLY CURRENT USER'S CART
-              =============================================== */
+              /* =============================================
+                 PAYMENT + ORDER SAVED SUCCESSFULLY
+              ============================================= */
 
               clearCart();
 
-              /* ===============================================
-                  SUCCESS MESSAGE
-                =============================================== */
+              updateNavbarCartCount();
+
+
+              paymentLoading.style.display =
+                "none";
+
+
+              checkoutButton.disabled =
+                false;
+
+
+              /* =============================================
+                 SUCCESS MESSAGE
+              ============================================= */
 
               alert(
                 "Payment successful!\n\n" +
-                  "Amount: " +
-                  formatCurrency(orderAmount) +
-                  "\n\n" +
-                  "Payment ID: " +
-                  paymentResponse.razorpay_payment_id,
+
+                "Order Number: " +
+                (
+                  verifyData.order_number ||
+                  "Created"
+                ) +
+
+                "\n\nAmount: " +
+                formatCurrency(
+                  totalAmount
+                ) +
+
+                "\n\nPayment ID: " +
+                paymentResponse
+                  .razorpay_payment_id
               );
 
-              /* ===============================================
-                  GO TO ORDERS
-                =============================================== */
 
-              window.location.href = "orders.html";
-            },
+              /* =============================================
+                 GO TO ORDERS PAGE
+              ============================================= */
 
-            /* ===================================================
-              PREFILL
-            =================================================== */
+              window.location.href =
+                "orders.html";
 
-            prefill: {
-              name: "",
+            } catch (verificationError) {
 
-              email: "",
+              console.error(
+                "Payment verification error:",
+                verificationError
+              );
 
-              contact: "",
-            },
 
-            /* ===================================================
-              NOTES
-            =================================================== */
+              paymentLoading.style.display =
+                "none";
 
-            notes: {
-              products: productDescription,
+              checkoutButton.disabled =
+                false;
 
-              cart_total: String(totalAmount),
-            },
 
-            /* ===================================================
-              THEME
-            =================================================== */
+              /*
+               * IMPORTANT:
+               *
+               * Do NOT clear the cart here.
+               *
+               * If verification fails, we keep
+               * the cart so the customer can
+               * contact support/retry.
+               */
 
-            theme: {
-              color: "#0d3b66",
-            },
+              alert(
+                "Payment was received, but we could not verify the payment with the server.\n\n" +
+                "Please do not make another payment immediately.\n\n" +
+                "Payment ID: " +
+                (
+                  paymentResponse
+                    .razorpay_payment_id ||
+                  "Not available"
+                ) +
+                "\n\nPlease contact support."
+              );
+            }
+          },
 
-            /* ===================================================
-              MODAL
-            =================================================== */
 
-            modal: {
-              ondismiss: function () {
-                console.log("Razorpay checkout closed.");
+        /* ===================================================
+           PAYMENT FAILED
+        =================================================== */
 
-                paymentLoading.style.display = "none";
+        modal: {
 
-                checkoutButton.disabled = false;
-              },
-            },
-          };
+          ondismiss:
+            function () {
 
-          /* =====================================================
-            OPEN RAZORPAY
-          ===================================================== */
+              console.log(
+                "Razorpay checkout closed."
+              );
 
-          const razorpay = new Razorpay(options);
 
-          razorpay.on("payment.failed", function (response) {
-            console.error("Payment failed:", response.error);
+              paymentLoading.style.display =
+                "none";
 
-            paymentLoading.style.display = "none";
-
-            checkoutButton.disabled = false;
-
-            alert(
-              "Payment failed.\n\n" +
-                (response.error.description || "Please try again."),
-            );
-          });
-
-          razorpay.open();
-        } catch (error) {
-          console.error("Payment Error:", error);
-
-          paymentLoading.style.display = "none";
-
-          checkoutButton.disabled = false;
-
-          alert("Payment could not be started:\n\n" + error.message);
+              checkoutButton.disabled =
+                false;
+            }
         }
-      }
+      };
 
-      /* =========================================================
-        CURRENT YEAR
-      ========================================================= */
 
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+      /* =====================================================
+         CREATE RAZORPAY CHECKOUT
+      ===================================================== */
 
-      /* =========================================================
-          LOAD CART
-        ========================================================= */
+      const razorpay =
+        new Razorpay(options);
 
-      displayCart();
 
-      /* =========================================================
-       CHANGE CART QUANTITY
-      ========================================================= */
+      /* =====================================================
+         PAYMENT FAILED EVENT
+      ===================================================== */
 
-      function changeCartQuantity(index, change) {
-        if (!cart[index]) {
-          return;
-        }
+      razorpay.on(
+        "payment.failed",
+        function (response) {
 
-        let quantity = Number(cart[index].quantity) || 1;
+          console.error(
+            "Payment failed:",
+            response.error
+          );
 
-        quantity += change;
 
-        if (quantity < 1) {
-          quantity = 1;
-        }
-
-        if (quantity > 100) {
-          quantity = 100;
-        }
-
-        cart[index].quantity = quantity;
-
-        saveCart();
-
-        displayCart();
-      }
-
-      /* =========================================================
-       REMOVE ITEM
-    ========================================================= */
-
-      function removeCartItem(index) {
-        if (!cart[index]) {
-          return;
-        }
-
-        const productName = cart[index].name;
-
-        const confirmRemove = confirm(
-          "Remove " + productName + " from your cart?",
-        );
-
-        if (!confirmRemove) {
-          return;
-        }
-
-        cart.splice(index, 1);
-
-        saveCart();
-
-        displayCart();
-      }
-
-      /* =========================================================
-       SAVE CART
-    ========================================================= */
-
-      function saveCart() {
-        localStorage.setItem("nandan_cart", JSON.stringify(cart));
-      }
-
-      /* =========================================================
-       CALCULATE CART TOTAL
-    ========================================================= */
-
-      function getCartTotal() {
-        let total = 0;
-
-        cart.forEach(function (item) {
-          const price = Number(item.price) || 0;
-
-          const quantity = Number(item.quantity) || 1;
-
-          total += price * quantity;
-        });
-
-        return total;
-      }
-
-      /* =========================================================
-       PROCEED TO PAYMENT
-    ========================================================= */
-
-      async function proceedToPayment() {
-        if (cart.length === 0) {
-          alert("Your cart is empty.");
-          return;
-        }
-        const totalAmount = getCartTotal();
-        if (!Number.isFinite(totalAmount) || totalAmount <= 0) {
-          alert("Invalid cart amount.");
-          return;
-        }
-        const paymentLoading = document.getElementById("paymentLoading");
-        const checkoutButton = document.getElementById("checkoutButton");
-        try {
-          paymentLoading.style.display = "flex";
-          checkoutButton.disabled = true;
-          /* ===================================================== CREATE RAZORPAY ORDER Vercel Backend ===================================================== */ const response =
-            await fetch(
-              "https://nandanenterprises-razorpay-backend.vercel.app/api/create-payment",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: totalAmount }),
-              },
-            );
-          const data = await response.json();
-          console.log("Create Order Response:", data);
-          if (!response.ok) {
-            throw new Error(data.error || "Unable to create Razorpay order");
-          }
-          if (!data.order_id) {
-            throw new Error("Razorpay order ID was not returned.");
-          }
-          /* ===================================================== HIDE LOADING ===================================================== */ paymentLoading.style.display =
+          paymentLoading.style.display =
             "none";
-          checkoutButton.disabled = false;
-          /* ===================================================== PRODUCT DESCRIPTION ===================================================== */ const productDescription =
-            cart
-              .map(function (item) {
-                return item.name + " x " + item.quantity;
-              })
-              .join(", ");
-          /* ===================================================== RAZORPAY OPTIONS ===================================================== */ const options =
-            {
-              key: "rzp_test_TWLLf5m0kgiSP5",
-              amount: data.amount,
-              currency: data.currency || "INR",
-              name: "Nandan Enterprises",
-              description: productDescription,
-              order_id: data.order_id,
-              handler: function (paymentResponse) {
-                console.log("Payment successful");
-                console.log("Razorpay Payment Response:", paymentResponse);
-                /* ================================================= GET CURRENT CART ================================================= */ const currentCart =
-                  JSON.parse(localStorage.getItem("nandan_cart")) || [];
-                if (currentCart.length === 0) {
-                  alert(
-                    "Payment was successful, but the cart could not be found.",
-                  );
-                  window.location.href = "orders.html";
-                  return;
-                }
-                /* ================================================= GET EXISTING ORDERS ================================================= */ const orders =
-                  JSON.parse(localStorage.getItem("nandan_orders")) || [];
-                /* ================================================= CALCULATE ORDER TOTAL ================================================= */ const orderAmount =
-                  currentCart.reduce(function (total, item) {
-                    return (
-                      total + Number(item.price) * (Number(item.quantity) || 1)
-                    );
-                  }, 0);
-                /* ================================================= CREATE ORDER ================================================= */ const order =
-                  {
-                    orderId: "ORD-" + Date.now(),
-                    date: new Date().toISOString(),
-                    items: currentCart,
-                    amount: orderAmount,
-                    paymentStatus: "Paid",
-                    orderStatus: "Order Placed",
-                    razorpayOrderId: data.order_id || "",
-                    razorpayPaymentId:
-                      paymentResponse.razorpay_payment_id || "",
-                  };
-                /* ================================================= SAVE ORDER ================================================= */ orders.push(
-                  order,
-                );
-                localStorage.setItem("nandan_orders", JSON.stringify(orders));
-                localStorage.removeItem("nandan_cart");
-                /* ================================================= SUCCESS MESSAGE ================================================= */ alert(
-                  "Payment successful!\n\n" +
-                    "Amount: " +
-                    formatCurrency(orderAmount) +
-                    "\n\n" +
-                    "Payment ID: " +
-                    paymentResponse.razorpay_payment_id,
-                );
-                /* ================================================= GO TO ORDERS PAGE ================================================= */ window.location.href =
-                  "orders.html";
-              },
-              /* =================================================== PREFILL =================================================== */ prefill:
-                { name: "", email: "", contact: "" },
-              /* =================================================== NOTES =================================================== */ notes:
-                {
-                  products: productDescription,
-                  cart_total: String(totalAmount),
-                },
-              /* =================================================== THEME =================================================== */ theme:
-                { color: "#0d3b66" },
-              /* =================================================== MODAL =================================================== */ modal:
-                {
-                  ondismiss: function () {
-                    console.log("Razorpay checkout closed.");
-                    paymentLoading.style.display = "none";
-                    checkoutButton.disabled = false;
-                  },
-                },
-            };
-          /* ===================================================== OPEN RAZORPAY ===================================================== */ const razorpay =
-            new Razorpay(options);
-          razorpay.on("payment.failed", function (response) {
-            console.error("Payment failed:", response.error);
-            paymentLoading.style.display = "none";
-            checkoutButton.disabled = false;
-            alert(
-              "Payment failed.\n\n" +
-                (response.error.description || "Please try again."),
-            );
-          });
-          razorpay.open();
-        } catch (error) {
-          console.error("Payment Error:", error);
-          paymentLoading.style.display = "none";
-          checkoutButton.disabled = false;
-          alert("Payment could not be started:\n\n" + error.message);
+
+          checkoutButton.disabled =
+            false;
+
+
+          alert(
+            "Payment failed.\n\n" +
+            (
+              response.error.description ||
+              "Please try again."
+            )
+          );
         }
-      }
+      );
 
-      /* =========================================================
-       CURRENT YEAR
-    ========================================================= */
 
-      document.getElementById("currentYear").textContent =
-        new Date().getFullYear();
+      /* =====================================================
+         OPEN RAZORPAY
+      ===================================================== */
 
-      /* =========================================================
-       LOAD CART
-    ========================================================= */
+      razorpay.open();
 
-      displayCart();
-    </script>
-    <script>
-      /* =========================================================
-     CUSTOMER NAVBAR
+    } catch (error) {
+
+      console.error(
+        "Payment Error:",
+        error
+      );
+
+
+      paymentLoading.style.display =
+        "none";
+
+      checkoutButton.disabled =
+        false;
+
+
+      alert(
+        "Payment could not be started:\n\n" +
+        error.message
+      );
+    }
+  }
+
+
+  /* =========================================================
+     NAVBAR CUSTOMER MENU
   ========================================================= */
 
-      function updateCustomerMenu() {
-        const customerMenu = document.getElementById("customerMenu");
+  function updateCustomerMenu() {
 
-        const mobileCustomerMenu =
-          document.getElementById("mobileCustomerMenu");
+    const customerMenu =
+      document.getElementById(
+        "customerMenu"
+      );
 
-        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-        const storedUser = localStorage.getItem("user");
+    const mobileCustomerMenu =
+      document.getElementById(
+        "mobileCustomerMenu"
+      );
 
-        /* =========================================================
+
+    const isLoggedIn =
+      localStorage.getItem(
+        "isLoggedIn"
+      ) === "true";
+
+
+    const storedUser =
+      localStorage.getItem(
+        "user"
+      );
+
+
+    /* =======================================================
        NOT LOGGED IN
-    ========================================================= */
+    ======================================================= */
 
-        if (!isLoggedIn || !storedUser) {
-          const loginMenu = `
+    if (
+      !isLoggedIn ||
+      !storedUser
+    ) {
+
+      const loginMenu = `
+
         <a href="login.html">
           <i class="bi bi-person"></i>
           Login
@@ -1781,142 +1943,282 @@
         <a href="register.html">
           Register
         </a>
+
       `;
 
-          if (customerMenu) {
-            customerMenu.innerHTML = loginMenu;
-          }
 
-          if (mobileCustomerMenu) {
-            mobileCustomerMenu.innerHTML = loginMenu;
-          }
+      if (customerMenu) {
 
-          return;
-        }
-
-        /* =========================================================
-       LOGGED IN
-    ========================================================= */
-
-        let user;
-
-        try {
-          user = JSON.parse(storedUser);
-        } catch (error) {
-          console.error("Invalid user data");
-
-          localStorage.removeItem("isLoggedIn");
-          localStorage.removeItem("user");
-          localStorage.removeItem("token");
-
-          window.location.href = "login.html";
-
-          return;
-        }
-
-        const loggedInMenu = `
-      <a href="cart.html">
-        <i class="bi bi-cart3"></i>
-        Cart
-        <span id="desktopCartCount" class="cart-count">0</span>
-      </a>
-
-      <a href="orders.html">
-        <i class="bi bi-box-seam"></i>
-        Orders
-      </a>
-
-      <a href="dashboard.html">
-        <i class="bi bi-person-circle"></i>
-        My Account
-      </a>
-
-      <a href="#" onclick="logoutUser(); return false;">
-        <i class="bi bi-box-arrow-right"></i>
-        Logout
-      </a>
-    `;
-
-        if (customerMenu) {
-          customerMenu.innerHTML = loggedInMenu;
-        }
-
-        /* =========================================================
-       MOBILE MENU
-    ========================================================= */
-
-        const mobileLoggedInMenu = `
-      <a href="cart.html">
-        <i class="bi bi-cart3"></i>
-        Cart
-        <span id="mobileCartCount" class="cart-count">0</span>
-      </a>
-
-      <a href="orders.html">
-        <i class="bi bi-box-seam"></i>
-        Orders
-      </a>
-
-      <a href="dashboard.html">
-        <i class="bi bi-person-circle"></i>
-        My Account
-      </a>
-
-      <a href="#" onclick="logoutUser(); return false;">
-        <i class="bi bi-box-arrow-right"></i>
-        Logout
-      </a>
-    `;
-
-        if (mobileCustomerMenu) {
-          mobileCustomerMenu.innerHTML = mobileLoggedInMenu;
-        }
-
-        updateNavbarCartCount();
+        customerMenu.innerHTML =
+          loginMenu;
       }
 
-      /* =========================================================
+
+      if (mobileCustomerMenu) {
+
+        mobileCustomerMenu.innerHTML =
+          loginMenu;
+      }
+
+
+      return;
+    }
+
+
+    /* =======================================================
+       VALIDATE USER
+    ======================================================= */
+
+    let user;
+
+    try {
+
+      user =
+        JSON.parse(
+          storedUser
+        );
+
+    } catch (error) {
+
+      console.error(
+        "Invalid user data"
+      );
+
+
+      localStorage.removeItem(
+        "isLoggedIn"
+      );
+
+      localStorage.removeItem(
+        "user"
+      );
+
+      localStorage.removeItem(
+        "token"
+      );
+
+
+      window.location.href =
+        "login.html";
+
+      return;
+    }
+
+
+    /* =======================================================
+       LOGGED-IN MENU
+    ======================================================= */
+
+    const loggedInMenu = `
+
+      <a href="cart.html">
+
+        <i class="bi bi-cart3"></i>
+
+        Cart
+
+        <span
+          id="desktopCartCount"
+          class="cart-count"
+        >
+          0
+        </span>
+
+      </a>
+
+
+      <a href="orders.html">
+
+        <i class="bi bi-box-seam"></i>
+
+        Orders
+
+      </a>
+
+
+      <a href="dashboard.html">
+
+        <i class="bi bi-person-circle"></i>
+
+        My Account
+
+      </a>
+
+
+      <a
+        href="#"
+        onclick="logoutUser(); return false;"
+      >
+
+        <i class="bi bi-box-arrow-right"></i>
+
+        Logout
+
+      </a>
+
+    `;
+
+
+    if (customerMenu) {
+
+      customerMenu.innerHTML =
+        loggedInMenu;
+    }
+
+
+    /* =======================================================
+       MOBILE MENU
+    ======================================================= */
+
+    const mobileLoggedInMenu = `
+
+      <a href="cart.html">
+
+        <i class="bi bi-cart3"></i>
+
+        Cart
+
+        <span
+          id="mobileCartCount"
+          class="cart-count"
+        >
+          0
+        </span>
+
+      </a>
+
+
+      <a href="orders.html">
+
+        <i class="bi bi-box-seam"></i>
+
+        Orders
+
+      </a>
+
+
+      <a href="dashboard.html">
+
+        <i class="bi bi-person-circle"></i>
+
+        My Account
+
+      </a>
+
+
+      <a
+        href="#"
+        onclick="logoutUser(); return false;"
+      >
+
+        <i class="bi bi-box-arrow-right"></i>
+
+        Logout
+
+      </a>
+
+    `;
+
+
+    if (mobileCustomerMenu) {
+
+      mobileCustomerMenu.innerHTML =
+        mobileLoggedInMenu;
+    }
+
+
+    updateNavbarCartCount();
+  }
+
+
+  /* =========================================================
      LOGOUT
   ========================================================= */
 
-      function logoutUser() {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
+  function logoutUser() {
 
-        window.location.href = "login.html";
-      }
+    localStorage.removeItem(
+      "isLoggedIn"
+    );
 
-      /* =========================================================
-     CART COUNT
+    localStorage.removeItem(
+      "user"
+    );
+
+    localStorage.removeItem(
+      "token"
+    );
+
+
+    window.location.href =
+      "login.html";
+  }
+
+
+  /* =========================================================
+     UPDATE NAVBAR CART COUNT
   ========================================================= */
 
-      function updateNavbarCartCount() {
-        /*
-         * cart.js already knows which user's cart
-         * should be used.
-         */
+  function updateNavbarCartCount() {
 
-        const totalQuantity = getCartItemCount();
+    const totalQuantity =
+      getCartItemCount();
 
-        const desktopCartCount = document.getElementById("desktopCartCount");
 
-        const mobileCartCount = document.getElementById("mobileCartCount");
+    const desktopCartCount =
+      document.getElementById(
+        "desktopCartCount"
+      );
 
-        if (desktopCartCount) {
-          desktopCartCount.textContent = totalQuantity;
-        }
 
-        if (mobileCartCount) {
-          mobileCartCount.textContent = totalQuantity;
-        }
-      }
+    const mobileCartCount =
+      document.getElementById(
+        "mobileCartCount"
+      );
 
-      /* =========================================================
-     INITIALIZE
+
+    if (desktopCartCount) {
+
+      desktopCartCount.textContent =
+        totalQuantity;
+    }
+
+
+    if (mobileCartCount) {
+
+      mobileCartCount.textContent =
+        totalQuantity;
+    }
+  }
+
+
+  /* =========================================================
+     CURRENT YEAR
   ========================================================= */
 
-      updateCustomerMenu();
-    </script>
+  const currentYear =
+    document.getElementById(
+      "currentYear"
+    );
+
+
+  if (currentYear) {
+
+    currentYear.textContent =
+      new Date().getFullYear();
+  }
+
+
+  /* =========================================================
+     INITIALIZE PAGE
+  ========================================================= */
+
+  displayCart();
+
+  updateCustomerMenu();
+
+  updateNavbarCartCount();
+
+</script>
   </body>
 </html>
