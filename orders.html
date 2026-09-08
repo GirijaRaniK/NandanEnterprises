@@ -1035,412 +1035,131 @@
     ========================================================= -->
 
     <script>
-      /* =========================================================
-         MOBILE MENU
-      ========================================================= */
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
 
-      const mobileMenuButton = document.getElementById("mobileMenuButton");
+  const mobileMenuButton =
+    document.getElementById("mobileMenuButton");
 
-      const mobileMenu = document.getElementById("mobileMenu");
+  const mobileMenu =
+    document.getElementById("mobileMenu");
 
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener("click", function () {
-          mobileMenu.classList.toggle("open");
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener(
+      "click",
+      function () {
+        mobileMenu.classList.toggle("open");
 
-          const icon = mobileMenuButton.querySelector("i");
+        const icon =
+          mobileMenuButton.querySelector("i");
 
-          if (mobileMenu.classList.contains("open")) {
-            icon.classList.remove("bi-list");
-
-            icon.classList.add("bi-x");
-          } else {
-            icon.classList.remove("bi-x");
-
-            icon.classList.add("bi-list");
-          }
-        });
-      }
-
-      /* =========================================================
-         CURRENT YEAR
-      ========================================================= */
-
-      const currentYear = document.getElementById("currentYear");
-
-      if (currentYear) {
-        currentYear.textContent = new Date().getFullYear();
-      }
-
-      /* =========================================================
-         CART COUNT
-      ========================================================= */
-
-      function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem("nandan_cart")) || [];
-
-        const count = cart.reduce(function (total, item) {
-          return total + (Number(item.quantity) || 1);
-        }, 0);
-
-        document.querySelectorAll(".cart-count").forEach(function (element) {
-          element.textContent = count;
-        });
-      }
-
-      /* =========================================================
-         FORMAT CURRENCY
-      ========================================================= */
-
-      function formatCurrency(amount) {
-        return new Intl.NumberFormat("en-IN", {
-          style: "currency",
-          currency: "INR",
-          maximumFractionDigits: 2,
-        }).format(Number(amount) || 0);
-      }
-
-      /* =========================================================
-         FORMAT DATE
-      ========================================================= */
-
-      function formatDate(dateValue) {
-        if (!dateValue) {
-          return "N/A";
+        if (
+          mobileMenu.classList.contains("open")
+        ) {
+          icon.classList.remove("bi-list");
+          icon.classList.add("bi-x");
+        } else {
+          icon.classList.remove("bi-x");
+          icon.classList.add("bi-list");
         }
-
-        const date = new Date(dateValue);
-
-        if (isNaN(date.getTime())) {
-          return dateValue;
-        }
-
-        return date.toLocaleString("en-IN", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        });
       }
+    );
+  }
 
-      /* =========================================================
-         LOAD ORDERS
-      ========================================================= */
 
-      function loadOrders() {
-        const orders = JSON.parse(localStorage.getItem("nandan_orders")) || [];
+  /* =========================================================
+     CURRENT YEAR
+  ========================================================= */
 
-        const container = document.getElementById("ordersContainer");
+  const currentYear =
+    document.getElementById("currentYear");
 
-        if (!container) {
-          return;
-        }
+  if (currentYear) {
+    currentYear.textContent =
+      new Date().getFullYear();
+  }
 
-        /* =====================================================
-           NO ORDERS
-        ===================================================== */
 
-        if (orders.length === 0) {
-          container.innerHTML = `
+  /* =========================================================
+     FORMAT CURRENCY
+  ========================================================= */
 
-            <div class="empty-orders">
-
-              <div class="empty-orders-icon">
-
-                <i class="bi bi-box-seam"></i>
-
-              </div>
-
-              <h2>
-                No Orders Yet
-              </h2>
-
-              <p>
-                You haven't placed any orders yet.
-              </p>
-
-              <a
-                href="products.html"
-                class="shop-button"
-              >
-
-                <i class="bi bi-cart3"></i>
-
-                Continue Shopping
-
-              </a>
-
-            </div>
-
-          `;
-
-          return;
-        }
-
-        /* =====================================================
-           NEWEST ORDERS FIRST
-        ===================================================== */
-
-        const sortedOrders = [...orders].reverse();
-
-        container.innerHTML = "";
-
-        sortedOrders.forEach(function (order) {
-          const items = order.items || [];
-
-          let productsHTML = "";
-
-          /* ===============================================
-               PRODUCTS
-            =============================================== */
-
-          items.forEach(function (item) {
-            const quantity = Number(item.quantity) || 1;
-
-            const price = Number(item.price) || 0;
-
-            const itemTotal = price * quantity;
-
-            let imageHTML = "";
-
-            if (item.image) {
-              imageHTML = `
-
-                    <img
-                      src="${item.image}"
-                      class="product-image"
-                      alt="${item.name || "Product"}"
-                    >
-
-                  `;
-            } else {
-              imageHTML = `
-
-                    <div class="product-placeholder">
-
-                      <i class="bi bi-image"></i>
-
-                    </div>
-
-                  `;
-            }
-
-            productsHTML += `
-
-                  <div class="order-product">
-
-                    ${imageHTML}
-
-
-                    <div class="product-details">
-
-                      <div class="product-name">
-
-                        ${item.name || "Product"}
-
-                      </div>
-
-                      <div class="product-quantity">
-
-                        Quantity: ${quantity}
-
-                      </div>
-
-                    </div>
-
-
-                    <div class="product-price">
-
-                      ${formatCurrency(itemTotal)}
-
-                    </div>
-
-                  </div>
-
-                `;
-          });
-
-          /* ===============================================
-               PAYMENT STATUS
-            =============================================== */
-
-          const paymentStatus = order.paymentStatus || "Unknown";
-
-          const paymentClass =
-            paymentStatus.toLowerCase() === "paid"
-              ? "status-paid"
-              : "status-pending";
-
-          /* ===============================================
-               ORDER HTML
-            =============================================== */
-
-          const orderHTML = `
-
-              <div class="order-card">
-
-
-                <div class="order-header">
-
-                  <div class="order-id">
-
-                    Order ID:
-
-                    <span>
-                      ${order.orderId || "N/A"}
-                    </span>
-
-                  </div>
-
-
-                  <div class="order-date">
-
-                    ${formatDate(order.date)}
-
-                  </div>
-
-                </div>
-
-
-                <div class="order-body">
-
-
-                  <div class="order-info">
-
-
-                    <div class="info-box">
-
-                      <span class="info-label">
-                        Payment Status
-                      </span>
-
-                      <span
-                        class="info-value ${paymentClass}"
-                      >
-
-                        ${paymentStatus}
-
-                      </span>
-
-                    </div>
-
-
-                    <div class="info-box">
-
-                      <span class="info-label">
-                        Order Status
-                      </span>
-
-                      <span class="info-value">
-
-                        ${order.orderStatus || "Order Placed"}
-
-                      </span>
-
-                    </div>
-
-
-                    <div class="info-box">
-
-                      <span class="info-label">
-                        Payment ID
-                      </span>
-
-                      <span class="info-value">
-
-                        ${order.razorpayPaymentId || "N/A"}
-
-                      </span>
-
-                    </div>
-
-
-                  </div>
-
-
-                  <h3 class="products-title">
-
-                    Products Ordered
-
-                  </h3>
-
-
-                  ${productsHTML}
-
-
-                </div>
-
-
-                <div class="order-footer">
-
-
-                  <div class="order-status">
-
-                    <i class="bi bi-check-circle-fill"></i>
-
-                    ${order.orderStatus || "Order Placed"}
-
-                  </div>
-
-
-                  <div class="total-box">
-
-                    <span class="total-label">
-                      Total:
-                    </span>
-
-                    <span class="total-amount">
-
-                      ${formatCurrency(order.amount)}
-
-                    </span>
-
-                  </div>
-
-
-                </div>
-
-
-              </div>
-
-            `;
-
-          container.insertAdjacentHTML("beforeend", orderHTML);
-        });
+  function formatCurrency(amount) {
+    return new Intl.NumberFormat(
+      "en-IN",
+      {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 2,
       }
+    ).format(Number(amount) || 0);
+  }
 
-      /* =========================================================
-         INITIALIZE
-      ========================================================= */
 
-      document.addEventListener("DOMContentLoaded", function () {
-        updateCartCount();
+  /* =========================================================
+     FORMAT DATE
+  ========================================================= */
 
-        loadOrders();
-      });
-    </script>
-    <script>
-      /* =========================================================
+  function formatDate(dateValue) {
+    if (!dateValue) {
+      return "N/A";
+    }
+
+    const date =
+      new Date(dateValue);
+
+    if (isNaN(date.getTime())) {
+      return dateValue;
+    }
+
+    return date.toLocaleString(
+      "en-IN",
+      {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }
+    );
+  }
+
+
+  /* =========================================================
      CUSTOMER NAVBAR
   ========================================================= */
 
-      function updateCustomerMenu() {
-        const customerMenu = document.getElementById("customerMenu");
+  function updateCustomerMenu() {
+    const customerMenu =
+      document.getElementById(
+        "customerMenu"
+      );
 
-        const mobileCustomerMenu =
-          document.getElementById("mobileCustomerMenu");
+    const mobileCustomerMenu =
+      document.getElementById(
+        "mobileCustomerMenu"
+      );
 
-        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const isLoggedIn =
+      localStorage.getItem(
+        "isLoggedIn"
+      ) === "true";
 
-        const storedUser = localStorage.getItem("user");
+    const storedUser =
+      localStorage.getItem("user");
 
-        /* =========================================================
+    /* =====================================================
        NOT LOGGED IN
-    ========================================================= */
+    ===================================================== */
 
-        if (!isLoggedIn || !storedUser) {
-          const loginMenu = `
+    if (
+      !isLoggedIn ||
+      !storedUser
+    ) {
+      const loginMenu = `
         <a href="login.html">
+          <i class="bi bi-person"></i>
           Login
         </a>
 
@@ -1449,139 +1168,933 @@
         </a>
       `;
 
-          if (customerMenu) {
-            customerMenu.innerHTML = loginMenu;
-          }
-
-          if (mobileCustomerMenu) {
-            mobileCustomerMenu.innerHTML = loginMenu;
-          }
-
-          return;
-        }
-
-        /* =========================================================
-       LOGGED IN
-    ========================================================= */
-
-        let user;
-
-        try {
-          user = JSON.parse(storedUser);
-        } catch (error) {
-          console.error("Invalid user data");
-
-          localStorage.removeItem("isLoggedIn");
-          localStorage.removeItem("user");
-          localStorage.removeItem("token");
-
-          window.location.href = "login.html";
-
-          return;
-        }
-
-        const loggedInMenu = `
-      <a href="cart.html">
-        Cart
-        <span id="desktopCartCount" class="cart-count">0</span>
-      </a>
-
-      <a href="orders.html">
-        Orders
-      </a>
-
-      <a href="dashboard.html">
-        My Account
-      </a>
-
-      <a href="#" onclick="logoutUser(); return false;">
-        Logout
-      </a>
-    `;
-
-        if (customerMenu) {
-          customerMenu.innerHTML = loggedInMenu;
-        }
-
-        /* =========================================================
-       MOBILE MENU
-    ========================================================= */
-
-        const mobileLoggedInMenu = `
-      <a href="cart.html">
-        Cart
-        <span id="mobileCartCount" class="cart-count">0</span>
-      </a>
-
-      <a href="orders.html">
-        Orders
-      </a>
-
-      <a href="dashboard.html">
-        My Account
-      </a>
-
-      <a href="#" onclick="logoutUser(); return false;">
-        Logout
-      </a>
-    `;
-
-        if (mobileCustomerMenu) {
-          mobileCustomerMenu.innerHTML = mobileLoggedInMenu;
-        }
-
-        updateNavbarCartCount();
+      if (customerMenu) {
+        customerMenu.innerHTML =
+          loginMenu;
       }
 
-      /* =========================================================
+      if (mobileCustomerMenu) {
+        mobileCustomerMenu.innerHTML =
+          loginMenu;
+      }
+
+      return;
+    }
+
+
+    /* =====================================================
+       CHECK USER DATA
+    ===================================================== */
+
+    let user;
+
+    try {
+      user =
+        JSON.parse(storedUser);
+    } catch (error) {
+      console.error(
+        "Invalid user data"
+      );
+
+      localStorage.removeItem(
+        "isLoggedIn"
+      );
+
+      localStorage.removeItem(
+        "user"
+      );
+
+      localStorage.removeItem(
+        "token"
+      );
+
+      window.location.href =
+        "login.html";
+
+      return;
+    }
+
+
+    /* =====================================================
+       LOGGED-IN MENU
+    ===================================================== */
+
+    const loggedInMenu = `
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span
+          id="desktopCartCount"
+          class="cart-count"
+        >
+          0
+        </span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="dashboard.html">
+        <i class="bi bi-person-circle"></i>
+        My Account
+      </a>
+
+      <a
+        href="#"
+        onclick="logoutUser(); return false;"
+      >
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+      </a>
+    `;
+
+    if (customerMenu) {
+      customerMenu.innerHTML =
+        loggedInMenu;
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const mobileLoggedInMenu = `
+      <a href="cart.html">
+        <i class="bi bi-cart3"></i>
+        Cart
+        <span
+          id="mobileCartCount"
+          class="cart-count"
+        >
+          0
+        </span>
+      </a>
+
+      <a href="orders.html">
+        <i class="bi bi-box-seam"></i>
+        Orders
+      </a>
+
+      <a href="dashboard.html">
+        <i class="bi bi-person-circle"></i>
+        My Account
+      </a>
+
+      <a
+        href="#"
+        onclick="logoutUser(); return false;"
+      >
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+      </a>
+    `;
+
+    if (mobileCustomerMenu) {
+      mobileCustomerMenu.innerHTML =
+        mobileLoggedInMenu;
+    }
+
+    updateNavbarCartCount();
+  }
+
+
+  /* =========================================================
      LOGOUT
   ========================================================= */
 
-      function logoutUser() {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
+  function logoutUser() {
+    localStorage.removeItem(
+      "isLoggedIn"
+    );
 
-        window.location.href = "login.html";
-      }
+    localStorage.removeItem(
+      "user"
+    );
 
-      /* =========================================================
-     CART COUNT
+    localStorage.removeItem(
+      "token"
+    );
+
+    window.location.href =
+      "login.html";
+  }
+
+
+  /* =========================================================
+     NAVBAR CART COUNT
   ========================================================= */
 
-      function updateNavbarCartCount() {
-        let cart = [];
+  function updateNavbarCartCount() {
+    let totalQuantity = 0;
 
-        try {
-          cart = JSON.parse(localStorage.getItem("cart")) || [];
-        } catch (error) {
-          cart = [];
-        }
+    try {
+      const userData =
+        localStorage.getItem("user");
 
-        let totalQuantity = 0;
+      if (!userData) {
+        totalQuantity = 0;
+      } else {
+        const user =
+          JSON.parse(userData);
 
-        cart.forEach(function (item) {
-          totalQuantity += Number(item.quantity) || 0;
-        });
+        if (user && user.id) {
+          const cartKey =
+            "nandan_cart_user_" +
+            user.id;
 
-        const desktopCartCount = document.getElementById("desktopCartCount");
+          const cartData =
+            localStorage.getItem(
+              cartKey
+            );
 
-        const mobileCartCount = document.getElementById("mobileCartCount");
+          const cart =
+            cartData
+              ? JSON.parse(cartData)
+              : [];
 
-        if (desktopCartCount) {
-          desktopCartCount.textContent = totalQuantity;
-        }
-
-        if (mobileCartCount) {
-          mobileCartCount.textContent = totalQuantity;
+          if (Array.isArray(cart)) {
+            cart.forEach(
+              function (item) {
+                totalQuantity +=
+                  Number(
+                    item.quantity
+                  ) || 0;
+              }
+            );
+          }
         }
       }
 
-      /* =========================================================
+    } catch (error) {
+      console.error(
+        "Unable to read cart:",
+        error
+      );
+
+      totalQuantity = 0;
+    }
+
+
+    const desktopCartCount =
+      document.getElementById(
+        "desktopCartCount"
+      );
+
+    const mobileCartCount =
+      document.getElementById(
+        "mobileCartCount"
+      );
+
+    if (desktopCartCount) {
+      desktopCartCount.textContent =
+        totalQuantity;
+    }
+
+    if (mobileCartCount) {
+      mobileCartCount.textContent =
+        totalQuantity;
+    }
+  }
+
+
+  /* =========================================================
+     GET LOGGED-IN USER
+  ========================================================= */
+
+  function getLoggedInUser() {
+    try {
+      const userData =
+        localStorage.getItem("user");
+
+      if (!userData) {
+        return null;
+      }
+
+      const user =
+        JSON.parse(userData);
+
+      if (
+        !user ||
+        !user.id
+      ) {
+        return null;
+      }
+
+      return user;
+
+    } catch (error) {
+      console.error(
+        "Unable to read user:",
+        error
+      );
+
+      return null;
+    }
+  }
+
+
+  /* =========================================================
+     SHOW LOGIN REQUIRED
+  ========================================================= */
+
+  function showLoginRequired() {
+    const container =
+      document.getElementById(
+        "ordersContainer"
+      );
+
+    if (!container) {
+      return;
+    }
+
+    container.innerHTML = `
+      <div class="empty-orders">
+
+        <div class="empty-orders-icon">
+          <i class="bi bi-person-lock"></i>
+        </div>
+
+        <h2>
+          Please Login
+        </h2>
+
+        <p>
+          Please login to view your orders.
+        </p>
+
+        <a
+          href="login.html"
+          class="shop-button"
+        >
+          <i class="bi bi-person"></i>
+          Login
+        </a>
+
+      </div>
+    `;
+  }
+
+
+  /* =========================================================
+     SHOW NO ORDERS
+  ========================================================= */
+
+  function showNoOrders() {
+    const container =
+      document.getElementById(
+        "ordersContainer"
+      );
+
+    if (!container) {
+      return;
+    }
+
+    container.innerHTML = `
+
+      <div class="empty-orders">
+
+        <div class="empty-orders-icon">
+
+          <i class="bi bi-box-seam"></i>
+
+        </div>
+
+        <h2>
+          No Orders Yet
+        </h2>
+
+        <p>
+          You haven't placed any orders yet.
+        </p>
+
+        <a
+          href="products.html"
+          class="shop-button"
+        >
+
+          <i class="bi bi-cart3"></i>
+
+          Continue Shopping
+
+        </a>
+
+      </div>
+
+    `;
+  }
+
+
+  /* =========================================================
+     SHOW ERROR
+  ========================================================= */
+
+  function showOrdersError(message) {
+    const container =
+      document.getElementById(
+        "ordersContainer"
+      );
+
+    if (!container) {
+      return;
+    }
+
+    container.innerHTML = `
+
+      <div class="empty-orders">
+
+        <div class="empty-orders-icon">
+
+          <i class="bi bi-exclamation-triangle"></i>
+
+        </div>
+
+        <h2>
+          Unable to Load Orders
+        </h2>
+
+        <p>
+          ${message}
+        </p>
+
+        <button
+          type="button"
+          class="shop-button"
+          onclick="loadOrders()"
+        >
+
+          <i class="bi bi-arrow-clockwise"></i>
+
+          Try Again
+
+        </button>
+
+      </div>
+
+    `;
+  }
+
+
+  /* =========================================================
+     LOAD ORDERS FROM BACKEND
+  ========================================================= */
+
+  async function loadOrders() {
+
+    const container =
+      document.getElementById(
+        "ordersContainer"
+      );
+
+    if (!container) {
+      return;
+    }
+
+
+    /* =====================================================
+       LOGIN CHECK
+    ===================================================== */
+
+    const user =
+      getLoggedInUser();
+
+    const token =
+      localStorage.getItem("token");
+
+    if (
+      !user ||
+      !token
+    ) {
+      showLoginRequired();
+      return;
+    }
+
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
+
+    container.innerHTML = `
+
+      <div class="empty-orders">
+
+        <div class="empty-orders-icon">
+
+          <i class="bi bi-arrow-repeat"></i>
+
+        </div>
+
+        <h2>
+          Loading Orders...
+        </h2>
+
+        <p>
+          Please wait while we load your order history.
+        </p>
+
+      </div>
+
+    `;
+
+
+    try {
+
+      /* ===================================================
+         API REQUEST
+      =================================================== */
+
+      const response =
+        await fetch(
+          "https://nandanenterprises-razorpay-backend.vercel.app/api/orders",
+          {
+            method: "GET",
+
+            headers: {
+              "Authorization":
+                "Bearer " + token
+            }
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      console.log(
+        "Orders API Response:",
+        data
+      );
+
+
+      /* ===================================================
+         TOKEN EXPIRED / INVALID
+      =================================================== */
+
+      if (
+        response.status === 401
+      ) {
+
+        localStorage.removeItem(
+          "isLoggedIn"
+        );
+
+        localStorage.removeItem(
+          "user"
+        );
+
+        localStorage.removeItem(
+          "token"
+        );
+
+        alert(
+          "Your login session has expired. Please login again."
+        );
+
+        window.location.href =
+          "login.html";
+
+        return;
+      }
+
+
+      /* ===================================================
+         API ERROR
+      =================================================== */
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+          "Unable to load orders."
+        );
+      }
+
+
+      /* ===================================================
+         CHECK RESPONSE
+      =================================================== */
+
+      if (
+        !data.success ||
+        !Array.isArray(data.orders)
+      ) {
+        throw new Error(
+          "Invalid response received from server."
+        );
+      }
+
+
+      /* ===================================================
+         NO ORDERS
+      =================================================== */
+
+      if (
+        data.orders.length === 0
+      ) {
+        showNoOrders();
+        return;
+      }
+
+
+      /* ===================================================
+         DISPLAY ORDERS
+      =================================================== */
+
+      container.innerHTML = "";
+
+
+      data.orders.forEach(
+        function (order) {
+
+          const items =
+            Array.isArray(order.items)
+              ? order.items
+              : [];
+
+
+          let productsHTML = "";
+
+
+          /* =============================================
+             PRODUCTS
+          ============================================= */
+
+          items.forEach(
+            function (item) {
+
+              const quantity =
+                Number(
+                  item.quantity
+                ) || 1;
+
+              const price =
+                Number(
+                  item.price
+                ) || 0;
+
+              const itemTotal =
+                Number(
+                  item.subtotal
+                ) ||
+                (
+                  price *
+                  quantity
+                );
+
+
+              let imageHTML = "";
+
+
+              if (item.image) {
+
+                imageHTML = `
+
+                  <img
+                    src="${item.image}"
+                    class="product-image"
+                    alt="${item.product_name || "Product"}"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  >
+
+                  <div
+                    class="product-placeholder"
+                    style="display:none;"
+                  >
+                    <i class="bi bi-image"></i>
+                  </div>
+
+                `;
+
+              } else {
+
+                imageHTML = `
+
+                  <div class="product-placeholder">
+
+                    <i class="bi bi-image"></i>
+
+                  </div>
+
+                `;
+              }
+
+
+              productsHTML += `
+
+                <div class="order-product">
+
+                  ${imageHTML}
+
+                  <div class="product-details">
+
+                    <div class="product-name">
+
+                      ${item.product_name || "Product"}
+
+                    </div>
+
+                    <div class="product-quantity">
+
+                      Quantity: ${quantity}
+
+                      &nbsp; × &nbsp;
+
+                      ${formatCurrency(price)}
+
+                    </div>
+
+                  </div>
+
+                  <div class="product-price">
+
+                    ${formatCurrency(itemTotal)}
+
+                  </div>
+
+                </div>
+
+              `;
+            }
+          );
+
+
+          /* =============================================
+             PAYMENT STATUS
+          ============================================= */
+
+          const paymentStatus =
+            order.payment &&
+            order.payment.payment_status
+              ? order.payment.payment_status
+              : "Unknown";
+
+
+          let paymentClass =
+            "status-pending";
+
+
+          if (
+            paymentStatus.toLowerCase() ===
+            "paid"
+          ) {
+
+            paymentClass =
+              "status-paid";
+
+          } else if (
+            paymentStatus.toLowerCase() ===
+            "failed"
+          ) {
+
+            paymentClass =
+              "status-failed";
+          }
+
+
+          /* =============================================
+             PAYMENT ID
+          ============================================= */
+
+          const paymentId =
+            order.payment &&
+            order.payment.razorpay_payment_id
+              ? order.payment.razorpay_payment_id
+              : "N/A";
+
+
+          /* =============================================
+             ORDER STATUS
+          ============================================= */
+
+          const orderStatus =
+            order.order_status ||
+            "Order Placed";
+
+
+          /* =============================================
+             ORDER HTML
+          ============================================= */
+
+          const orderHTML = `
+
+            <div class="order-card">
+
+              <div class="order-header">
+
+                <div class="order-id">
+
+                  Order ID:
+
+                  <span>
+                    ${order.order_number || "N/A"}
+                  </span>
+
+                </div>
+
+                <div class="order-date">
+
+                  ${formatDate(
+                    order.created_at
+                  )}
+
+                </div>
+
+              </div>
+
+
+              <div class="order-body">
+
+                <div class="order-info">
+
+                  <div class="info-box">
+
+                    <span class="info-label">
+                      Payment Status
+                    </span>
+
+                    <span
+                      class="info-value ${paymentClass}"
+                    >
+
+                      ${paymentStatus}
+
+                    </span>
+
+                  </div>
+
+
+                  <div class="info-box">
+
+                    <span class="info-label">
+                      Order Status
+                    </span>
+
+                    <span class="info-value">
+
+                      ${orderStatus}
+
+                    </span>
+
+                  </div>
+
+
+                  <div class="info-box">
+
+                    <span class="info-label">
+                      Payment ID
+                    </span>
+
+                    <span class="info-value payment-id">
+
+                      ${paymentId}
+
+                    </span>
+
+                  </div>
+
+                </div>
+
+
+                <h3 class="products-title">
+
+                  Products Ordered
+
+                </h3>
+
+
+                ${
+                  productsHTML ||
+                  `
+                    <p style="
+                      color: var(--muted);
+                      font-size: 13px;
+                      padding: 15px 0;
+                    ">
+                      No product details available.
+                    </p>
+                  `
+                }
+
+
+              </div>
+
+
+              <div class="order-footer">
+
+                <div class="order-status">
+
+                  <i class="bi bi-check-circle-fill"></i>
+
+                  ${orderStatus}
+
+                </div>
+
+
+                <div class="total-box">
+
+                  <span class="total-label">
+
+                    Total:
+
+                  </span>
+
+                  <span class="total-amount">
+
+                    ${formatCurrency(
+                      order.total_amount
+                    )}
+
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          `;
+
+
+          container.insertAdjacentHTML(
+            "beforeend",
+            orderHTML
+          );
+
+        }
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Load Orders Error:",
+        error
+      );
+
+      showOrdersError(
+        error.message ||
+        "Something went wrong while loading your orders."
+      );
+    }
+  }
+
+
+  /* =========================================================
      INITIALIZE
   ========================================================= */
 
+  document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
       updateCustomerMenu();
-    </script>
+
+      updateNavbarCartCount();
+
+      loadOrders();
+
+    }
+  );
+</script>
   </body>
 </html>
