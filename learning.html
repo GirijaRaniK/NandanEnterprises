@@ -1,0 +1,2895 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Learning Materials | YOUR BRAND</title>
+
+    <meta
+      name="description"
+      content="Explore fun, engaging and educational learning kits, activity materials, puzzles, flash cards and creative learning resources for children."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Existing Site CSS - DO NOT CHANGE -->
+    <link rel="stylesheet" href="css/style1.css" />
+
+    <!-- Existing Cart JS -->
+    <script src="js/cart.js"></script>
+
+    <!-- =========================================================
+       LEARNING PAGE ONLY CSS
+       Does NOT modify style1.css
+  ========================================================== -->
+
+    <style>
+      /* =========================================================
+       LEARNING PAGE VARIABLES
+    ========================================================== */
+
+      .learning-page {
+        --learning-blue: #3b82f6;
+        --learning-blue-dark: #2563eb;
+        --learning-yellow: #fbbf24;
+        --learning-orange: #fb923c;
+        --learning-pink: #f472b6;
+        --learning-purple: #8b5cf6;
+        --learning-green: #22c55e;
+        --learning-cyan: #06b6d4;
+
+        --learning-bg: #f8fbff;
+        --learning-card: #ffffff;
+        --learning-text: #24324a;
+        --learning-muted: #64748b;
+
+        font-family: "Poppins", sans-serif;
+        background: var(--learning-bg);
+        color: var(--learning-text);
+        overflow: hidden;
+      }
+
+      /* =========================================================
+       HERO
+    ========================================================== */
+
+      .learning-hero {
+        position: relative;
+        padding: 75px 0 85px;
+        background:
+          radial-gradient(
+            circle at 8% 15%,
+            rgba(251, 191, 36, 0.2),
+            transparent 22%
+          ),
+          radial-gradient(
+            circle at 92% 15%,
+            rgba(139, 92, 246, 0.15),
+            transparent 25%
+          ),
+          linear-gradient(135deg, #eef7ff 0%, #fffaf0 100%);
+      }
+
+      .learning-hero::before {
+        content: "";
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.08);
+        top: -120px;
+        left: -100px;
+      }
+
+      .learning-hero::after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: rgba(244, 114, 182, 0.08);
+        right: -80px;
+        bottom: -100px;
+      }
+
+      .learning-hero-inner {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .learning-hero-content {
+        max-width: 650px;
+      }
+
+      .learning-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 9px 17px;
+        border-radius: 50px;
+        background: #fff;
+        color: var(--learning-blue);
+        font-size: 13px;
+        font-weight: 700;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.1);
+        margin-bottom: 22px;
+      }
+
+      .learning-badge i {
+        color: var(--learning-yellow);
+        font-size: 17px;
+      }
+
+      .learning-hero h1 {
+        margin: 0 0 18px;
+        font-family: "Baloo 2", cursive;
+        font-size: clamp(45px, 6vw, 74px);
+        line-height: 0.98;
+        font-weight: 800;
+        color: #1e3a5f;
+      }
+
+      .learning-hero h1 span {
+        color: var(--learning-blue);
+        position: relative;
+        display: inline-block;
+      }
+
+      .learning-hero h1 span::after {
+        content: "";
+        position: absolute;
+        height: 7px;
+        left: 4px;
+        right: 4px;
+        bottom: -2px;
+        border-radius: 20px;
+        background: var(--learning-yellow);
+        transform: rotate(-2deg);
+      }
+
+      .learning-hero-description {
+        max-width: 590px;
+        color: var(--learning-muted);
+        font-size: 17px;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .learning-hero-buttons {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .learning-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 14px 23px;
+        border-radius: 13px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.25s ease;
+      }
+
+      .learning-btn-primary {
+        background: var(--learning-blue);
+        color: #fff;
+        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.25);
+      }
+
+      .learning-btn-primary:hover {
+        background: var(--learning-blue-dark);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      .learning-btn-secondary {
+        background: #fff;
+        color: #334155;
+        border: 1px solid #e2e8f0;
+      }
+
+      .learning-btn-secondary:hover {
+        transform: translateY(-3px);
+        border-color: var(--learning-blue);
+        color: var(--learning-blue);
+      }
+
+      /* =========================================================
+       HERO ILLUSTRATION
+    ========================================================== */
+
+      .learning-hero-art {
+        position: relative;
+        min-height: 430px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .learning-art-board {
+        position: relative;
+        width: 390px;
+        height: 350px;
+        border-radius: 35px;
+        background: #fff;
+        box-shadow: 0 25px 60px rgba(30, 58, 95, 0.13);
+        transform: rotate(2deg);
+        border: 7px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .learning-art-board::before {
+        content: "";
+        position: absolute;
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        background: #dbeafe;
+        top: -35px;
+        right: -30px;
+      }
+
+      .learning-art-board::after {
+        content: "";
+        position: absolute;
+        width: 65px;
+        height: 65px;
+        border-radius: 20px;
+        background: #fef3c7;
+        bottom: -25px;
+        left: -28px;
+        transform: rotate(15deg);
+      }
+
+      .learning-board-top {
+        height: 65px;
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        border-radius: 27px 27px 0 0;
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        color: #fff;
+        font-family: "Baloo 2", cursive;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .learning-board-content {
+        padding: 25px;
+      }
+
+      .learning-alphabet {
+        display: flex;
+        justify-content: center;
+        gap: 13px;
+        margin-bottom: 28px;
+      }
+
+      .learning-letter {
+        width: 54px;
+        height: 54px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Baloo 2", cursive;
+        font-size: 28px;
+        font-weight: 800;
+        color: #fff;
+        transform: rotate(var(--rotation));
+      }
+
+      .learning-letter:nth-child(1) {
+        background: #fb7185;
+        --rotation: -5deg;
+      }
+
+      .learning-letter:nth-child(2) {
+        background: #22c55e;
+        --rotation: 4deg;
+      }
+
+      .learning-letter:nth-child(3) {
+        background: #f59e0b;
+        --rotation: -3deg;
+      }
+
+      .learning-letter:nth-child(4) {
+        background: #8b5cf6;
+        --rotation: 5deg;
+      }
+
+      .learning-board-lines {
+        display: grid;
+        gap: 13px;
+      }
+
+      .learning-board-line {
+        height: 12px;
+        border-radius: 10px;
+        background: #eef2f7;
+      }
+
+      .learning-board-line:nth-child(2) {
+        width: 75%;
+      }
+
+      .learning-board-line:nth-child(3) {
+        width: 90%;
+      }
+
+      .learning-board-line:nth-child(4) {
+        width: 62%;
+      }
+
+      .learning-floating {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        background: #fff;
+        padding: 12px 17px;
+        border-radius: 15px;
+        box-shadow: 0 12px 30px rgba(30, 58, 95, 0.12);
+        font-size: 13px;
+        font-weight: 700;
+        z-index: 5;
+      }
+
+      .learning-floating i {
+        font-size: 21px;
+      }
+
+      .learning-floating.one {
+        top: 40px;
+        left: 5px;
+        color: #16a34a;
+        transform: rotate(-5deg);
+      }
+
+      .learning-floating.two {
+        right: 0;
+        bottom: 50px;
+        color: #8b5cf6;
+        transform: rotate(4deg);
+      }
+
+      .learning-floating.three {
+        bottom: 0;
+        left: 50px;
+        color: #f59e0b;
+        transform: rotate(-3deg);
+      }
+
+      /* =========================================================
+       QUICK BENEFITS
+    ========================================================== */
+
+      .learning-benefits {
+        margin-top: -35px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .learning-benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: #fff;
+        border-radius: 22px;
+        box-shadow: 0 15px 45px rgba(30, 58, 95, 0.1);
+        overflow: hidden;
+      }
+
+      .learning-benefit {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 23px 22px;
+        border-right: 1px solid #edf1f5;
+      }
+
+      .learning-benefit:last-child {
+        border-right: none;
+      }
+
+      .learning-benefit-icon {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+      }
+
+      .learning-benefit:nth-child(1) .learning-benefit-icon {
+        background: #dbeafe;
+        color: #2563eb;
+      }
+
+      .learning-benefit:nth-child(2) .learning-benefit-icon {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+
+      .learning-benefit:nth-child(3) .learning-benefit-icon {
+        background: #fef3c7;
+        color: #d97706;
+      }
+
+      .learning-benefit:nth-child(4) .learning-benefit-icon {
+        background: #fce7f3;
+        color: #db2777;
+      }
+
+      .learning-benefit strong {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 3px;
+      }
+
+      .learning-benefit span {
+        color: var(--learning-muted);
+        font-size: 12px;
+      }
+
+      /* =========================================================
+       COMMON SECTION
+    ========================================================== */
+
+      .learning-section {
+        padding: 85px 0;
+      }
+
+      .learning-section-soft {
+        background: #fff;
+      }
+
+      .learning-heading {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 45px;
+      }
+
+      .learning-heading .small-title {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--learning-blue);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+      }
+
+      .learning-heading h2 {
+        margin: 0 0 12px;
+        font-family: "Baloo 2", cursive;
+        font-size: clamp(34px, 4vw, 48px);
+        line-height: 1.1;
+        color: #1e3a5f;
+      }
+
+      .learning-heading p {
+        margin: 0;
+        color: var(--learning-muted);
+        line-height: 1.7;
+        font-size: 15px;
+      }
+
+      /* =========================================================
+       CATEGORY CARDS
+    ========================================================== */
+
+      .learning-category-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 18px;
+      }
+
+      .learning-category {
+        position: relative;
+        padding: 25px 15px;
+        border-radius: 20px;
+        text-align: center;
+        text-decoration: none;
+        background: #fff;
+        border: 1px solid #edf1f5;
+        transition: 0.3s ease;
+        overflow: hidden;
+      }
+
+      .learning-category::before {
+        content: "";
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: var(--category-bg);
+        top: -30px;
+        right: -25px;
+        opacity: 0.6;
+      }
+
+      .learning-category:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 15px 35px rgba(30, 58, 95, 0.1);
+      }
+
+      .learning-category-icon {
+        position: relative;
+        width: 62px;
+        height: 62px;
+        margin: 0 auto 15px;
+        border-radius: 18px;
+        background: var(--category-bg);
+        color: var(--category-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+      }
+
+      .learning-category strong {
+        position: relative;
+        display: block;
+        color: #334155;
+        font-family: "Baloo 2", cursive;
+        font-size: 18px;
+      }
+
+      .learning-category span {
+        position: relative;
+        display: block;
+        margin-top: 3px;
+        font-size: 11px;
+        color: var(--learning-muted);
+      }
+
+      .learning-category:nth-child(1) {
+        --category-bg: #dbeafe;
+        --category-color: #2563eb;
+      }
+
+      .learning-category:nth-child(2) {
+        --category-bg: #fef3c7;
+        --category-color: #d97706;
+      }
+
+      .learning-category:nth-child(3) {
+        --category-bg: #dcfce7;
+        --category-color: #16a34a;
+      }
+
+      .learning-category:nth-child(4) {
+        --category-bg: #fce7f3;
+        --category-color: #db2777;
+      }
+
+      .learning-category:nth-child(5) {
+        --category-bg: #ede9fe;
+        --category-color: #7c3aed;
+      }
+
+      .learning-category:nth-child(6) {
+        --category-bg: #cffafe;
+        --category-color: #0891b2;
+      }
+
+      /* =========================================================
+       AGE GROUP
+    ========================================================== */
+
+      .learning-age-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 45px;
+        align-items: center;
+      }
+
+      .learning-age-intro h2 {
+        margin: 0 0 15px;
+        font-family: "Baloo 2", cursive;
+        font-size: 43px;
+        line-height: 1.05;
+        color: #1e3a5f;
+      }
+
+      .learning-age-intro p {
+        color: var(--learning-muted);
+        line-height: 1.8;
+        font-size: 15px;
+        margin-bottom: 24px;
+      }
+
+      .learning-age-note {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+        color: #475569;
+        font-weight: 600;
+      }
+
+      .learning-age-note i {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #fef3c7;
+        color: #d97706;
+        font-size: 19px;
+      }
+
+      .learning-age-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .learning-age-card {
+        position: relative;
+        min-height: 155px;
+        padding: 24px;
+        border-radius: 22px;
+        overflow: hidden;
+        transition: 0.3s ease;
+      }
+
+      .learning-age-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .learning-age-card:nth-child(1) {
+        background: #e0f2fe;
+      }
+
+      .learning-age-card:nth-child(2) {
+        background: #fef3c7;
+      }
+
+      .learning-age-card:nth-child(3) {
+        background: #dcfce7;
+      }
+
+      .learning-age-card:nth-child(4) {
+        background: #ede9fe;
+      }
+
+      .learning-age-number {
+        position: absolute;
+        right: 16px;
+        bottom: -15px;
+        font-family: "Baloo 2", cursive;
+        font-size: 80px;
+        line-height: 1;
+        font-weight: 800;
+        opacity: 0.09;
+      }
+
+      .learning-age-card i {
+        font-size: 25px;
+        color: #334155;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .learning-age-card strong {
+        display: block;
+        font-family: "Baloo 2", cursive;
+        font-size: 24px;
+        color: #1e3a5f;
+      }
+
+      .learning-age-card span {
+        font-size: 12px;
+        color: #64748b;
+      }
+
+      /* =========================================================
+       FEATURED PRODUCTS
+    ========================================================== */
+
+      .learning-products-section {
+        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+      }
+
+      .learning-product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+      }
+
+      .learning-product-card {
+        background: #fff;
+        border: 1px solid #e8eef5;
+        border-radius: 25px;
+        overflow: hidden;
+        transition: 0.3s ease;
+        box-shadow: 0 7px 25px rgba(30, 58, 95, 0.05);
+      }
+
+      .learning-product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 45px rgba(30, 58, 95, 0.12);
+      }
+
+      .learning-product-image {
+        height: 210px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .learning-product-card:nth-child(1) .learning-product-image {
+        background: #eff6ff;
+      }
+
+      .learning-product-card:nth-child(2) .learning-product-image {
+        background: #fefce8;
+      }
+
+      .learning-product-card:nth-child(3) .learning-product-image {
+        background: #f0fdf4;
+      }
+
+      .learning-product-card:nth-child(4) .learning-product-image {
+        background: #faf5ff;
+      }
+
+      .learning-product-card:nth-child(5) .learning-product-image {
+        background: #fff1f2;
+      }
+
+      .learning-product-card:nth-child(6) .learning-product-image {
+        background: #ecfeff;
+      }
+
+      .learning-product-image i {
+        font-size: 85px;
+        color: #3b82f6;
+        opacity: 0.8;
+      }
+
+      .learning-product-card:nth-child(2) .learning-product-image i {
+        color: #eab308;
+      }
+
+      .learning-product-card:nth-child(3) .learning-product-image i {
+        color: #22c55e;
+      }
+
+      .learning-product-card:nth-child(4) .learning-product-image i {
+        color: #8b5cf6;
+      }
+
+      .learning-product-card:nth-child(5) .learning-product-image i {
+        color: #f43f5e;
+      }
+
+      .learning-product-card:nth-child(6) .learning-product-image i {
+        color: #06b6d4;
+      }
+
+      .learning-product-tag {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        padding: 6px 11px;
+        background: #fff;
+        border-radius: 30px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #475569;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+      }
+
+      .learning-product-body {
+        padding: 22px;
+      }
+
+      .learning-product-body h3 {
+        margin: 0 0 7px;
+        font-family: "Baloo 2", cursive;
+        font-size: 22px;
+        line-height: 1.15;
+        color: #1e3a5f;
+      }
+
+      .learning-product-description {
+        min-height: 44px;
+        color: var(--learning-muted);
+        font-size: 12px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .learning-product-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .learning-product-price {
+        font-family: "Baloo 2", cursive;
+        font-size: 25px;
+        font-weight: 800;
+        color: #1e3a5f;
+      }
+
+      .learning-product-price small {
+        display: block;
+        font-family: "Poppins", sans-serif;
+        color: #94a3b8;
+        font-size: 9px;
+        font-weight: 500;
+      }
+
+      .learning-quantity {
+        display: flex;
+        align-items: center;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .learning-quantity button {
+        width: 29px;
+        height: 32px;
+        border: none;
+        background: #f8fafc;
+        cursor: pointer;
+        color: #475569;
+        font-size: 15px;
+      }
+
+      .learning-quantity button:hover {
+        background: #e2e8f0;
+      }
+
+      .learning-quantity input {
+        width: 30px;
+        height: 32px;
+        border: none;
+        border-left: 1px solid #e2e8f0;
+        border-right: 1px solid #e2e8f0;
+        text-align: center;
+        font-weight: 600;
+        outline: none;
+        font-size: 12px;
+      }
+
+      .learning-add-btn {
+        width: 100%;
+        margin-top: 17px;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: #1e3a5f;
+        color: #fff;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        transition: 0.25s ease;
+      }
+
+      .learning-add-btn:hover {
+        background: var(--learning-blue);
+        transform: translateY(-2px);
+      }
+
+      .learning-add-btn i {
+        margin-right: 6px;
+      }
+
+      /* =========================================================
+       LEARNING JOURNEY
+    ========================================================== */
+
+      .learning-journey {
+        background: #fff;
+      }
+
+      .learning-journey-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+
+      .learning-journey-grid::before {
+        content: "";
+        position: absolute;
+        top: 55px;
+        left: 17%;
+        right: 17%;
+        border-top: 2px dashed #dbe5ef;
+        z-index: 0;
+      }
+
+      .learning-step {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .learning-step-icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        border: 8px solid #fff;
+        box-shadow: 0 10px 30px rgba(30, 58, 95, 0.1);
+      }
+
+      .learning-step:nth-child(1) .learning-step-icon {
+        background: #dbeafe;
+        color: #2563eb;
+      }
+
+      .learning-step:nth-child(2) .learning-step-icon {
+        background: #fef3c7;
+        color: #d97706;
+      }
+
+      .learning-step:nth-child(3) .learning-step-icon {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+
+      .learning-step h3 {
+        margin: 0 0 7px;
+        font-family: "Baloo 2", cursive;
+        font-size: 25px;
+        color: #1e3a5f;
+      }
+
+      .learning-step p {
+        max-width: 280px;
+        margin: auto;
+        color: var(--learning-muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      /* =========================================================
+       PARENTS / SCHOOLS
+    ========================================================== */
+
+      .learning-support {
+        background: #f8fbff;
+      }
+
+      .learning-support-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .learning-support-card {
+        position: relative;
+        padding: 38px;
+        border-radius: 28px;
+        overflow: hidden;
+        min-height: 290px;
+      }
+
+      .learning-support-card.parents {
+        background: linear-gradient(135deg, #fff7ed, #fff);
+        border: 1px solid #fed7aa;
+      }
+
+      .learning-support-card.schools {
+        background: linear-gradient(135deg, #eff6ff, #fff);
+        border: 1px solid #bfdbfe;
+      }
+
+      .learning-support-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 27px;
+        margin-bottom: 18px;
+      }
+
+      .parents .learning-support-icon {
+        background: #ffedd5;
+        color: #ea580c;
+      }
+
+      .schools .learning-support-icon {
+        background: #dbeafe;
+        color: #2563eb;
+      }
+
+      .learning-support-card h3 {
+        margin: 0 0 10px;
+        font-family: "Baloo 2", cursive;
+        font-size: 30px;
+        color: #1e3a5f;
+      }
+
+      .learning-support-card p {
+        max-width: 470px;
+        color: var(--learning-muted);
+        line-height: 1.7;
+        font-size: 13px;
+        margin-bottom: 18px;
+      }
+
+      .learning-support-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: grid;
+        gap: 8px;
+      }
+
+      .learning-support-list li {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        color: #475569;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .learning-support-list i {
+        color: #22c55e;
+        font-size: 16px;
+      }
+
+      .learning-support-decoration {
+        position: absolute;
+        right: -35px;
+        bottom: -45px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        opacity: 0.5;
+      }
+
+      .parents .learning-support-decoration {
+        background: #fed7aa;
+      }
+
+      .schools .learning-support-decoration {
+        background: #bfdbfe;
+      }
+
+      /* =========================================================
+       MINI TESTIMONIAL / TRUST
+    ========================================================== */
+
+      .learning-trust {
+        padding: 70px 0;
+        background: #fff;
+      }
+
+      .learning-trust-box {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: center;
+        gap: 45px;
+        padding: 40px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, #1e3a5f, #315b89);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .learning-trust-box::after {
+        content: "";
+        position: absolute;
+        width: 230px;
+        height: 230px;
+        border-radius: 50%;
+        right: -80px;
+        top: -100px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .learning-trust-title {
+        position: relative;
+        z-index: 2;
+      }
+
+      .learning-trust-title span {
+        color: #fbbf24;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .learning-trust-title h2 {
+        margin: 7px 0 0;
+        font-family: "Baloo 2", cursive;
+        font-size: 38px;
+        line-height: 1.05;
+      }
+
+      .learning-trust-points {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+
+      .learning-trust-point {
+        padding: 20px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.09);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .learning-trust-point i {
+        font-size: 25px;
+        color: #fbbf24;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .learning-trust-point strong {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+
+      .learning-trust-point span {
+        display: block;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      /* =========================================================
+       FINAL CTA
+    ========================================================== */
+
+      .learning-final {
+        padding: 85px 0;
+        background:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.22),
+            transparent 18%
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(255, 255, 255, 0.18),
+            transparent 18%
+          ),
+          linear-gradient(135deg, #3b82f6, #7c3aed);
+        color: #fff;
+        text-align: center;
+        position: relative;
+      }
+
+      .learning-final h2 {
+        margin: 0 0 10px;
+        font-family: "Baloo 2", cursive;
+        font-size: clamp(38px, 5vw, 55px);
+        line-height: 1;
+      }
+
+      .learning-final p {
+        max-width: 650px;
+        margin: 0 auto 25px;
+        color: rgba(255, 255, 255, 0.86);
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      .learning-final .learning-btn {
+        background: #fff;
+        color: #315b89;
+      }
+
+      .learning-final .learning-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      /* =========================================================
+       RESPONSIVE
+    ========================================================== */
+
+      @media (max-width: 1100px) {
+        .learning-category-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .learning-benefit-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .learning-benefit:nth-child(2) {
+          border-right: none;
+        }
+
+        .learning-benefit:nth-child(-n + 2) {
+          border-bottom: 1px solid #edf1f5;
+        }
+
+        .learning-product-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .learning-age-wrapper {
+          grid-template-columns: 1fr;
+        }
+
+        .learning-age-intro {
+          text-align: center;
+          max-width: 650px;
+          margin: auto;
+        }
+
+        .learning-age-note {
+          justify-content: center;
+        }
+
+        .learning-trust-box {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .learning-hero {
+          padding: 55px 0 70px;
+        }
+
+        .learning-hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .learning-hero-content {
+          margin: auto;
+        }
+
+        .learning-hero-buttons {
+          justify-content: center;
+        }
+
+        .learning-hero-art {
+          min-height: 390px;
+        }
+
+        .learning-support-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .learning-journey-grid {
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
+
+        .learning-journey-grid::before {
+          display: none;
+        }
+
+        .learning-trust-points {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .learning-section {
+          padding: 60px 0;
+        }
+
+        .learning-benefit-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .learning-benefit {
+          border-right: none !important;
+          border-bottom: 1px solid #edf1f5;
+        }
+
+        .learning-benefit:last-child {
+          border-bottom: none;
+        }
+
+        .learning-category-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .learning-product-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .learning-age-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .learning-art-board {
+          width: 320px;
+          height: 300px;
+        }
+
+        .learning-floating {
+          font-size: 10px;
+          padding: 9px 12px;
+        }
+
+        .learning-floating.one {
+          left: -5px;
+        }
+
+        .learning-floating.two {
+          right: -5px;
+        }
+
+        .learning-floating.three {
+          left: 15px;
+        }
+
+        .learning-alphabet {
+          gap: 7px;
+        }
+
+        .learning-letter {
+          width: 45px;
+          height: 45px;
+          font-size: 23px;
+        }
+
+        .learning-board-content {
+          padding: 18px;
+        }
+
+        .learning-support-card {
+          padding: 28px;
+        }
+
+        .learning-trust-box {
+          padding: 30px 22px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .learning-category-grid {
+          gap: 10px;
+        }
+
+        .learning-category {
+          padding: 20px 8px;
+        }
+
+        .learning-hero h1 {
+          font-size: 42px;
+        }
+
+        .learning-hero-description {
+          font-size: 14px;
+        }
+
+        .learning-art-board {
+          width: 285px;
+          height: 275px;
+        }
+
+        .learning-floating.one {
+          left: -15px;
+        }
+
+        .learning-floating.two {
+          right: -15px;
+        }
+
+        .learning-trust-title h2 {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+       TOP BAR
+    ========================================================= -->
+
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div>
+          <i class="bi bi-truck"></i>
+          Bulk orders available for schools & institutions
+        </div>
+
+        <div class="top-links">
+          <a href="mailto:sales@yourdomain.com">
+            <i class="bi bi-envelope"></i>
+            sales@yourdomain.com
+          </a>
+
+          <a href="tel:+919876543210">
+            <i class="bi bi-telephone"></i>
+            +91 9177670168
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+     HEADER
+    ========================================================= -->
+
+    <header class="main-header">
+      <div class="container navbar">
+        <a href="index.html" class="logo">
+          <img src="images/logo.png" alt="YOUR BRAND" />
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index.html"> Home </a>
+
+          <a href="products.html"> Products </a>
+
+          <a href="learning.html" class="active"> Learning </a>
+
+          <a href="custom-printing.html"> Custom Printing </a>
+
+          <a href="bulk-orders.html"> Bulk Orders </a>
+
+          <a href="about.html"> About Us </a>
+
+          <a href="contact.html"> Contact </a>
+
+          <!-- =====================================================
+              CUSTOMER MENU
+              JavaScript will show:
+              
+              BEFORE LOGIN:
+              Login | Register
+
+              AFTER LOGIN:
+              Cart | Orders | My Account | Logout
+          ====================================================== -->
+
+          <div id="customerMenu" class="customer-menu"></div>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            href="https://wa.me/919177670168"
+            target="_blank"
+            class="whatsapp-button"
+          >
+            <i class="bi bi-whatsapp"></i>
+            <span>WhatsApp</span>
+          </a>
+
+          <button
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Open Menu"
+          >
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html"> Home </a>
+
+      <a href="products.html"> Products </a>
+
+      <a href="learning.html" class="active"> Learning </a>
+
+      <a href="custom-printing.html"> Custom Printing </a>
+
+      <a href="bulk-orders.html"> Bulk Orders </a>
+
+      <a href="about.html"> About Us </a>
+
+      <a href="contact.html"> Contact </a>
+
+      <!-- Dynamic customer menu -->
+
+      <div id="mobileCustomerMenu"></div>
+    </div>
+
+    <!-- =========================================================
+       NEW LEARNING PAGE STARTS HERE
+  ========================================================== -->
+
+    <main class="learning-page">
+      <!-- =======================================================
+         HERO
+    ======================================================== -->
+
+      <section class="learning-hero">
+        <div class="container learning-hero-inner">
+          <div class="learning-hero-content">
+            <div class="learning-badge">
+              <i class="bi bi-stars"></i>
+              Fun Learning Starts Here
+            </div>
+
+            <h1>
+              Little Minds.<br />
+              <span>Big Discoveries.</span>
+            </h1>
+
+            <p class="learning-hero-description">
+              Discover colourful learning kits, activity materials, puzzles,
+              flash cards and creative resources designed to make learning
+              enjoyable for children.
+            </p>
+
+            <div class="learning-hero-buttons">
+              <a
+                href="#learning-products"
+                class="learning-btn learning-btn-primary"
+              >
+                Explore Learning Kits
+                <i class="bi bi-arrow-right"></i>
+              </a>
+
+              <a
+                href="#learning-categories"
+                class="learning-btn learning-btn-secondary"
+              >
+                <i class="bi bi-grid"></i>
+                Explore Categories
+              </a>
+            </div>
+          </div>
+
+          <!-- Educational Illustration -->
+
+          <div class="learning-hero-art">
+            <div class="learning-art-board">
+              <div class="learning-board-top">
+                <i class="bi bi-lightbulb me-2"></i>
+                Today's Learning
+              </div>
+
+              <div class="learning-board-content">
+                <div class="learning-alphabet">
+                  <div class="learning-letter">A</div>
+                  <div class="learning-letter">B</div>
+                  <div class="learning-letter">C</div>
+                  <div class="learning-letter">D</div>
+                </div>
+
+                <div class="learning-board-lines">
+                  <div class="learning-board-line"></div>
+                  <div class="learning-board-line"></div>
+                  <div class="learning-board-line"></div>
+                  <div class="learning-board-line"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="learning-floating one">
+              <i class="bi bi-check-circle-fill"></i>
+              Learn & Grow
+            </div>
+
+            <div class="learning-floating two">
+              <i class="bi bi-puzzle-fill"></i>
+              Play & Discover
+            </div>
+
+            <div class="learning-floating three">
+              <i class="bi bi-pencil-fill"></i>
+              Create
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         BENEFITS
+    ======================================================== -->
+
+      <section class="learning-benefits">
+        <div class="container">
+          <div class="learning-benefit-grid">
+            <div class="learning-benefit">
+              <div class="learning-benefit-icon">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+
+              <div>
+                <strong>Build Curiosity</strong>
+                <span>Encourage children to explore</span>
+              </div>
+            </div>
+
+            <div class="learning-benefit">
+              <div class="learning-benefit-icon">
+                <i class="bi bi-puzzle"></i>
+              </div>
+
+              <div>
+                <strong>Learn Through Play</strong>
+                <span>Fun activities children enjoy</span>
+              </div>
+            </div>
+
+            <div class="learning-benefit">
+              <div class="learning-benefit-icon">
+                <i class="bi bi-pencil-square"></i>
+              </div>
+
+              <div>
+                <strong>Practice Skills</strong>
+                <span>Strengthen everyday learning</span>
+              </div>
+            </div>
+
+            <div class="learning-benefit">
+              <div class="learning-benefit-icon">
+                <i class="bi bi-heart"></i>
+              </div>
+
+              <div>
+                <strong>Grow Confidently</strong>
+                <span>Support independent learning</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         CATEGORIES
+    ======================================================== -->
+
+      <section class="learning-section" id="learning-categories">
+        <div class="container">
+          <div class="learning-heading">
+            <span class="small-title"> Explore & Learn </span>
+
+            <h2>What Are You Looking For?</h2>
+
+            <p>
+              Choose learning resources based on your child's interests and
+              learning needs.
+            </p>
+          </div>
+
+          <div class="learning-category-grid">
+            <a href="products.html?category=english" class="learning-category">
+              <div class="learning-category-icon">
+                <i class="bi bi-book"></i>
+              </div>
+
+              <strong>Reading & English</strong>
+              <span>Words • Stories • Phonics</span>
+            </a>
+
+            <a href="products.html?category=maths" class="learning-category">
+              <div class="learning-category-icon">
+                <i class="bi bi-calculator"></i>
+              </div>
+
+              <strong>Maths</strong>
+              <span>Numbers • Logic • Practice</span>
+            </a>
+
+            <a href="products.html?category=science" class="learning-category">
+              <div class="learning-category-icon">
+                <i class="bi bi-beaker"></i>
+              </div>
+
+              <strong>Science</strong>
+              <span>Explore • Discover • Experiment</span>
+            </a>
+
+            <a href="products.html?category=art" class="learning-category">
+              <div class="learning-category-icon">
+                <i class="bi bi-palette"></i>
+              </div>
+
+              <strong>Art & Creativity</strong>
+              <span>Draw • Make • Create</span>
+            </a>
+
+            <a href="products.html?category=puzzles" class="learning-category">
+              <div class="learning-category-icon">
+                <i class="bi bi-puzzle"></i>
+              </div>
+
+              <strong>Puzzles & Games</strong>
+              <span>Think • Solve • Play</span>
+            </a>
+
+            <a
+              href="products.html?category=flashcards"
+              class="learning-category"
+            >
+              <div class="learning-category-icon">
+                <i class="bi bi-card-heading"></i>
+              </div>
+
+              <strong>Flash Cards</strong>
+              <span>Quick • Visual • Fun</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         AGE GROUPS
+    ======================================================== -->
+
+      <section class="learning-section learning-section-soft">
+        <div class="container">
+          <div class="learning-age-wrapper">
+            <div class="learning-age-intro">
+              <span class="learning-heading small-title">
+                Choose Their Stage
+              </span>
+
+              <h2>Learning That Grows With Them</h2>
+
+              <p>
+                Every child learns differently. Find resources that match their
+                age, interests and stage of development.
+              </p>
+
+              <div class="learning-age-note">
+                <i class="bi bi-person-check"></i>
+
+                Age-appropriate resources for confident learning
+              </div>
+            </div>
+
+            <div class="learning-age-grid">
+              <a
+                href="products.html?age=3-5"
+                class="learning-age-card"
+                style="text-decoration: none"
+              >
+                <i class="bi bi-balloon"></i>
+
+                <strong>3–5 Years</strong>
+
+                <span> Early learning & discovery </span>
+
+                <div class="learning-age-number">3</div>
+              </a>
+
+              <a
+                href="products.html?age=5-7"
+                class="learning-age-card"
+                style="text-decoration: none"
+              >
+                <i class="bi bi-pencil"></i>
+
+                <strong>5–7 Years</strong>
+
+                <span> Reading, writing & numbers </span>
+
+                <div class="learning-age-number">5</div>
+              </a>
+
+              <a
+                href="products.html?age=8-10"
+                class="learning-age-card"
+                style="text-decoration: none"
+              >
+                <i class="bi bi-lightbulb"></i>
+
+                <strong>8–10 Years</strong>
+
+                <span> Skills, puzzles & creativity </span>
+
+                <div class="learning-age-number">8</div>
+              </a>
+
+              <a
+                href="products.html?age=11-13"
+                class="learning-age-card"
+                style="text-decoration: none"
+              >
+                <i class="bi bi-stars"></i>
+
+                <strong>11–13 Years</strong>
+
+                <span> Explore, think & create </span>
+
+                <div class="learning-age-number">11</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         FEATURED PRODUCTS
+    ======================================================== -->
+
+      <section
+        class="learning-section learning-products-section"
+        id="learning-products"
+      >
+        <div class="container">
+          <div class="learning-heading">
+            <span class="small-title"> Learning Essentials </span>
+
+            <h2>Featured Learning Kits</h2>
+
+            <p>
+              Carefully selected learning materials that combine education,
+              creativity and fun.
+            </p>
+          </div>
+
+          <div class="learning-product-grid">
+            <!-- PRODUCT 1 -->
+
+            <article class="learning-product-card">
+              <div class="learning-product-image">
+                <span class="learning-product-tag"> POPULAR </span>
+
+                <i class="bi bi-alphabet-uppercase"></i>
+              </div>
+
+              <div class="learning-product-body">
+                <h3>Alphabet & Phonics Learning Kit</h3>
+
+                <p class="learning-product-description">
+                  Fun alphabet activities, phonics practice and early reading
+                  exercises.
+                </p>
+
+                <div class="learning-product-bottom">
+                  <div class="learning-product-price">
+                    ₹399
+                    <small>Sample price</small>
+                  </div>
+
+                  <div class="learning-quantity">
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-001', -1)"
+                    >
+                      −
+                    </button>
+
+                    <input
+                      type="number"
+                      id="qty-learning-001"
+                      value="1"
+                      min="1"
+                      max="20"
+                    />
+
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-001', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="learning-add-btn"
+                  onclick="
+                    addLearningProduct(
+                      'learning-001',
+                      'Alphabet & Phonics Learning Kit',
+                      399,
+                    )
+                  "
+                >
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- PRODUCT 2 -->
+
+            <article class="learning-product-card">
+              <div class="learning-product-image">
+                <span class="learning-product-tag"> NEW </span>
+
+                <i class="bi bi-book-half"></i>
+              </div>
+
+              <div class="learning-product-body">
+                <h3>English Reading & Writing Kit</h3>
+
+                <p class="learning-product-description">
+                  Reading exercises, vocabulary activities and handwriting
+                  practice.
+                </p>
+
+                <div class="learning-product-bottom">
+                  <div class="learning-product-price">
+                    ₹499
+                    <small>Sample price</small>
+                  </div>
+
+                  <div class="learning-quantity">
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-002', -1)"
+                    >
+                      −
+                    </button>
+
+                    <input
+                      type="number"
+                      id="qty-learning-002"
+                      value="1"
+                      min="1"
+                      max="20"
+                    />
+
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-002', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="learning-add-btn"
+                  onclick="
+                    addLearningProduct(
+                      'learning-002',
+                      'English Reading & Writing Kit',
+                      499,
+                    )
+                  "
+                >
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- PRODUCT 3 -->
+
+            <article class="learning-product-card">
+              <div class="learning-product-image">
+                <span class="learning-product-tag"> BEST VALUE </span>
+
+                <i class="bi bi-calculator"></i>
+              </div>
+
+              <div class="learning-product-body">
+                <h3>Maths Activity Kit</h3>
+
+                <p class="learning-product-description">
+                  Number games, counting activities and logical thinking
+                  exercises.
+                </p>
+
+                <div class="learning-product-bottom">
+                  <div class="learning-product-price">
+                    ₹599
+                    <small>Sample price</small>
+                  </div>
+
+                  <div class="learning-quantity">
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-003', -1)"
+                    >
+                      −
+                    </button>
+
+                    <input
+                      type="number"
+                      id="qty-learning-003"
+                      value="1"
+                      min="1"
+                      max="20"
+                    />
+
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-003', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="learning-add-btn"
+                  onclick="
+                    addLearningProduct(
+                      'learning-003',
+                      'Maths Activity Kit',
+                      599,
+                    )
+                  "
+                >
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- PRODUCT 4 -->
+
+            <article class="learning-product-card">
+              <div class="learning-product-image">
+                <i class="bi bi-beaker"></i>
+              </div>
+
+              <div class="learning-product-body">
+                <h3>Science Discovery Kit</h3>
+
+                <p class="learning-product-description">
+                  Simple science activities that encourage observation and
+                  curiosity.
+                </p>
+
+                <div class="learning-product-bottom">
+                  <div class="learning-product-price">
+                    ₹699
+                    <small>Sample price</small>
+                  </div>
+
+                  <div class="learning-quantity">
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-004', -1)"
+                    >
+                      −
+                    </button>
+
+                    <input
+                      type="number"
+                      id="qty-learning-004"
+                      value="1"
+                      min="1"
+                      max="20"
+                    />
+
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-004', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="learning-add-btn"
+                  onclick="
+                    addLearningProduct(
+                      'learning-004',
+                      'Science Discovery Kit',
+                      699,
+                    )
+                  "
+                >
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- PRODUCT 5 -->
+
+            <article class="learning-product-card">
+              <div class="learning-product-image">
+                <i class="bi bi-palette"></i>
+              </div>
+
+              <div class="learning-product-body">
+                <h3>Creative Art & Craft Kit</h3>
+
+                <p class="learning-product-description">
+                  Creative activities that help children express ideas and
+                  imagination.
+                </p>
+
+                <div class="learning-product-bottom">
+                  <div class="learning-product-price">
+                    ₹449
+                    <small>Sample price</small>
+                  </div>
+
+                  <div class="learning-quantity">
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-005', -1)"
+                    >
+                      −
+                    </button>
+
+                    <input
+                      type="number"
+                      id="qty-learning-005"
+                      value="1"
+                      min="1"
+                      max="20"
+                    />
+
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-005', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="learning-add-btn"
+                  onclick="
+                    addLearningProduct(
+                      'learning-005',
+                      'Creative Art & Craft Kit',
+                      449,
+                    )
+                  "
+                >
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </article>
+
+            <!-- PRODUCT 6 -->
+
+            <article class="learning-product-card">
+              <div class="learning-product-image">
+                <i class="bi bi-puzzle"></i>
+              </div>
+
+              <div class="learning-product-body">
+                <h3>Puzzle & Activity Pack</h3>
+
+                <p class="learning-product-description">
+                  Brain games, puzzles and fun activities for developing
+                  problem-solving skills.
+                </p>
+
+                <div class="learning-product-bottom">
+                  <div class="learning-product-price">
+                    ₹349
+                    <small>Sample price</small>
+                  </div>
+
+                  <div class="learning-quantity">
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-006', -1)"
+                    >
+                      −
+                    </button>
+
+                    <input
+                      type="number"
+                      id="qty-learning-006"
+                      value="1"
+                      min="1"
+                      max="20"
+                    />
+
+                    <button
+                      type="button"
+                      onclick="changeLearningQty('learning-006', 1)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  class="learning-add-btn"
+                  onclick="
+                    addLearningProduct(
+                      'learning-006',
+                      'Puzzle & Activity Pack',
+                      349,
+                    )
+                  "
+                >
+                  <i class="bi bi-cart-plus"></i>
+                  Add to Cart
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         LEARNING JOURNEY
+    ======================================================== -->
+
+      <section class="learning-section learning-journey">
+        <div class="container">
+          <div class="learning-heading">
+            <span class="small-title"> Our Learning Approach </span>
+
+            <h2>Learn. Practice. Create.</h2>
+
+            <p>
+              Great learning doesn't always need to feel like studying. Let
+              children explore, practise and create.
+            </p>
+          </div>
+
+          <div class="learning-journey-grid">
+            <div class="learning-step">
+              <div class="learning-step-icon">
+                <i class="bi bi-search"></i>
+              </div>
+
+              <h3>Explore</h3>
+
+              <p>
+                Discover new ideas through colourful, engaging and hands-on
+                activities.
+              </p>
+            </div>
+
+            <div class="learning-step">
+              <div class="learning-step-icon">
+                <i class="bi bi-pencil-square"></i>
+              </div>
+
+              <h3>Practice</h3>
+
+              <p>
+                Build understanding by solving activities, puzzles and
+                age-appropriate exercises.
+              </p>
+            </div>
+
+            <div class="learning-step">
+              <div class="learning-step-icon">
+                <i class="bi bi-stars"></i>
+              </div>
+
+              <h3>Create</h3>
+
+              <p>
+                Turn knowledge into creativity through art, projects and
+                hands-on learning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         PARENTS & SCHOOLS
+    ======================================================== -->
+
+      <section class="learning-section learning-support">
+        <div class="container">
+          <div class="learning-heading">
+            <span class="small-title"> Learning Support </span>
+
+            <h2>Designed for Children. Helpful for Adults.</h2>
+
+            <p>
+              Whether you are a parent looking for activities at home or a
+              school planning classroom resources, we can help.
+            </p>
+          </div>
+
+          <div class="learning-support-grid">
+            <!-- PARENTS -->
+
+            <div class="learning-support-card parents">
+              <div class="learning-support-icon">
+                <i class="bi bi-house-heart"></i>
+              </div>
+
+              <h3>For Parents</h3>
+
+              <p>
+                Make learning time at home more meaningful with activities
+                children can enjoy independently or together with parents.
+              </p>
+
+              <ul class="learning-support-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Easy-to-use learning materials
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Screen-free activity ideas
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Age-appropriate resources
+                </li>
+              </ul>
+
+              <div class="learning-support-decoration"></div>
+            </div>
+
+            <!-- SCHOOLS -->
+
+            <div class="learning-support-card schools">
+              <div class="learning-support-icon">
+                <i class="bi bi-building"></i>
+              </div>
+
+              <h3>For Schools</h3>
+
+              <p>
+                Need learning kits or customised educational materials for your
+                school? We support bulk and institutional requirements.
+              </p>
+
+              <ul class="learning-support-list">
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Bulk learning kits
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Custom worksheets & materials
+                </li>
+
+                <li>
+                  <i class="bi bi-check-circle-fill"></i>
+                  Classroom activity resources
+                </li>
+              </ul>
+
+              <div class="learning-support-decoration"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         TRUST SECTION
+    ======================================================== -->
+
+      <section class="learning-trust">
+        <div class="container">
+          <div class="learning-trust-box">
+            <div class="learning-trust-title">
+              <span> Why Learning Materials Matter </span>
+
+              <h2>
+                More Than Just<br />
+                Another Activity
+              </h2>
+            </div>
+
+            <div class="learning-trust-points">
+              <div class="learning-trust-point">
+                <i class="bi bi-lightbulb"></i>
+
+                <strong>Encourage Curiosity</strong>
+
+                <span>
+                  Help children ask questions, explore ideas and discover.
+                </span>
+              </div>
+
+              <div class="learning-trust-point">
+                <i class="bi bi-brain"></i>
+
+                <strong>Develop Thinking</strong>
+
+                <span>
+                  Puzzles and activities support logical and creative thinking.
+                </span>
+              </div>
+
+              <div class="learning-trust-point">
+                <i class="bi bi-emoji-smile"></i>
+
+                <strong>Make Learning Fun</strong>
+
+                <span>
+                  Enjoyable activities can make children more excited to learn.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================
+         FINAL CTA
+    ======================================================== -->
+
+      <section class="learning-final">
+        <div class="container">
+          <h2>Make Every Learning Moment Count.</h2>
+
+          <p>
+            Explore our collection of learning materials and discover something
+            that makes your child's next learning moment more exciting.
+          </p>
+
+          <a href="#learning-products" class="learning-btn">
+            Explore Learning Kits
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+       FOOTER
+       KEEP SAME AS YOUR EXISTING WEBSITE
+  ========================================================== -->
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <div class="brand-icon">
+              <i class="bi bi-book-half"></i>
+            </div>
+
+            <div class="brand-text">
+              <strong>YOUR BRAND</strong>
+              <span>QUALITY • CREATIVITY • TRUST</span>
+            </div>
+          </a>
+
+          <p>
+            Quality products, creative solutions and trusted service for
+            individuals, schools and organizations.
+          </p>
+
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">
+              <i class="bi bi-facebook"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a href="#" aria-label="Twitter">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+
+            <a href="#" aria-label="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+
+          <ul class="footer-links">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+
+            <li>
+              <a href="products.html">Products</a>
+            </li>
+
+            <li>
+              <a href="custom-printing.html"> Custom Printing </a>
+            </li>
+
+            <li>
+              <a href="bulk-orders.html"> Bulk Orders </a>
+            </li>
+
+            <li>
+              <a href="about.html">About Us</a>
+            </li>
+
+            <li>
+              <a href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Categories</h4>
+
+          <ul class="footer-links">
+            <li>
+              <a href="products.html"> Jute Bags </a>
+            </li>
+
+            <li>
+              <a href="products.html"> Water Bottles </a>
+            </li>
+
+            <li>
+              <a href="products.html"> Pens & Stationery </a>
+            </li>
+
+            <li>
+              <a href="learning.html"> Learning Materials </a>
+            </li>
+
+            <li>
+              <a href="products.html"> Books </a>
+            </li>
+
+            <li>
+              <a href="custom-printing.html"> Custom Printing </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact Us</h4>
+
+          <ul class="footer-contact">
+            <li>
+              <i class="bi bi-geo-alt"></i>
+              <span>
+                Your Address,<br />
+                Andhra Pradesh, India
+              </span>
+            </li>
+
+            <li>
+              <i class="bi bi-telephone"></i>
+              <span> +91 98765 43210 </span>
+            </li>
+
+            <li>
+              <i class="bi bi-envelope"></i>
+              <span> sales@yourdomain.com </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span> © 2026 YOUR BRAND. All Rights Reserved. </span>
+
+          <div>
+            <a href="privacy-policy.html"> Privacy Policy </a>
+
+            <a href="terms.html"> Terms & Conditions </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+
+    <a
+      href="https://wa.me/919177670168"
+      class="floating-whatsapp"
+      target="_blank"
+      aria-label="Chat on WhatsApp"
+    >
+      <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+    <script src="js/script.js"></script>
+
+    <script>
+      /* =========================================================
+       MOBILE MENU
+    ========================================================== */
+
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+      const mobileNav = document.getElementById("mobileNav");
+
+      if (mobileMenuButton && mobileNav) {
+        mobileMenuButton.addEventListener("click", function () {
+          mobileNav.classList.toggle("active");
+        });
+      }
+
+      /* =========================================================
+       CUSTOMER MENU
+       SAME LOGIN SYSTEM
+    ========================================================== */
+
+      function updateCustomerMenu() {
+        const customerMenu = document.getElementById("customerMenu");
+
+        const mobileCustomerMenu =
+          document.getElementById("mobileCustomerMenu");
+
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+        let user = null;
+
+        try {
+          user = JSON.parse(localStorage.getItem("user") || "null");
+        } catch (error) {
+          user = null;
+        }
+
+        let menuHTML = "";
+
+        if (isLoggedIn) {
+          const userName =
+            user?.name || user?.fullName || user?.email || "My Account";
+
+          menuHTML = `
+
+          <div class="customer-dropdown">
+
+            <button
+              type="button"
+              class="customer-menu-button"
+            >
+              <i class="bi bi-person-circle"></i>
+              ${userName}
+              <i class="bi bi-chevron-down"></i>
+            </button>
+
+            <div class="customer-dropdown-menu">
+
+              <a href="dashboard.html">
+                <i class="bi bi-speedometer2"></i>
+                Dashboard
+              </a>
+
+              <a href="cart.html">
+                <i class="bi bi-cart3"></i>
+                Cart
+                <span
+                  id="desktopCartCount"
+                  class="cart-count"
+                >0</span>
+              </a>
+
+              <a href="orders.html">
+                <i class="bi bi-box-seam"></i>
+                Orders
+              </a>
+
+              <a href="dashboard.html">
+                <i class="bi bi-person"></i>
+                My Account
+              </a>
+
+              <button
+                type="button"
+                onclick="logoutUser()"
+              >
+                <i class="bi bi-box-arrow-right"></i>
+                Logout
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+          if (customerMenu) {
+            customerMenu.innerHTML = menuHTML;
+          }
+
+          if (mobileCustomerMenu) {
+            mobileCustomerMenu.innerHTML = `
+
+            <a href="dashboard.html">
+              <i class="bi bi-speedometer2"></i>
+              Dashboard
+            </a>
+
+            <a href="cart.html">
+              <i class="bi bi-cart3"></i>
+              Cart
+              <span
+                id="mobileCartCount"
+                class="cart-count"
+              >0</span>
+            </a>
+
+            <a href="orders.html">
+              <i class="bi bi-box-seam"></i>
+              Orders
+            </a>
+
+            <a href="dashboard.html">
+              <i class="bi bi-person"></i>
+              My Account
+            </a>
+
+            <a
+              href="#"
+              onclick="logoutUser(); return false;"
+            >
+              <i class="bi bi-box-arrow-right"></i>
+              Logout
+            </a>
+
+          `;
+          }
+        } else {
+          const loginHTML = `
+
+          <a href="login.html">
+            <i class="bi bi-person"></i>
+            Login / Register
+          </a>
+
+        `;
+
+          if (customerMenu) {
+            customerMenu.innerHTML = loginHTML;
+          }
+
+          if (mobileCustomerMenu) {
+            mobileCustomerMenu.innerHTML = loginHTML;
+          }
+        }
+
+        updateNavbarCartCount();
+      }
+
+      /* =========================================================
+       LOGOUT
+    ========================================================== */
+
+      function logoutUser() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+
+        window.location.href = "login.html";
+      }
+
+      /* =========================================================
+       CART COUNT
+    ========================================================== */
+
+      function updateNavbarCartCount() {
+        let cart = [];
+
+        try {
+          cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        } catch (error) {
+          cart = [];
+        }
+
+        const totalQuantity = cart.reduce(function (total, item) {
+          return total + Number(item.quantity || 0);
+        }, 0);
+
+        const desktopCount = document.getElementById("desktopCartCount");
+
+        const mobileCount = document.getElementById("mobileCartCount");
+
+        if (desktopCount) {
+          desktopCount.textContent = totalQuantity;
+        }
+
+        if (mobileCount) {
+          mobileCount.textContent = totalQuantity;
+        }
+      }
+
+      /* =========================================================
+       LEARNING PRODUCT QUANTITY
+    ========================================================== */
+
+      function changeLearningQty(productId, change) {
+        const input = document.getElementById("qty-" + productId);
+
+        if (!input) return;
+
+        let quantity = parseInt(input.value, 10) || 1;
+
+        quantity += change;
+
+        if (quantity < 1) {
+          quantity = 1;
+        }
+
+        if (quantity > 20) {
+          quantity = 20;
+        }
+
+        input.value = quantity;
+      }
+
+      /* =========================================================
+       ADD LEARNING PRODUCT TO EXISTING CART
+    ========================================================== */
+
+      function addLearningProduct(productId, productName, price) {
+        const input = document.getElementById("qty-" + productId);
+
+        let quantity = parseInt(input?.value, 10) || 1;
+
+        if (quantity < 1) {
+          quantity = 1;
+        }
+
+        if (typeof addToCart === "function") {
+          addToCart(productId, productName, Number(price), quantity);
+
+          updateNavbarCartCount();
+        } else {
+          console.error("addToCart() was not found. Check js/cart.js");
+
+          alert("Cart system could not be loaded. Please refresh the page.");
+        }
+      }
+
+      /* =========================================================
+       INITIALIZE
+    ========================================================== */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCustomerMenu();
+        updateNavbarCartCount();
+      });
+
+      /* =========================================================
+       UPDATE CART COUNT WHEN STORAGE CHANGES
+    ========================================================== */
+
+      window.addEventListener("storage", function () {
+        updateNavbarCartCount();
+        updateCustomerMenu();
+      });
+    </script>
+  </body>
+</html>
